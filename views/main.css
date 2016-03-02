@@ -1,11 +1,8 @@
 @font-face {
     font-family: calcFont;
-    src: url(digital-7.ttf);
+    src: url(../texts/digital-7.ttf);
 }
-@font-face {
-	font-family: beerFont;
-	src: url(AmericanBreweryRough.ttf);
-}
+
 			/**********************************INSERTED FONTS********************/
 .mainbackground {
 	padding-top:100px;
