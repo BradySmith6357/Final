@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+<head>
+	<title>BrewAtlas || Your Home For Brewing Beer</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
+  <script type="text/javascript" src="../js/brewAtlasApp.js"></script>
+  <script type="text/javascript" src="../js/brewAtlas.mainController.js"></script>
+  <script type="text/javascript" src="../js/brewAtlasApp.constructorFactory.js"></script>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body ng-controller="recipeController" class="mainbackground">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/homepage">BrewAtlas</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/beerlibrary">Beer Clone Library</a></li>
+          <li><a href="/beermap">Beer Map</a></li>
+          <li><a href="/brewingtools">Brewing Tools</a></li>
+        </ul>
+        <a href="/activeuser"><img src="../../images/BerkeleyPicture.jpg" class="profileimage" width="40" height="40"></a>  
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Find a beer or brewery">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+      </div>
+    </div>
+  </nav>
+	<div class="container col-xs-12 col-sm-4 col-md-6 minpadding">
+		<div class="list-group">
+			<h3 class="list-group-item"><img ng-src="{{berkeley.image}}" class="userboximage" width="75" height="100">Hi {{berkeley.firstname}}!</h3>
+  			<a href="#" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{berkeley.brewed}}</span></a>
+  			<a href="#" class="list-group-item">Badges Earned<span class="badge">{{berkeley.badges}}</span></a>
+		</div>
+		<div class="wishlistbox">
+			<div class="list-group">
+				<h3 class="list-group-item">Brewing Wishlist</h3>
+				<div ng-repeat="beer in berkeleyWishlist">
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
+  				</div>
+  			</div>
+		</div>
+	</div>
+	<div class="brewbox container col-sm-8 col-lg-6">
+		<div class="brewboxtitle">
+			<h2>Recently Completed Beers</h2>
+		</div>
+			<div class="col-sm-6 col-md-6" ng-repeat="beer in berkeleyCompleted">
+			<div class="thumbnail">
+  				<img ng-src="{{beer.image}}">
+  				<div class="caption">
+    				<h3>{{beer.name}}</h3>
+    				<h4>{{beer.brewery}}</h4>
+    				<p>{{beer.city}}, {{beer.state}}</p>
+    				<p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)">View Beer</a> <a href="#" class="btn btn-default" role="button" data-toggle="modal" data-target="#notesModal" ng-click="showNotes(beer)">Add Notes</a></p>
+  				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal for wishlist  -->
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{displayedBeer.name}} || {{displayedBeer.brewery}} || {{displayedBeer.city}}, {{displayedBeer.state}}</h4>
+      </div>
+      <div class="modal-body">
+        <img ng-src="{{displayedBeer.image}}" width="100" height="125" class="topimage">
+      <ul>
+        <li>Style: {{displayedBeer.style}}</li>
+        <li>Malt Bill: {{displayedBeer.malt.toString()}}</li>
+        <li>Hop Bill: {{displayedBeer.hops.toString()}}</li>
+        <li>Extra Ingredients: {{displayedBeer.extra.toString()}}</li>
+        <li>Yeast: {{displayedBeer.yeast}}</li>
+        <li>Average ABV: {{displayedBeer.abv}}%</li>
+        <li>Overall Rating: {{displayedBeer.rating}} / 5</li>
+      </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Modal for view beer -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{displayedBeer.name}} || {{displayedBeer.brewery}} || {{displayedBeer.city}}, {{displayedBeer.state}}</h4>
+      </div>
+      <div class="modal-body">
+        <img ng-src="{{displayedBeer.image}}" width="100" height="125" class="topimage">
+			<ul>
+				<li>Style: {{displayedBeer.style}}</li>
+				<li>Malt Bill: {{displayedBeer.malt.toString()}}</li>
+				<li>Hop Bill: {{displayedBeer.hops.toString()}}</li>
+				<li>Extra Ingredients: {{displayedBeer.extra.toString()}}</li>
+				<li>Yeast: {{displayedBeer.yeast}}</li>
+				<li>Average ABV: {{displayedBeer.abv}}%</li>
+				<li>Overall Rating: {{displayedBeer.rating}} / 5</li>
+			</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for beer notes -->
+<div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="notesModalLabel">{{displayedBeer.name}} || {{displayedBeer.brewery}} || {{displayedBeer.city}}, {{displayedBeer.state}}</h4>
+      </div>
+      <div class="modal-body">
+        <img ng-src="{{displayedBeer.image}}" width="100" height="125" class="topimage">
+			<h3>Add notes about your batch of {{displayedBeer.name}}.</h3>
+			<textarea class="modalText" rows="2" cols="20" wrap="hard" ng-bind="displayedBeer.notes"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addNotes(displayedBeer)">Save Notes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for completed beer list -->
+<div class="modal fade" id="completedModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="completedModalLabel">Total Beers Brewed</h4>
+      </div>
+      <div class="modal-body" ng-repeat="beer in berkeleyCompleted">
+				<img ng-src="{{beer.image}}" width="50" height="50" class="topimage">{{beer.name}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

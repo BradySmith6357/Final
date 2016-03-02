@@ -1,0 +1,217 @@
+@font-face {
+    font-family: calcFont;
+    src: url(digital-7.ttf);
+}
+@font-face {
+	font-family: beerFont;
+	src: url(AmericanBreweryRough.ttf);
+}
+			/**********************************INSERTED FONTS********************/
+.mainbackground {
+	padding-top:100px;
+	background-image: url(http://orig05.deviantart.net/1db6/f/2008/042/9/6/local_texture__three_by_one_by_beyond_oddities.jpg);
+	background-attachment: fixed;
+}
+
+.signupbackground {
+	background-image: url(https://patspints.files.wordpress.com/2014/05/hops_closeup.jpg)
+}
+.jumbotronstyle{
+	background-image: url(../images/jumbotron.jpg);
+	padding-left:20px;
+	margin-bottom:200px;
+	background-attachment:fixed;
+	background-size:143%;
+	color:white;
+	text-shadow: 2px 2px 4px #000000;
+	}
+
+#slidevid {
+	display:block;
+	height:initial;
+	width:1223px;
+	text-align:center;
+}
+.beerslide {
+	display:inline-block;
+	color:white;
+	text-align:center;
+	background-color:#4B5046;
+	width:300px;
+	opacity:.75;
+	border-radius:20px;
+	margin: 0px 125px 0px 125px;
+	box-shadow: 16px 16px 8px 2px rgba(110, 71, 42, 0.2), 4px 7px 22px 0 rgba(0, 0, 0, 0.19);
+}
+.beerslide-box {
+	background-image:url(http://i.imgur.com/A6GBkG9.gif);
+	padding: 560px 0px 100px 0px;
+}
+.infobox1 {
+	/*background-color: #f1f1f1;*/
+	padding-bottom:41px;
+	padding-top:135px;
+	text-align:center
+}
+.infobox2 {
+	/*background-color: #f1f1f1;*/
+	padding-bottom:40px;
+	padding-top:135px;
+	text-align:center;
+	
+}
+.infobox3 {
+	/*background-color: #f1f1f1;*/
+	padding-top:135px;
+	text-align:center
+}
+.infobox-img-size{
+	height:200px;
+	width:200px;
+	border-radius:100px;
+	background-color: white;
+}
+.infobox-text {
+	text-align: left;
+	color:white;
+}
+.slideshow {
+	background-image: url(http://www.texturex.com/albums/Metal-Textures/light%20brushed%20metal%20texture%20silver%20platinum%20stock%20wallpaper.jpg);
+	word-wrap: break-word;
+
+}
+.toprecipeheader {
+	text-align: center;
+	color:white;
+}
+.topimage {
+	display:inline-block;
+}
+.profileimage {
+	border-radius:100px;
+	margin-top:5px;
+}
+
+.modalText {
+	height: 200px;
+	width:555px;
+}
+.brewboxtitle {
+	padding-bottom:15px;
+	padding-left: 18px;
+	opacity: .75;
+	text-align:center;
+	color:white;
+}
+.brewbox {
+	padding-left:2px;
+}
+.minpadding {
+	padding-right:2px;
+	padding-top: 58px;
+}
+.thumbnail {
+	min-height: 430px;
+}
+.userboximage {
+	border-radius: 50px;
+}
+.beerlibrary {
+	background-image: url(http://media.philly.com/images/boulevard3.jpg);
+	border-color: black;
+	border-style: solid;
+	display: inline-block;
+	text-align:center;
+	max-height: 269px;
+	max-width: 320px;
+	margin:2px;
+	min-height:269px;
+}
+.fontfit {
+	font-size:16px;
+	word-wrap: break-word;
+}
+.beerfont {
+	color:black;
+	text-shadow: 2px 2px 4px #865050;
+}
+.pagepadding {
+	text-align:center;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.abvcalc {
+	background-image: url(http://sniik.no/wp-content/uploads/2014/03/iphone-5c-case-tzgdqlxc.jpg);
+	background-size: 877px 800px;
+	border-radius: 10px 10px 10px 10px;
+	margin-bottom: 50px;
+	padding-top: 32px;
+    padding-bottom: 25px;
+    box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+}
+.circlegrad {
+  background: #E2E2E6;
+  background: -webkit-radial-gradient(circle, #E2E2E6, #888894, #575765); 
+  background: -o-radial-gradient(circle, #E2E2E6, #888894, #575765); 
+  background: -moz-radial-gradient(circle, #E2E2E6, #888894, #575765); 
+  background: radial-gradient(circle, #E2E2E6, #888894, #575765);
+}
+.calc-green {
+	color: #84CC2C;
+	font-size: 25px;
+	font-family:calcFont;
+	padding-left:20px;
+	padding-right:20px;
+	background-color:black;
+}
+.form-header {
+	background-color: #F5B32A;
+    padding: 42px 10px 40px 20px;
+    border-radius: 10px 0px 0px 10px;
+    color:black;
+}
+
+.formlabel {
+	padding:5px 0px 0px 5px;
+}
+.forminput {
+	color:black;
+	margin: -3px 0px 10px 9px;
+}
+.makeyourown-form {
+	background-image: url(http://hoppedupbrewer.com/wp-content/uploads/20140517-DSC_80341.jpg);
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	border-radius: 20px;
+	box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.signup-form {
+	display: inline;
+	background-color:#EEEEEE;
+	border-radius:20px;
+	padding:20px;
+	position:fixed;
+	top:300px;
+	right:220px;
+	box-shadow: 16px 16px 8px 2px rgba(110, 71, 42, 0.2), 4px 7px 22px 0 rgba(0, 0, 0, 0.19);
+
+}
+.signup-header{
+	padding-top:75px;
+	font-size:60px;
+	text-align:center;
+	color:white;
+	opacity:.80;
+}
+
+.center-header {
+	text-align:center;
+}
+.resources-box{
+	background-color:white;
+/*	margin-left:20px;*/
+
+}
+

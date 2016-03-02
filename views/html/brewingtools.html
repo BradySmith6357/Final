@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+<head>
+	<title>Brewing Tools</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/brewAtlasApp.js"></script>
+	<script type="text/javascript" src="../js/brewAtlas.mainController.js"></script>
+	<script type="text/javascript" src="../js/brewAtlasApp.constructorFactory.js"></script>
+	<link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body ng-controller="recipeController" class="mainbackground">
+<body ng-controller="recipeController" class="mainbackground">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="homepage.html">BrewAtlas</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        			<span class="sr-only">Toggle navigation</span>
+       				<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+      			</button>
+      		</div>
+      		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="beerlibrary.html">Beer Clone Library</a></li>
+					<li><a href="#">Brew Map</a></li>
+					<li><a href="brewingtools.html">Brewing Tools</a></li>
+				</ul>
+				<a href="activeuser.html"><img src="BerkeleyPicture.jpg" class="profileimage" width="40" height="40"></a>	
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Find a beer or brewery">
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>
+			</div>
+		</div>
+	</nav>
+			<!-- *************************   ABV CALCULATOR    ***************************** -->
+	<div class="container">
+		<form class="abvcalc" cellpadding="2" cellspacing="2">
+			<b class="form-header circlegrad">ABV CALCULATOR</b>
+				<label for="ogtext" class="formlabel">Original Gravity (OG):</label>
+				<input type="text" class="forminput" id="ogtext" ng-change="calcABV($event)" ng-model="ogtext" value="" maxlength="5" style="width: 100px">
+				<label for="fgtext" class="formlabel">Final Gravity (FG):</label>
+				<input type="text" class="forminput" id="fgtext" ng-change="calcABV($event)" ng-model="fgtext" value="" maxlength="5" style="width: 100px">
+				<b>Alcohol By Volume:</b>
+				<b class="calc-green">{{abv}}</b>
+		</form>
+	</div>
+			<!-- *************************   ADD CUSTOM BEER FORM   ***************************** -->
+	<form class="makeyourown-form container col-xs-12 col-sm-6 col-md-4">
+		<h3 class="center-header">Custom Beer Creator</h3>
+		<div class="form-group">
+			<label for="inputBeerName">Beer Name<label>
+			<input type="text" class="form-control" id="inputFirstName" ng-model="newBeer.name">
+		</div>
+		<div class="form-group">
+				<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newBeer.style">
+    			{{selectedStyle}}
+    			<span class="caret"></span>
+  				</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				<li ng-repeat="style in styleList"><a ng-click="selectStyle(style)">{{style.name}}</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="form-group">
+			<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newBeer.name">
+    			{{selectedMalt1}}
+    			<span class="caret"></span>
+  				</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				<li ng-repeat="malt in maltList"><a ng-click="selectMalt1(malt)">{{malt.name}}</a></li>
+			
+			</ul>
+		</div>
+		</div>
+		<div class="form-group">
+		<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			{{selectedMalt2}}
+    			<span class="caret"></span>
+  				</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				<li ng-repeat="malt in maltList"><a ng-click="selectMalt2(malt)">{{malt.name}}</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="form-group">
+		<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			{{selectedMalt3}}
+    			<span class="caret"></span>
+  				</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				<li ng-repeat="malt in maltList"><a ng-click="selectMalt3(malt)">{{malt.name}}</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="form-group">
+			<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			{{selectedHops1}}
+    			<span class="caret"></span>
+  				</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				<li ng-repeat="hops in hopsList"><a ng-click="selectHops1(hops)">{{hops.name}}</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="form-group">
+			<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			{{selectedHops2}}
+    			<span class="caret"></span>
+  				</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				<li ng-repeat="hops in hopsList"><a ng-click="selectHops2(hops)">{{hops.name}}</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="form-group">
+			<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    			{{selectedHops3}}
+    			<span class="caret"></span>
+  				</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				<li ng-repeat="hops in hopsList"><a ng-click="selectHops3(hops)">{{hops.name}}</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="form-group">
+			<label for="inputExtra">Specialty Ingredients</label>
+			<input type="text" class="form-control" id="inputExtra">
+		</div>
+		<div class="form-group">
+			<label for="inputYeast">Yeast Used</label>
+			<input type="text" class="form-control" id="inputYeast">
+		</div>
+		<button type="submit" class="btn btn-success">Add Recipe</button>
+	</form>
+<!-- Brewing Resources -->
+<!-- <div class="resources-box container">
+	<div class="col-xs-4">
+		<h3>Brewing Basics</h3>
+		<a href="http://www.howtobrew.com/"><img src="http://ecx.images-amazon.com/images/I/517vHAAt7PL._SX348_BO1,204,203,200_.jpg" height="200" width="175"></a>
+	</div>
+	<div class="col-xs-4">
+		<h3>Brewing Supply Website</h3>
+		<a href="www.northernbrewer.com"><img src="http://beerpulse.com/wp-content/uploads/2012/04/NB-Logo-Grain-01-768.png" height="200" width="175"></a>
+	</div>
+	<div class="col-xs-4">
+		<h3>Hop Information</h3>
+		<a href="https://www.hopunion.com/hop-varieties/"><img src="https://www.hopunion.com/img/hopunion-logo.png" height="200" width="175"></a>
+	</div>
+	<div class="col-xs-4">
+		<h3>Barley Information</h3>
+		<a href="https://byo.com/resources/grains"><img src="http://byo.com/images/random_logo/logo4.png" height="200" width="175"></a>
+	</div>
+</div> -->
+</body>

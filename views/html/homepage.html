@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+<head>
+	<title>BrewAtlas || Your Home For Brewing Beer</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/brewAtlasApp.js"></script>
+	<script type="text/javascript" src="../js/brewAtlas.mainController.js"></script>
+	<script type="text/javascript" src="../js/brewAtlasApp.constructorFactory.js"></script>
+	<link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body ng-controller="recipeController" class="mainbackground">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="homepage.html">BrewAtlas</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        			<span class="sr-only">Toggle navigation</span>
+       				<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+      			</button>
+      		</div>
+      		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="beerlibrary.html">Beer Clone Library</a></li>
+					<li><a href="#">Beer Map</a></li>
+					<li><a href="brewingtools.html">Brewing Tools</a></li>
+					<li><a href ="activeuser.html">Sign In</a></li>
+				</ul>	
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Find a beer or brewery">
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>
+			</div>
+		</div>
+	</nav>
+	<div class="jumbotron jumbotronstyle">
+		<h1>BrewAtlas</h1>
+		<h3>Brew Socially</h3>
+		<p>Welcome to BrewAtlas! The difinitive location for an extensive collection of clone recipes from breweries across the US. Feel free to peruse the clone recipes for inspiration, and if you're feeling competetive, sign up and start tracking your brewing progress!</p>
+		<p><a class="btn btn-primary btn-lg" href="signup.html" role="button">Sign Up</a></p>
+	</div>
+	<div id="slideshowCarousel" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#slideshowCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#slideshowCarousel" data-slide-to="1"></li>
+    		<li data-target="#slideshowCarousel" data-slide-to="2"></li>
+    	</ol>
+    	<div class="carousel-inner beerslide-box" role="listbox">
+    		<div class="item active">
+      			<div class="carousel-caption">
+        			<div class="beerslide" ng-repeat="beers in brewOfTheMonth">
+						<h3>Brew Of The Month</h3>
+						<img height="300" width="250" ng-src="{{beers.image}}">
+						<h5>{{beers.name}} {{beers.style}}</h5>
+						<h5>{{beers.brewery}}</h5>
+						<h5>{{beers.city}}, {{beers.state}}</h5>
+					</div>
+      			</div>
+    		</div>
+    		<div class="item">
+    			<div class="carousel-caption">
+        			<div class="beerslide" ng-repeat="brewery in breweryOfTheMonth">
+						<h3>Brewery Of The Month</h3>
+						<img height="300" width="250" ng-src="{{brewery.image}}">
+						<h5>{{brewery.name}}</h5>
+						<h5>{{brewery.city}}, {{brewery.state}}</h5>
+						<h5>{{brewery.totalBrews}} recipes available in library</h5>
+					</div>
+      			</div>
+    		</div>
+    		<div class="item">
+    			<div class="carousel-caption">
+        			<div class="beerslide" ng-repeat="user in brewerOfTheMonth">
+						<h3>Brewer Of The Month</h3>
+						<img height="300" width="250" ng-src="{{user.image}}">
+						<h3>{{user.username}}</h3>
+						<h5>{{user.brewed}} Beers Brewed</h5>
+						<h5>{{user.badges}} Badges Earned</h5>
+					</div>
+				</div>
+    		</div>
+    	</div>
+    	<a class="left carousel-control" href="#slideshowCarousel" role="button" data-slide="prev">
+    		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+   			<span class="sr-only">Previous</span>
+  		</a>
+  		<a class="right carousel-control" href="#slideshowCarousel" role="button" data-slide="next">
+    		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    		<span class="sr-only">Next</span>
+  		</a>
+	</div>
+
+
+	<div class="container">
+			<div class="col-xs-12 col-sm-4 col-md-4 infobox1">
+				<img src="http://clipart-finder.com/data/mini/96-globe_BW.png" class="infobox-img-size">
+				<h4 class="infobox-text">Explore New Clone Beer Recipes</h4>
+				<p class="infobox-text">Not sure what to brew for your next batch? Explore the database and get some inspiration.</p>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 infobox3">
+				<img src="http://northwoodtechnology.ie/sites/go2northwoodsite/files/icon-community-400.png" class="infobox-img-size">
+				<h4 class="infobox-text">Compete With Friends</h4>
+				<p class="infobox-text">Create your profile and start adding the beers you've brewed. All you need to do is upload pictures of your beer in primary ferment and the finished product, and you can add the beer to your profile, earn badges and be the brew master among your friends.</p>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 infobox2">
+				<img src="http://image.spreadshirtmedia.com/image-server/v1/designs/12285238,width=200,height=200" class="infobox-img-size">
+				<h4 class="infobox-text">Share What You're Brewing</h4>
+				<p class="infobox-text">Tell all your friends about how your last brew turned out. Did you bottle condition with something new? Let everyone know how it affected the final product.</p>
+			</div>
+	</div>
+	<div>
+		<footer>
+			<nav class="navbar navbar-inverse">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        					<span class="sr-only">Toggle navigation</span>
+        					<span class="icon-bar"></span>
+        					<span class="icon-bar"></span>
+        					<span class="icon-bar"></span>
+      					</button>
+      					<a class="navbar-brand" href="#">Brew Atlas</a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">Clone Beer Library</a></li>
+						<li><a href="#">Beer Map</a></li>
+						<li><a href="#">Brew Tools</a></li>
+						<li><a href ="#">Sign In</a></li>
+					</ul>	
+				</div>
+			</nav>
+		</footer>
+</body>

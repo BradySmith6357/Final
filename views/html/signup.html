@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+<head>
+	<title>Brew Atlas || Your Home For Brewing Beer</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/brewAtlasApp.js"></script>
+	<script type="text/javascript" src="../js/brewAtlas.mainController.js"></script>
+	<script type="text/javascript" src="../js/brewAtlasApp.constructorFactory.js"></script>
+	<link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body ng-controller="recipeController" class="signupbackground">
+	<h1 class="signup-header">SIGN UP AND JOIN THE HOMEBREWING REVOLUTION</h1>
+	<form class="container-fluid signup-form col-xs-6 col-s-6 col-md-8">
+			<div class="form-group">
+				<label for="inputFirstName">First name</label>
+				<input type="text" class="form-control" ng-model="newUser.firstName" id="inputFirstName">
+			</div>
+			<div class="form-group">
+				<label for="inputLastName">Last name</label>
+				<input type="text" class="form-control" ng-model="newUser.lastName" id="inputLastName">
+			</div>
+			<div class="form-group">
+				<label for="inputUserName">User name</label>
+				<input type="text" class="form-control" ng-model="newUser.userName"id="inputUserName">
+			</div>
+			<div class="form-group">
+				<label for="inputEmail">Email</label>
+				<input type="email" class="form-control" ng-model="newUser.email" id="inputEmail">
+			</div>
+			<div class="form-group">
+				<label for="inputPassword">Password</label>
+				<input type="password" class="form-control" ng-model="newUser.password"id="inputPassword">
+			</div>
+			<div class="form-group">
+				<label for="imageInputFile">Upload Image</label>
+				<input type="file" id="imageInputFile" ng-model="newUser.image">
+			</div>
+			<button type="submit" class="btn btn-success" ng-click="addUser()">Sign Up</button>
+			<button type="submit" class="btn btn-warning"><a href="homepage.html">Cancel</a></button>
+		</form>
+</body>
