@@ -1,4 +1,5 @@
-angular.module("mainModule").controller("recipeController", ["$scope", "constructorFactory", function($scope, constructorFactory){
+angular.module("mainModule")
+	.controller("mainController", ["$scope", "constructorFactory", function($scope, constructorFactory){
 
 	$scope.recipeList = [
 

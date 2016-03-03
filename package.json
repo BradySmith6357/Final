@@ -19,8 +19,10 @@
   "homepage": "https://github.com/BradySmith6357/Final#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "brewerydb-node": "0.0.1",
     "express": "^4.13.4",
     "logger": "0.0.1",
-    "mongoose": "^4.4.5"
+    "mongoose": "^4.4.5",
+    "morgan": "^1.7.0"
   }
 }

@@ -1,7 +1,7 @@
-angular.module('HeroesApp')
-	.controller('heroController', ['$scope', '$http', '$routeParams', heroController])
+angular.module('mainModule')
+	.controller('mainController', ['$scope', '$http', '$routeParams', mainController])
 
-function heroController ($scope, $http, $routeParams){
+function mainController ($scope, $http, $routeParams){
 // Express -> req.params to hold our paramters
 // $routeParams -> req.params for angular
 

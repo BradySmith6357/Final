@@ -9,25 +9,47 @@
 	background-image: url(http://orig05.deviantart.net/1db6/f/2008/042/9/6/local_texture__three_by_one_by_beyond_oddities.jpg);
 	background-attachment: fixed;
 }
+.map-header {
+	text-align: center;
+	color: white;
+	font-size: 50px;
+	font-family: Tahoma;
+}
+#map {
+	height: 800px;
+	border: black;
+	border-radius: 500px;
+	border-style: solid;
+	border-color: gold;
+}
+.navbar-custom {
+	background: linear-gradient(#C6CCCF, #FFFEFC);
+	opacity: 0.95;
+}
 
 .signupbackground {
 	background-image: url(https://patspints.files.wordpress.com/2014/05/hops_closeup.jpg)
 }
 .jumbotronstyle{
-	background-image: url(../images/jumbotron.jpg);
+	background-image: url(http://i.imgur.com/A6GBkG9.gif);
 	padding-left:20px;
-	margin-bottom:200px;
+	margin-bottom:35px;
 	background-attachment:fixed;
 	background-size:143%;
 	color:white;
 	text-shadow: 2px 2px 4px #000000;
 	}
 
+.font-padding{
+	padding: 72px 108px 65px 72px;
+}
+
 #slidevid {
 	display:block;
 	height:initial;
 	width:1223px;
 	text-align:center;
+	padding-top: 35px;
 }
 .beerslide {
 	display:inline-block;
@@ -42,25 +64,18 @@
 }
 .beerslide-box {
 	background-image:url(http://i.imgur.com/A6GBkG9.gif);
+	background-attachment:fixed;
 	padding: 560px 0px 100px 0px;
 }
 .infobox1 {
-	/*background-color: #f1f1f1;*/
-	padding-bottom:41px;
-	padding-top:135px;
-	text-align:center
+	text-align:center;
 }
 .infobox2 {
-	/*background-color: #f1f1f1;*/
-	padding-bottom:40px;
-	padding-top:135px;
 	text-align:center;
 	
 }
 .infobox3 {
-	/*background-color: #f1f1f1;*/
-	padding-top:135px;
-	text-align:center
+	text-align:center;
 }
 .infobox-img-size{
 	height:200px;
@@ -210,5 +225,10 @@
 	background-color:white;
 /*	margin-left:20px;*/
 
+}
+.pb-banner {
+	display: inline;
+	height:50px;
+	text-align: right;
 }
 
