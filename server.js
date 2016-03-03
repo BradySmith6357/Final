@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
 var breweryDb = require('brewerydb-node')
-var brewdb = require('9f9f7b837c0caed1a2d0375ae7c185f3')
+var brewdb = require('APIKEY')
 // Create Express App Object \\
 var app = express();
 
