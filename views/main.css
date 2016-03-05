@@ -205,7 +205,7 @@
 	border-radius:20px;
 	padding:20px;
 	position:fixed;
-	top:300px;
+	top:250px;
 	right:220px;
 	box-shadow: 16px 16px 8px 2px rgba(110, 71, 42, 0.2), 4px 7px 22px 0 rgba(0, 0, 0, 0.19);
 
@@ -216,6 +216,17 @@
 	text-align:center;
 	color:white;
 	opacity:.80;
+}
+.signin-form {
+	display: inline;
+	background-color:#EEEEEE;
+	border-radius:20px;
+	padding:20px;
+	position:fixed;
+	top:645px;
+	right:220px;
+	box-shadow: 16px 16px 8px 2px rgba(110, 71, 42, 0.2), 4px 7px 22px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .center-header {
