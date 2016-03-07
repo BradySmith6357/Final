@@ -14,37 +14,33 @@
 	<script type="text/javascript" src="../js/brewAtlasApp.constructorFactory.js"></script>
 	<link rel="stylesheet" type="text/css" href="../main.css">
 </head>
-<body ng-controller="recipeController" class="signupbackground">
+<body ng-controller="mainController" class="signupbackground">
 	<h1 class="signup-header">SIGN UP AND JOIN THE HOMEBREWING REVOLUTION</h1>
-	<form class="container-fluid signup-form col-xs-6 col-s-6 col-md-8" action="/signup" method="POST">
+	<form class="container-fluid signup-form col-xs-6 col-s-6 col-md-8" action="/signup" method="POST" ng-submit="signup()">
 		<div class="form-group">
 			<label for="inputUserName">Username</label>
-			<input type="text" class="form-control" id="inputUserName">
+			<input type="text" class="form-control" id="inputUserName" ng-model="signupForm.userName">
 		</div>
 		<div class="form-group">
 			<label for="inputEmail">Email</label>
-			<input type="email" class="form-control" id="inputEmail">
+			<input type="email" class="form-control" id="inputEmail" ng-model="signupForm.email">
 		</div>
 		<div class="form-group">
 			<label for="inputPassword">Password</label>
-			<input type="password" class="form-control" id="inputPassword">
+			<input type="password" class="form-control" id="inputPassword" ng-model="signupForm.password">
 		</div>
-		<div class="form-group">
-			<label for="imageInputFile">Upload Image</label>
-			<input type="file" id="imageInputFile">
-		</div>
-		<button type="submit" class="btn btn-success" ng-click="addUser()">Sign Up</button>
+		<button type="submit" class="btn btn-success">Sign Up</button>
 	</form>
 		<h1 class="signin-header">SIGN IN</h1>
-		<form class="container-fluid signin-form col-xs-6 col-s-6 col-md-8" action="/login" method="POST">
+		<form class="container-fluid signin-form col-xs-6 col-s-6 col-md-8" action="/login" method="POST" ng-submit="login()">
 			<div class="form-group">
 				<label for="inputUserName">Username</label>
-				<input type="text" class="form-control"id="inputUserName" name="username">
+				<input type="text" class="form-control"id="inputUserName" name="loginForm.username">
 			</div>
 			<div class="form-group">
 				<label for="inputPassword">Password</label>
-				<input type="password" class="form-control" id="inputPassword" name="password">
+				<input type="password" class="form-control" id="inputPassword" name="loginForm.password">
 			</div>
-			<button type="submit" class="btn btn-success" ng-click="addUser()">Sign In</button>
+			<button type="submit" class="btn btn-success">Sign In</button>
 		</form>
 </body>

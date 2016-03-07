@@ -217,6 +217,14 @@
 	color:white;
 	opacity:.80;
 }
+
+.signup-header{
+	padding-top:75px;
+	font-size:60px;
+	text-align:center;
+	color:white;
+	opacity:.80;
+}
 .signin-form {
 	display: inline;
 	background-color:#EEEEEE;

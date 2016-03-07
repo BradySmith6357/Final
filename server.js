@@ -79,13 +79,14 @@ app.get('/signup', function(req, res){
   res.sendFile('signup.html', {root : './views/html'})
 });
 
+// Custom Beers //
 var customBeerList = []
 
-app.get("/api/addBeer", function(req, res){
+app.get("/api/customBeers", function(req, res){
 	res.send(customBeerList)
 })
 
-app.post("/api/addBeer", function(req, res){
+app.post("/api/customBeers", function(req, res){
 	customBeerList.push({
 		name: req.body.name,
 		style: req.body.style,
@@ -96,6 +97,32 @@ app.post("/api/addBeer", function(req, res){
 	})
 	res.send(customBeerList)
 	console.log(customBeerList)
+})
+
+// Completed Beers //
+var userCompletedList = []
+
+app.get("/api/completedBeers", function(req, res){
+	res.send(userCompletedList)
+})
+
+app.post("/api/completedBeers", function(req, res, beer){
+	userCompletedList.push(beer)
+	res.send(userCompletedList)
+	console.log(userCompletedList)
+})
+
+// Wishlist Beers //
+var userWishlist = []
+
+app.get("/api/wishlistBeers", function(req, res){
+	res.send(userWishlist)
+})
+
+app.post("/api/wishlistBeers", function(req, res, displayedBeer){
+	userWishlist.push(displayedBeer)
+	res.send(userWishlist)
+	console.log(userWishlist)
 })
 
 

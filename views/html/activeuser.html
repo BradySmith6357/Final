@@ -45,13 +45,13 @@
 	<div class="container col-xs-12 col-sm-4 col-md-6 minpadding">
 		<div class="list-group">
 			<h3 class="list-group-item"><img ng-src="{{berkeley.image}}" class="userboximage" width="75" height="100">Hi {{berkeley.firstname}}!</h3>
-  			<a href="#" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{berkeley.brewed}}</span></a>
+  			<a href="#" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{userCompletedList.length}}</span></a>
   			<a href="#" class="list-group-item">Badges Earned<span class="badge">{{berkeley.badges}}</span></a>
 		</div>
 		<div class="wishlistbox">
 			<div class="list-group">
 				<h3 class="list-group-item">Brewing Wishlist</h3>
-				<div ng-repeat="beer in berkeleyWishlist">
+				<div ng-repeat="beer in userWishlist">
   				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
   				</div>
   			</div>
@@ -60,7 +60,7 @@
       <div class="list-group">
         <h3 class="list-group-item">Custom Beers</h3>
         <div ng-repeat="beer in customBeerList">
-          <a href="#" class="list-group-item" data-toggle="modal" data-target="#customBeerModal" ng-click="showBeer(beer)">{{customBeer.name}}</a>
+          <a href="#" class="list-group-item" data-toggle="modal" data-target="#customBeerModal" ng-click="showBeer(beer)">{{beer.name}}</a>
           </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
 		<div class="brewboxtitle">
 			<h2>Recently Completed Beers</h2>
 		</div>
-			<div class="col-sm-6 col-md-6" ng-repeat="beer in berkeleyCompleted">
+			<div class="col-sm-6 col-md-6" ng-repeat="beer in userCompletedList track by $index">
 			<div class="thumbnail">
   				<img ng-src="{{beer.image}}">
   				<div class="caption">
@@ -178,18 +178,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{displayedBeer.name}} || {{displayedBeer.brewery}} || {{displayedBeer.city}}, {{displayedBeer.state}}</h4>
+        <h4 class="modal-title" id="myModalLabel">{{displayedBeer.name}}</h4>
       </div>
       <div class="modal-body">
-        <img ng-src="{{displayedBeer.image}}" width="100" height="125" class="topimage">
       <ul>
         <li>Style: {{displayedBeer.style}}</li>
         <li>Malt Bill: {{displayedBeer.malt.toString()}}</li>
         <li>Hop Bill: {{displayedBeer.hops.toString()}}</li>
-        <li>Extra Ingredients: {{displayedBeer.extra.toString()}}</li>
+        <li>Extra Ingredients: {{displayedBeer.special}}</li>
         <li>Yeast: {{displayedBeer.yeast}}</li>
-        <li>Average ABV: {{displayedBeer.abv}}%</li>
-        <li>Overall Rating: {{displayedBeer.rating}} / 5</li>
       </ul>
       </div>
       <div class="modal-footer">
