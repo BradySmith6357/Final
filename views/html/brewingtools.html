@@ -59,7 +59,7 @@
 		<h3 class="center-header">Custom Beer Creator</h3>
 		<div class="form-group">
 			<label for="inputBeerName">Beer Name<label>
-			<input type="text" class="form-control" id="inputFirstName" ng-model="newBeer.name">
+			<input type="text" class="form-control" id="inputFirstName" ng-model="customBeer.name">
 		</div>
 		<div class="form-group">
 				<div class="dropdown">
@@ -68,13 +68,13 @@
     			<span class="caret"></span>
   				</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="style in styleList"><a ng-click="selectStyle(style)">{{style.name}}</a></li>
+				<li ng-repeat="style in styleList" ng-model="customBeer.style"><a ng-click="selectStyle(style)">{{style.name}}</a></li>
 			</ul>
 		</div>
 		</div>
 		<div class="form-group">
 			<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newBeer.name">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="customBeer.malt">
     			{{selectedMalt1}}
     			<span class="caret"></span>
   				</button>
@@ -91,7 +91,7 @@
     			<span class="caret"></span>
   				</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="malt in maltList"><a ng-click="selectMalt2(malt)">{{malt.name}}</a></li>
+				<li ng-repeat="malt in maltList" ng-model="customBeer.malt"><a ng-click="selectMalt2(malt)">{{malt.name}}</a></li>
 			</ul>
 		</div>
 		</div>
@@ -102,7 +102,7 @@
     			<span class="caret"></span>
   				</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="malt in maltList"><a ng-click="selectMalt3(malt)">{{malt.name}}</a></li>
+				<li ng-repeat="malt in maltList" ng-model="customBeer.malt"><a ng-click="selectMalt3(malt)">{{malt.name}}</a></li>
 			</ul>
 		</div>
 		</div>
@@ -113,7 +113,7 @@
     			<span class="caret"></span>
   				</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="hops in hopsList"><a ng-click="selectHops1(hops)">{{hops.name}}</a></li>
+				<li ng-repeat="hops in hopsList" ng-model="customBeer.hops"><a ng-click="selectHops1(hops)">{{hops.name}}</a></li>
 			</ul>
 		</div>
 		</div>
@@ -124,7 +124,7 @@
     			<span class="caret"></span>
   				</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="hops in hopsList"><a ng-click="selectHops2(hops)">{{hops.name}}</a></li>
+				<li ng-repeat="hops in hopsList" ng-model="customBeer.hops"><a ng-click="selectHops2(hops)">{{hops.name}}</a></li>
 			</ul>
 		</div>
 		</div>
@@ -135,19 +135,19 @@
     			<span class="caret"></span>
   				</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="hops in hopsList"><a ng-click="selectHops3(hops)">{{hops.name}}</a></li>
+				<li ng-repeat="hops in hopsList" ng-model="customBeer.hops"><a ng-click="selectHops3(hops)">{{hops.name}}</a></li>
 			</ul>
 		</div>
 		</div>
 		<div class="form-group">
 			<label for="inputExtra">Specialty Ingredients</label>
-			<input type="text" class="form-control" id="inputExtra">
+			<input type="text" class="form-control" id="inputExtra" ng-model="customBeer.special">
 		</div>
 		<div class="form-group">
 			<label for="inputYeast">Yeast Used</label>
-			<input type="text" class="form-control" id="inputYeast">
+			<input type="text" class="form-control" id="inputYeast" ng-model="customBeer.yeast">
 		</div>
-		<button type="submit" class="btn btn-success">Add Recipe</button>
+		<button type="submit" class="btn btn-success" ng-click="addCustomBeer()">Add Recipe</button>
 	</form>
 <!-- Brewing Resources -->
 <!-- <div class="resources-box container">

@@ -79,6 +79,27 @@ app.get('/signup', function(req, res){
   res.sendFile('signup.html', {root : './views/html'})
 });
 
+var customBeerList = []
+
+app.get("/api/addBeer", function(req, res){
+	res.send(customBeerList)
+})
+
+app.post("/api/addBeer", function(req, res){
+	customBeerList.push({
+		name: req.body.name,
+		style: req.body.style,
+		malt: req.body.malt,
+		hops: req.body.hops,
+		special: req.body.special,
+		yeast: req.body.yeast
+	})
+	res.send(customBeerList)
+	console.log(customBeerList)
+})
+
+
+
 //POST
 app.post('/signup', userCtrl.userSignup)
 app.post('/login', userCtrl.userLogin)

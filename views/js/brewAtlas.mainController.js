@@ -1,5 +1,5 @@
 angular.module("mainModule")
-	.controller("mainController", ["$scope", "constructorFactory", function($scope, constructorFactory){
+	.controller("mainController", ["$scope", "$http", "constructorFactory", function($scope, $http, constructorFactory){
 
 	$scope.recipeList = [
 
@@ -288,20 +288,39 @@ angular.module("mainModule")
 		$scope.displayedBeer = beer
 	}
 
-// Function to add beer in modal to your list
-	$scope.addBeer = function(beer){
-		for(i = 0; i < $scope.berkeleyCompleted.length; i++){
-			if($scope.berkeleyCompleted[i] === beer){
-				alert("Beer Is Already In Your Profile!")
-				break
-				}
-			else {
-				$scope.berkeleyCompleted.push(beer)
-				alert("Great Job! Beer has been added to your profile!")
-				break
-				}
-			}
+
+// *** Function to add custom beer form to your list with AJAX *** //
+// $scope.customBeer = []
+
+		$scope.addCustomBeer = function(){
+			$http.post('/api/addBeer', $scope.customBeer)
+				.then(function(dataFromServer){
+					$scope.customBeer = dataFromServer.data
+					$scope.customBeer = {}
+				})
+
+		$http.get('/api/addBeer')
+			.then(function(dataFromServer){
+				$scope.customBeer = dataFromServer.data
+			})
 		}
+
+	
+
+// Function to add beer in modal to your list
+	// $scope.addBeer = function(beer){
+	// 	for(i = 0; i < $scope.berkeleyCompleted.length; i++){
+	// 		if($scope.berkeleyCompleted[i] === beer){
+	// 			alert("Beer Is Already In Your Profile!")
+	// 			break
+	// 			}
+	// 		else {
+	// 			$scope.berkeleyCompleted.push(beer)
+	// 			alert("Great Job! Beer has been added to your profile!")
+	// 			break
+	// 			}
+	// 		}
+	// 	}
 
 // Function to add beer in modal to your wishlist
 		$scope.addWish = function(beer){
