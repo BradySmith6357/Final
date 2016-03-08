@@ -442,43 +442,42 @@ $scope.selectHops3 = function(hops){
 	}
 
 // Signup form
-	$scope.signup = function(){
-        $http({
-            method : 'POST',
-            url    : '/signup',
-            data   : $scope.signupForm
-        }).then(function(returnData){
-            console.log(returnData)
-            if ( returnData.data.success ) { window.location.href="/activeuser" }
-        })
-    }
+	$scope.signUp = function(){
+		$http.post('/signup')
+			.then(function(serverData){
+				$scope.signupForm = serverData.data
+			})
+	}
 
 // Signin form
-    $scope.login = function(){
-        $http({
-            method : 'POST',
-            url    : '/login',
-            data   : $scope.loginForm
-        }).then(function(returnData){
-            if ( returnData.data.success ) { window.location.href="/activeuser" } 
-            else { console.log(returnData)}
-        })
-    }
+	$scope.logIn = function(){
+		$http.post('/login')
+			.then(function(serverData){
+				$scope.loginForm = serverData.data
+			})
+	}
 
+// // Signup form
+// 	$scope.signup = function(){
+//         $http({
+//             method : 'POST',
+//             url    : '/signup',
+//             data   : $scope.signupForm
+//         }).then(function(returnData){
+//             console.log(returnData)
+//             if ( returnData.data.success ) { window.location.href="/activeuser" }
+//         })
+//     }
 
-// Signup form
-	// $scope.signUp = function(){
-	// 	$http.post('/signup')
-	// 		.then(function(serverData){
-	// 			$scope.userData = serverData.data
-	// 		})
-	// }
-
-// Signin form
-	// $scope.logIn = function(){
-	// 	$http.post('/login')
-	// 		.then(function(serverData){
-	// 			$scope.userData = serverData.data
-	// 		})
-	// }	
-}])
+// // Signin form
+//     $scope.login = function(){
+//         $http({
+//             method : 'POST',
+//             url    : '/login',
+//             data   : $scope.loginForm
+//         }).then(function(returnData){
+//             if ( returnData.data.success ) { window.location.href="/activeuser" } 
+//             else { console.log(returnData)}
+//         })
+//     }	
+// }])
