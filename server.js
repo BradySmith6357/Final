@@ -7,6 +7,7 @@ var breweryDb = require('brewerydb-node')
 var passport = require('passport')
 var session = require('express-session')
 var request = require('request')
+var logout = require('express-passport-logout')
 // var brewdb = require('APIKEY')
 
 var passportConfig = require('./config/passport.js')
@@ -80,6 +81,19 @@ app.get('/signup', function(req, res){
   res.sendFile('signup.html', {root : './views/html'})
 });
 
+app.get('/checklogin',function(req,res){
+  if (req.user) {
+    res.send(true);
+  }else{
+    res.send(false);
+    }
+});
+
+// app.get('/me', function(req, res){
+//     // send the logged in user back down
+//     res.send({user : req.user})
+// })
+
 // Custom Beers //
 var customBeerList = []
 
@@ -126,8 +140,6 @@ app.post("/api/wishlistBeers", function(req, res, displayedBeer){
 	console.log(userWishlist)
 })
 
-
-
 //POST
 app.post('/signup', userCtrl.userSignup)
 app.post('/login', userCtrl.userLogin)
@@ -135,8 +147,8 @@ app.post('/login', userCtrl.userLogin)
 // GET
 
 
-
-
+// LOGOUT
+app.get('/logout', logout());
 
 
 // Creating Server and Listening for Connections \\

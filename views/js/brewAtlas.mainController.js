@@ -320,6 +320,25 @@ angular.module("mainModule")
 				})
 		}
 
+// Retrieve the user
+    $http.get('/me')
+        .then(function(returnData){
+            if(!returnData.data.user){
+                // No user - Kick em out
+                window.location.href = '/' //EXPRESS ROUTE
+                // $location.url('/') //ANGULAR ROUTE
+            }
+            else{
+                // rest of controller goes here
+                $scope.user = returnData.data.user
+
+            }
+        })    	
+
+// app.get('/me', function(req, res){
+//     // send the logged in user back down
+//     res.send({user : req.user})
+// })
 
 $scope.selectedStyle = "Beer Style"
 // Function to show selection from dropdown
@@ -381,6 +400,19 @@ $scope.selectHops3 = function(hops){
 		}
 	}
 
+
+// // Signup form
+	$scope.signup = function(){
+        $http({
+            method : 'POST',
+            url    : '/signup',
+            data   : $scope.signupForm
+        }).then(function(returnData){
+            console.log(returnData)
+            if ( returnData.data.success ) { window.location.href="/activeuser" }
+        })
+    }
+
 // // Signin form
     $scope.login = function(){
         $http({
@@ -391,32 +423,37 @@ $scope.selectHops3 = function(hops){
             if ( returnData.data.success ) { window.location.href="/activeuser" } 
             else { console.log(returnData)}
         })
-    }	
+    }
+
 
 // // Signup form
-$http.post('/signup', $scope.signupForm)
-            .then(function(returnData){
-                if(returnData.data.success){
-                    window.location.href = '/activeuser' //EXPRESS ROUTE
-                }
-                else{
-                    $timeout(function(){
-                        $scope.errorMsg = 'Error Signing Up'
-                    }, 4000)
-                }
-            })
+// $http.post('/signup', $scope.signupForm)
+//             .then(function(returnData){
+//                 if(returnData.data.success){
+//                     $location.url('/activeuser') //ANGULAR ROUTE
+//                     // window.location.href = '/profile' //EXPRESS ROUTE
+//                 }
+//                 else{
+//                     $scope.errorMsg = 'You suck!'
+//                     $timeout(function(){
+//                         $scope.errorMsg = ''
+//                     }, 4000)
+//                 }
+//             })
 
 // // // Login form
-$http.post('/login', $scope.loginForm)
-            .then(function(returnData){
-                if(returnData.data.success){
-                    window.location.href = '/activeuser' //EXPRESS ROUTE
-                }
-                else{
-                    $timeout(function(){
-                        $scope.errorMsg = 'Error Logging In'
-                    }, 4000)
-                }
-            })
+// $http.post('/login', $scope.loginForm)
+//             .then(function(returnData){
+//                 if(returnData.data.success){
+//                     $location.url('/activeuser') //ANGULAR ROUTE
+//                     // window.location.href = '/profile' //EXPRESS ROUTE
+//                 }
+//                 else{
+//                     $scope.errorMsg = 'You suck!'
+//                     $timeout(function(){
+//                         $scope.errorMsg = ''
+//                     }, 4000)
+//                 }
+//             })
 
 }])

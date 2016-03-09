@@ -23,7 +23,7 @@ passport.use(new LocalStrategy(
             // If we got this far, then we know that the user exists. But did they put in the right password?
             bcrypt.compare(password, user.password, function(error, response){
                 if (response === true){
-                    return done(null,user)
+                    return done(null, user)
                 }
                 else {
                     return done(null, false)
