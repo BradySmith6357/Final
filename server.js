@@ -3,12 +3,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
-// var breweryDb = require('brewerydb-node')
+var breweryDb = require('brewerydb-node')
 var passport = require('passport')
 var session = require('express-session')
 var request = require('request')
 var logout = require('express-passport-logout')
-// var brewdb = ('9f9f7b837c0caed1a2d0375ae7c185f3')
+var brewdb = new breweryDb ('9f9f7b837c0caed1a2d0375ae7c185f3')
 
 var passportConfig = require('./config/passport.js')
 
@@ -24,6 +24,7 @@ app.sessionMiddleware = session({
 	resave: false,
 	saveUninitialized: true
 })
+
 app.use(app.sessionMiddleware)
 // *** End Express Session Setup *** //
 
@@ -95,6 +96,53 @@ app.get('/checklogin',function(req,res){
 });
 
 
+// Get beer from BreweryDB
+// app.post("/api/findBeer", function(req, res){
+	// request.post('http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors', function (err, res, body){
+	// 	if (err) {
+	// 		console.log('Error:', err)
+	// 	}
+	// 	if (!err && res.statusCode == 200) {
+	// 		console.log(body);
+	// 	}
+	// })
+// request({
+// 	url: 'http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors',
+// 	method: 'POST',
+// })
+// app.post("/api/findBeer", function(req, res){
+// 	console.log(req.body)
+// 	request
+// 		.get('http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=' + beer.name)
+// 		.on ('response', function(response){
+// 			console.log(response.statusCode)
+// 		})
+
+// app.put('/api/findBeer', function(req, res){
+// 	var options = {
+// 		url: req.body.url,
+// 		encoding: null,
+// 	}
+// 	console.log(options)
+// 	function callback(error, response, body){
+// 		console.log('line 134:'error)
+// 		if(!error&&responseCode == 200){
+// 			console.log('line 136:'response)
+// 		},
+// 		function(err, result){
+// 			if(err){
+// 				console.log(err)
+// 			} else {
+// 				console.log(result)
+// 			}
+// 		}
+// 	}
+// })
+
+//Get beer from BreweryDB with brewerydb-node
+app.get("/api/findBeer", function(req, res){
+	req.send(brewdb.beer.find({name: beer.name}))
+})
 
 // Custom Beers //
 var customBeerList = []
@@ -115,22 +163,6 @@ app.post("/api/customBeers", function(req, res){
 	res.send(customBeerList)
 	console.log(customBeerList)
 })
-
-//Get beer from BreweryDB
-// app.post("/api/findBeer", function(req, res){
-	// request.post('http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors', function (err, res, body){
-	// 	if (err) {
-	// 		console.log('Error:', err)
-	// 	}
-	// 	if (!err && res.statusCode == 200) {
-	// 		console.log(body);
-	// 	}
-	// })
-// request({
-// 	url: 'http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors',
-// 	method: 'POST',
-// })
-
 
 // Completed Beers //
 var userCompletedList = []
@@ -174,4 +206,5 @@ app.get('/logout', logout())
 var port = 3000
 app.listen(port, function(){
   console.log('Server running on port ' + port);
+
 })

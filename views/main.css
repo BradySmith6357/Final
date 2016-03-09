@@ -129,24 +129,25 @@
 .userboximage {
 	border-radius: 50px;
 }
-.beerlibrary {
-	background-image: url(http://media.philly.com/images/boulevard3.jpg);
-	border-color: black;
-	border-style: solid;
+.beerlibrary {/*
+	background-image: url(http://media.philly.com/images/boulevard3.jpg);*/
+	background-color: #F0F0F0;
+	border-color: #7F7E7F;
+	border-style: outset;
 	display: inline-block;
 	text-align:center;
-	max-height: 269px;
-	max-width: 320px;
+	height: 250px;
+	width: 250px;
 	margin:2px;
-	min-height:269px;
 }
 .fontfit {
 	font-size:16px;
 	word-wrap: break-word;
 }
-.beerfont {
+.bLibraryText {
 	color:black;
 	text-shadow: 2px 2px 4px #865050;
+	padding-top: 20px;
 }
 .pagepadding {
 	text-align:center;

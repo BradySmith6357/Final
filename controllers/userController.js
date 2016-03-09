@@ -41,7 +41,7 @@ function userLogin (req, res, next){
             if (err) { 
             	return next(err); 
             }
-            return res.send({success:'success'});
+            return res.send({user: user});
         });
     })(req, res, next);
 }

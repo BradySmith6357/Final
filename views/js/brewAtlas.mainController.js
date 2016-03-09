@@ -301,6 +301,8 @@ angular.module("mainModule")
 				$scope.userCompletedList = serverData.data
 			})
 		$scope.addBeer = function(beer){
+			$scope.hideProAdd = true
+			$scope.showProDis = true
 			$http.post('api/completedBeers')
 				.then(function(serverData){
 					$scope.userCompletedList = beer
@@ -314,6 +316,8 @@ angular.module("mainModule")
 				$scope.userWishlist = serverData.data
 			})
 		$scope.addWish = function(beer){
+			$scope.hideWishAdd = true
+			$scope.showWishDis = true
 			$http.post('api/wishlistBeers')
 				.then(function(serverData){
 					$scope.userWishlist = beer
@@ -396,7 +400,6 @@ $scope.selectHops3 = function(hops){
 		}
 	}
 //Search funciton
-
 $scope.findBeer = function(){
 	console.log($scope.beer)
 	$http.post('api/findBeer', $scope.beer)
