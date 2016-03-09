@@ -3,12 +3,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
-var breweryDb = require('brewerydb-node')
+// var breweryDb = require('brewerydb-node')
 var passport = require('passport')
 var session = require('express-session')
 var request = require('request')
 var logout = require('express-passport-logout')
-// var brewdb = require('APIKEY')
+// var brewdb = ('9f9f7b837c0caed1a2d0375ae7c185f3')
 
 var passportConfig = require('./config/passport.js')
 
@@ -57,6 +57,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes \\
+// app.get('/me', function(req, res){
+//     // send the logged in user back down
+//     res.send({user : req.user})
+// });
+
 app.get('/', function(req, res){
   res.sendFile('homepage.html', {root : './views/html'})
 });
@@ -89,10 +94,7 @@ app.get('/checklogin',function(req,res){
     }
 });
 
-// app.get('/me', function(req, res){
-//     // send the logged in user back down
-//     res.send({user : req.user})
-// })
+
 
 // Custom Beers //
 var customBeerList = []
@@ -114,6 +116,22 @@ app.post("/api/customBeers", function(req, res){
 	console.log(customBeerList)
 })
 
+//Get beer from BreweryDB
+// app.post("/api/findBeer", function(req, res){
+	// request.post('http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors', function (err, res, body){
+	// 	if (err) {
+	// 		console.log('Error:', err)
+	// 	}
+	// 	if (!err && res.statusCode == 200) {
+	// 		console.log(body);
+	// 	}
+	// })
+// request({
+// 	url: 'http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors',
+// 	method: 'POST',
+// })
+
+
 // Completed Beers //
 var userCompletedList = []
 
@@ -134,7 +152,7 @@ app.get("/api/wishlistBeers", function(req, res){
 	res.send(userWishlist)
 })
 
-app.post("/api/wishlistBeers", function(req, res, displayedBeer){
+app.post("/api/wishlistBeers", function(req, res){
 	userWishlist.push(displayedBeer)
 	res.send(userWishlist)
 	console.log(userWishlist)
@@ -148,12 +166,12 @@ app.post('/login', userCtrl.userLogin)
 
 
 // LOGOUT
-app.get('/logout', logout());
+app.get('/logout', logout())
+	
 
 
 // Creating Server and Listening for Connections \\
 var port = 3000
 app.listen(port, function(){
   console.log('Server running on port ' + port);
-
 })

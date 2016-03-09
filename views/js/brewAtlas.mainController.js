@@ -335,10 +335,6 @@ angular.module("mainModule")
             }
         })    	
 
-// app.get('/me', function(req, res){
-//     // send the logged in user back down
-//     res.send({user : req.user})
-// })
 
 $scope.selectedStyle = "Beer Style"
 // Function to show selection from dropdown
@@ -399,7 +395,12 @@ $scope.selectHops3 = function(hops){
 			$scope.abv = $scope.abv.toString() + "%"
 		}
 	}
+//Search funciton
 
+$scope.findBeer = function(){
+	console.log($scope.beer)
+	$http.post('api/findBeer', $scope.beer)
+}
 
 // // Signup form
 	$scope.signup = function(){
