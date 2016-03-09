@@ -214,21 +214,6 @@ angular.module("mainModule")
 		$scope.redChair
 		]
 
-// Mock profile completed beers
-	$scope.berkeleyCompleted = [
-		$scope.theAbyss,
-		$scope.blackButte,
-		$scope.twilightSummerAle,
-		$scope.redChair
-	]	
-
-// Mock profile wishlist beers
-	$scope.berkeleyWishlist = [
-		$scope.chainbreaker,
-		$scope.obsidian,
-		$scope.mirrorPond
-	]
-
 	$scope.brewOfTheMonth = [
 	$scope.headyTopper
 	]
@@ -309,19 +294,6 @@ angular.module("mainModule")
 					$scope.newCustomBeer = {}
 				})
 		}
-		// $scope.addCustomBeer = function(){
-		// 	$http.post('/api/addBeer', $scope.customBeer)
-		// 		.then(function(dataFromServer){
-		// 			$scope.customBeer = dataFromServer.data
-		// 			$scope.customBeer = {}
-		// 		})
-
-		// $http.get('/api/addBeer')
-		// 	.then(function(dataFromServer){
-		// 		$scope.customBeer = dataFromServer.data
-		// 	})
-		// }
-
 	
 // Function to add beer to user completed list //
 		$http.get('/api/completedBeers')
@@ -336,22 +308,6 @@ angular.module("mainModule")
 		}
 
 
-	// Function to add beer in modal to your list
-// $scope.addBeer = function(beer){
-// 	for(i = 0; i < $scope.berkeleyCompleted.length; i++){
-// 		if($scope.berkeleyCompleted[i] === beer){
-// 			alert("Beer Is Already In Your Profile!")
-// 			break
-// 			}
-// 		else {
-// 			$scope.berkeleyCompleted.push(beer)
-// 			alert("Great Job! Beer has been added to your profile!")
-// 			break
-// 			}
-// 		}
-// 	}
-
-
 // Function to add beer to user wishlist //
 		$http.get('/api/wishlistBeers')
 			.then(function(serverData){
@@ -363,22 +319,6 @@ angular.module("mainModule")
 					$scope.userWishlist = beer
 				})
 		}
-
-
-// Function to add beer in modal to your wishlist
-		// $scope.addWish = function(beer){
-		// for(i = 0; i < $scope.berkeleyCompleted.length; i++){
-		// 	if($scope.berkeleyCompleted[i] === beer){
-		// 		alert("You've already added this beer to your wishlist.")
-		// 		break
-		// 		}
-		// 	else {
-		// 		$scope.berkeleyCompleted.push(beer)
-		// 		alert("Good choice! " + beer.name + " has been added to your wishlist.")
-		// 		break
-		// 		}
-		// 	}
-		// }	
 
 
 $scope.selectedStyle = "Beer Style"
@@ -420,14 +360,14 @@ $scope.selectHops3 = function(hops){
 		console.log($scope.berkeleyCompleted)
 	}
 
-// Calculates the brewer who has brewed the most beers in the month
-	$scope.brewerOfTheMonthFunc = function(){
-		for(i=0; i < $scope.userList.length; i++){
-			if($scope.userList[i].brewed > $scope.userList[i + 1].brewed){
-				$scope.brewerOfTheMonth = $scope.userList[i]
-			}
-		}
-	}
+// // Calculates the brewer who has brewed the most beers in the month
+// 	$scope.brewerOfTheMonthFunc = function(){
+// 		for(i=0; i < $scope.userList.length; i++){
+// 			if($scope.userList[i].brewed > $scope.userList[i + 1].brewed){
+// 				$scope.brewerOfTheMonth = $scope.userList[i]
+// 			}
+// 		}
+// 	}
 
 // For ABV calculator.
 	$scope.calcABV = function(event){
@@ -441,43 +381,42 @@ $scope.selectHops3 = function(hops){
 		}
 	}
 
-// Signup form
-	$scope.signUp = function(){
-		$http.post('/signup')
-			.then(function(serverData){
-				$scope.signupForm = serverData.data
-			})
-	}
-
-// Signin form
-	$scope.logIn = function(){
-		$http.post('/login')
-			.then(function(serverData){
-				$scope.loginForm = serverData.data
-			})
-	}
+// // Signin form
+    $scope.login = function(){
+        $http({
+            method : 'POST',
+            url    : '/login',
+            data   : $scope.loginForm
+        }).then(function(returnData){
+            if ( returnData.data.success ) { window.location.href="/activeuser" } 
+            else { console.log(returnData)}
+        })
+    }	
 
 // // Signup form
-// 	$scope.signup = function(){
-//         $http({
-//             method : 'POST',
-//             url    : '/signup',
-//             data   : $scope.signupForm
-//         }).then(function(returnData){
-//             console.log(returnData)
-//             if ( returnData.data.success ) { window.location.href="/activeuser" }
-//         })
-//     }
+$http.post('/signup', $scope.signupForm)
+            .then(function(returnData){
+                if(returnData.data.success){
+                    window.location.href = '/activeuser' //EXPRESS ROUTE
+                }
+                else{
+                    $timeout(function(){
+                        $scope.errorMsg = 'Error Signing Up'
+                    }, 4000)
+                }
+            })
 
-// // Signin form
-//     $scope.login = function(){
-//         $http({
-//             method : 'POST',
-//             url    : '/login',
-//             data   : $scope.loginForm
-//         }).then(function(returnData){
-//             if ( returnData.data.success ) { window.location.href="/activeuser" } 
-//             else { console.log(returnData)}
-//         })
-//     }	
-// }])
+// // // Login form
+$http.post('/login', $scope.loginForm)
+            .then(function(returnData){
+                if(returnData.data.success){
+                    window.location.href = '/activeuser' //EXPRESS ROUTE
+                }
+                else{
+                    $timeout(function(){
+                        $scope.errorMsg = 'Error Logging In'
+                    }, 4000)
+                }
+            })
+
+}])

@@ -6,6 +6,7 @@ var mongoose = require('mongoose')
 var breweryDb = require('brewerydb-node')
 var passport = require('passport')
 var session = require('express-session')
+var request = require('request')
 // var brewdb = require('APIKEY')
 
 var passportConfig = require('./config/passport.js')

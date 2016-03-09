@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body ng-controller="mainController" class="mainbackground">
+	<body ng-controller="mainController" class="mainbackground">
 	<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
@@ -34,17 +35,21 @@
 					<li><a href="/beermap">Beer Map</a></li>
 					<li><a href="/brewingtools">Brewing Tools</a></li>
 				</ul>
-				<a href="/activeuser"><img src="../../images/BerkeleyPicture.jpg" class="profileimage" width="40" height="40"></a>	
-			<form class="navbar-form navbar-left" role="search">
+				<div class="navbar-right">
+				<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Find a beer or brewery">
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
-			</form>
+				</form>
+				<ul class="nav navbar-nav">
+					<li><a href="/signup">Login</a></li>
+				</ul>
+				</div>
 			</div>
 		</div>
 	</nav>
-<div>
+<div>  
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#name" aria-controls="name" role="tab" data-toggle="tab">Name</a></li>
     <li role="presentation"><a href="#state" aria-controls="state" role="tab" data-toggle="tab">State</a></li>
@@ -55,51 +60,51 @@
     <li role="presentation"><a href="#rating" aria-controls="rating" role="tab" data-toggle="tab">Rating</a></li>
   </ul>
   <div class="tab-content pagepadding">
-	    <div role="tabpanel" class="tab-pane fade librarystyle in active container" id="name">
+	    <div role="tabpanel" class="tab-pane fade librarystyle in active container-fluid" id="name">
 	    	<div ng-repeat="name in nameSort" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-4">
-	    		<a href="#" data-toggle="modal" data-target="#myModal" ng-click="showBeer(name)"><img ng-src="{{name.image}}" width="150" height="175">
+	    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(name)"><img ng-src="{{name.image}}" width="150" height="175">
 	    			<h2 class="beerfont">{{name.name}}</h2>
 	    		</a>
 	    	</div>
 		</div>
-	    <div role="tabpanel" class="tab-pane fade librarystyle container" id="state">
+	    <div role="tabpanel" class="tab-pane fade librarystyle container-fluid" id="state">
 	    	<div ng-repeat="state in stateSort" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
-	    		<a href="#" data-toggle="modal" data-target="#myModal" ng-click="showBeer(state)"><img ng-src="{{state.image}}" width="150" height="175">
+	    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(state)"><img ng-src="{{state.image}}" width="150" height="175">
 	    			<h2 class="beerfont">{{state.city}},{{state.state}}</h2>
 	    		</a>
 	    	</div>
 	    </div>
-	    <div role="tabpanel" class="tab-pane fade librarystyle container" id="style">
+	    <div role="tabpanel" class="tab-pane fade librarystyle container-fluid" id="style">
 	    	<div ng-repeat="style in styleSort" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
-	    		<a href="#" data-toggle="modal" data-target="#myModal" ng-click="showBeer(style)"><img ng-src="{{style.image}}" width="150" height="175">
+	    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(style)"><img ng-src="{{style.image}}" width="150" height="175">
 	    			<h2 class="beerfont">{{style.style}}</h2>
 	    		</a>
 	    	</div>
 	    </div>
-	    <div role="tabpanel" class="tab-pane fade librarystyle container" id="hops">
+	    <div role="tabpanel" class="tab-pane fade librarystyle container-fluid" id="hops">
 	    	<div ng-repeat="hops in hopsSort" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
-	    		<a href="#" data-toggle="modal" data-target="#myModal" ng-click="showBeer(hops)"><img ng-src="{{hops.image}}" width="150" height="175">
+	    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(hops)"><img ng-src="{{hops.image}}" width="150" height="175">
 	    			<h2 class="fontfit beerfont" >{{hops.hops.toString()}}</h2>
 	    		</a>
 	    	</div>
 	    </div>
-	    <div role="tabpanel" class="tab-pane fade librarystyle container" id="malt">
+	    <div role="tabpanel" class="tab-pane fade librarystyle container-fluid" id="malt">
 	    	<div ng-repeat="malt in maltSort" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
-	    		<a href="#" data-toggle="modal" data-target="#myModal" ng-click="showBeer(malt)"><img ng-src="{{malt.image}}" width="150" height="175">
+	    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(malt)"><img ng-src="{{malt.image}}" width="150" height="175">
 	    			<h2 class="fontfit beerfont">{{malt.malt.toString()}}</h2>
 	    		</a>
 	    	</div>
 	    </div>
-	    <div role="tabpanel" class="tab-pane fade librarystyle container" id="abv">
+	    <div role="tabpanel" class="tab-pane fade librarystyle container-fluid" id="abv">
 	    	<div ng-repeat="abv in abvSort" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
-	    		<a href="#" data-toggle="modal" data-target="#myModal" ng-click="showBeer(abv)"><img ng-src="{{abv.image}}" width="150" height="175">
+	    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(abv)"><img ng-src="{{abv.image}}" width="150" height="175">
 	    			<h2 class="beerfont">{{abv.abv}}%</h2>
 	    		</a>
 	    	</div>
 	    </div>
-	    <div role="tabpanel" class="tab-pane fade librarystyle container" id="rating">
+	    <div role="tabpanel" class="tab-pane fade librarystyle container-fluid" id="rating">
 	    	<div ng-repeat="rating in ratingSort" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
-	    		<a href="#" data-toggle="modal" data-target="#myModal" ng-click="showBeer(rating)"><img ng-src="{{rating.image}}" width="150" height="200">
+	    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(rating)"><img ng-src="{{rating.image}}" width="150" height="200">
 	    			<h2 class="beerfont">{{rating.rating}} / 5</h2>
 	    		</a>
 	    	</div>
@@ -133,3 +138,5 @@
     </div>
   </div>
 </div>
+</body>
+</html>

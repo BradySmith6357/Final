@@ -1,5 +1,5 @@
 angular.module("mainModule")
-	.factory("constructorFactory", ["$resource", function($resource){
+	.factory("constructorFactory", [function(){
 
 		
 var cloneRecipe = function(image, name, brewery, city, state, style, malt, hops, extra, yeast, abv, rating, notes){

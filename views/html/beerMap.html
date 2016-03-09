@@ -21,7 +21,9 @@
 		<h1 class="map-header">Beer Map</h1>
 		<div id="map"></div>
 	</div>
-<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+<body ng-controller="mainController" class="mainbackground">
+	<body ng-controller="mainController" class="mainbackground">
+	<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/">BrewAtlas</a>
@@ -35,16 +37,20 @@
       		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/beerlibrary">Beer Clone Library</a></li>
-					<li><a href="/beerMap">Beer Map</a></li>
+					<li><a href="/beermap">Beer Map</a></li>
 					<li><a href="/brewingtools">Brewing Tools</a></li>
 				</ul>
-				<a href="/activeuser"><img src="BerkeleyPicture.jpg" class="profileimage" width="40" height="40"></a>	
-			<form class="navbar-form navbar-left" role="search">
+				<div class="navbar-right">
+				<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Find a beer or brewery">
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
-			</form>
+				</form>
+				<ul class="nav navbar-nav">
+					<li><a href="/signup">Login</a></li>
+				</ul>
+				</div>
 			</div>
 		</div>
 	</nav>

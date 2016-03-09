@@ -18,13 +18,14 @@
 #map {
 	height: 800px;
 	border: black;
-	border-radius: 500px;
+	/*border-radius: 500px;*/
 	border-style: solid;
 	border-color: gold;
 }
 .navbar-custom {
 	background: linear-gradient(#C6CCCF, #FFFEFC);
 	opacity: 0.95;
+	color: #070D59;
 }
 
 .signupbackground {
@@ -205,38 +206,48 @@
 	border-radius:20px;
 	padding:20px;
 	position:fixed;
-	top:250px;
-	right:220px;
+	top:220px;
+	right:335px;
 	box-shadow: 16px 16px 8px 2px rgba(110, 71, 42, 0.2), 4px 7px 22px 0 rgba(0, 0, 0, 0.19);
 
 }
 .signup-header{
-	padding-top:75px;
-	font-size:60px;
+	position: fixed;
+	top: 55px;
+    right: 44px;
+    font-size:60px;
 	text-align:center;
 	color:white;
 	opacity:.80;
 }
 
-.signup-header{
-	padding-top:75px;
+.login-header{
+	position: fixed;
+	top: 516px;
+    right: 413px;
 	font-size:60px;
 	text-align:center;
-	color:white;
-	opacity:.80;
+	color:black;
+	opacity:.50;
 }
-.signin-form {
+.login-form {
 	display: inline;
 	background-color:#EEEEEE;
 	border-radius:20px;
 	padding:20px;
 	position:fixed;
-	top:645px;
-	right:220px;
+	top:610px;
+	right:335px;
 	box-shadow: 16px 16px 8px 2px rgba(110, 71, 42, 0.2), 4px 7px 22px 0 rgba(0, 0, 0, 0.19);
 
 }
 
+/*.inputstyle {
+	background-color: black;
+	color: white;
+	opacity: .25
+}
+*/
 .center-header {
 	text-align:center;
 }

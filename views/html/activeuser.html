@@ -15,6 +15,8 @@
   <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body ng-controller="mainController" class="mainbackground">
+  <body ng-controller="mainController" class="mainbackground">
+ <body ng-controller="mainController" class="mainbackground">
   <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
       <div class="navbar-header">
@@ -32,27 +34,31 @@
           <li><a href="/beermap">Beer Map</a></li>
           <li><a href="/brewingtools">Brewing Tools</a></li>
         </ul>
-        <a href="/activeuser"><img src="../../images/BerkeleyPicture.jpg" class="profileimage" width="40" height="40"></a>  
-      <form class="navbar-form navbar-left" role="search">
+        <div class="navbar-right">
+        <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Find a beer or brewery">
         </div>
         <button type="submit" class="btn btn-default">Search</button>
-      </form>
+        </form>
+        <ul class="nav navbar-nav">
+          <li><a href="/signup">Login</a></li>
+        </ul>
+        </div>
       </div>
     </div>
   </nav>
-	<div class="container col-xs-12 col-sm-4 col-md-6 minpadding">
+  <div class="container col-xs-12 col-sm-4 col-md-6 minpadding">
 		<div class="list-group">
-			<h3 class="list-group-item"><img ng-src="{{berkeley.image}}" class="userboximage" width="75" height="100">Hi {{berkeley.firstname}}!</h3>
-  			<a href="#" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{userCompletedList.length}}</span></a>
-  			<a href="#" class="list-group-item">Badges Earned<span class="badge">{{berkeley.badges}}</span></a>
+			<h3 class="list-group-item"><img ng-src="{{berkeley.image}}" class="userboximage" width="75" height="100">Hi {{user.username}}!</h3>
+  			<a href="" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{userCompletedList.length}}</span></a>
+  			<a href="" class="list-group-item">Badges Earned<span class="badge">{{berkeley.badges}}</span></a>
 		</div>
 		<div class="wishlistbox">
 			<div class="list-group">
 				<h3 class="list-group-item">Brewing Wishlist</h3>
 				<div ng-repeat="beer in userWishlist track by $index">
-  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
+  				<a href="" class="list-group-item" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
   				</div>
   			</div>
 		</div>
@@ -60,7 +66,7 @@
       <div class="list-group">
         <h3 class="list-group-item">Custom Beers</h3>
         <div ng-repeat="beer in customBeerList">
-          <a href="#" class="list-group-item" data-toggle="modal" data-target="#customBeerModal" ng-click="showBeer(beer)">{{beer.name}}</a>
+          <a href="" class="list-group-item" data-toggle="modal" data-target="#customBeerModal" ng-click="showBeer(beer)">{{beer.name}}</a>
           </div>
         </div>
     </div>
@@ -77,7 +83,7 @@
     				<h3>{{beer.name}}</h3>
     				<h4>{{beer.brewery}}</h4>
     				<p>{{beer.city}}, {{beer.state}}</p>
-    				<p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)">View Beer</a> <a href="#" class="btn btn-default" role="button" data-toggle="modal" data-target="#notesModal" ng-click="showNotes(beer)">Add Notes</a></p>
+    				<p><a href="" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)">View Beer</a> <a href="#" class="btn btn-default" role="button" data-toggle="modal" data-target="#notesModal" ng-click="showNotes(beer)">Add Notes</a></p>
   				</div>
 			</div>
 		</div>
@@ -163,7 +169,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="completedModalLabel">Total Beers Brewed</h4>
       </div>
-      <div class="modal-body" ng-repeat="beer in berkeleyCompleted">
+      <div class="modal-body" ng-repeat="beer in userCompletedList">
 				<img ng-src="{{beer.image}}" width="50" height="50" class="topimage">{{beer.name}}
       </div>
       <div class="modal-footer">
@@ -195,3 +201,5 @@
     </div>
   </div>
 </div>
+</body>
+</html>

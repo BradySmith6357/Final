@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body ng-controller="mainController" class="mainbackground">
+	<body ng-controller="mainController" class="mainbackground">
 	<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
@@ -32,13 +33,17 @@
 					<li><a href="/beermap">Beer Map</a></li>
 					<li><a href="/brewingtools">Brewing Tools</a></li>
 				</ul>
-				<a href="/activeuser"><img src="../../images/BerkeleyPicture.jpg" class="profileimage" width="40" height="40"></a>	
-			<form class="navbar-form navbar-left" role="search">
+				<div class="navbar-right">	
+				<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Find a beer or brewery">
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
-			</form>
+				</form>
+				<ul class="nav navbar-nav">
+					<li><a href="/signup">Login</a></li>
+				</ul>
+				</div>
 			</div>
 		</div>
 	</nav>
@@ -168,4 +173,3 @@
 		<a href="https://byo.com/resources/grains"><img src="http://byo.com/images/random_logo/logo4.png" height="200" width="175"></a>
 	</div>
 </div> -->
-</body>
