@@ -58,13 +58,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes \\
-// app.get('/me', function(req, res){
-//     // send the logged in user back down
-//     res.send({user : req.user})
-// });
 
 app.get('/', function(req, res){
   res.sendFile('homepage.html', {root : './views/html'})
+});
+
+app.get('/me', function(req, res){
+    res.send({user : req.user})
 });
 
 app.get('/beerlibrary', function(req, res){
@@ -198,7 +198,10 @@ app.post('/login', userCtrl.userLogin)
 
 
 // LOGOUT
-app.get('/logout', logout())
+app.get('/logout', function(req, res){
+	req.logout()
+	res.redirect('/')
+})
 	
 
 

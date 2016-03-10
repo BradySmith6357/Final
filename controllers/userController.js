@@ -19,7 +19,7 @@ function userSignup (req, res){
                         if ( loginErr ) { 
                         	res.send({ err:loginErr }) 
                        } else { 
-                       		res.send({success: 'success'}) 
+                       		res.send({success: true}) 
                        	}
                     })
                 }
@@ -41,7 +41,7 @@ function userLogin (req, res, next){
             if (err) { 
             	return next(err); 
             }
-            return res.send({user: user});
+            return res.send({success:true});
         });
     })(req, res, next);
 }

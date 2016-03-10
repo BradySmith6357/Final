@@ -244,12 +244,17 @@ angular.module("mainModule")
 // For modal display
 	$scope.displayedBeer = ""
 
-	$scope.showBeer = function(name){
-			$scope.displayedBeer = name
-	}
-
 	$scope.showBeer = function(state){
-			$scope.displayedBeer = state
+		$scope.displayedBeer = state
+		for(var i = 0; i <= $scope.userCompletedList.length; i++){
+			if(state.name = $scope.userCompletedList[i].name){
+				$scope.hideProAdd = true
+				$scope.showProDis = true
+			} else {
+				$scope.hideProAdd = false
+				$scope.showProDis = false
+			}
+		}	
 	}
 
 	$scope.showBeer = function(style){
@@ -295,18 +300,29 @@ angular.module("mainModule")
 				})
 		}
 	
+// Retrieve the user
+$scope.checkLogin = function(){
+    $http.get('/me')
+        .then(function(returnData){
+            if(!returnData.data.user){
+                window.location.href = '/signup'
+            }else{
+            	console.log(returnData.data.user)
+                $scope.user = returnData.data.user
+                window.location.href = '/activeuser'
+
+            }
+        })  
+}
+
 // Function to add beer to user completed list //
 		$http.get('/api/completedBeers')
 			.then(function(serverData){
 				$scope.userCompletedList = serverData.data
 			})
 		$scope.addBeer = function(beer){
-			for(i = 0; i <= $scope.userCompletedList.length; i++){
-				if(beer = $scope.userCompletedList[i]){
-					$scope.hideProAdd = true
-					$scope.showProDis = true
-				}
-			}
+			$scope.hideProAdd = true
+			$scope.showProDis = true
 			$http.post('api/completedBeers')
 				.then(function(serverData){
 					$scope.userCompletedList = beer
@@ -327,21 +343,7 @@ angular.module("mainModule")
 					$scope.userWishlist = beer
 				})
 		}
-
-// Retrieve the user
-    $http.get('/me')
-        .then(function(returnData){
-            if(!returnData.data.user){
-                // No user - Kick em out
-                window.location.href = '/' //EXPRESS ROUTE
-                // $location.url('/') //ANGULAR ROUTE
-            }
-            else{
-                // rest of controller goes here
-                $scope.user = returnData.data.user
-
-            }
-        })    	
+  	
 
 
 $scope.selectedStyle = "Beer Style"
@@ -408,60 +410,5 @@ $scope.findBeer = function(){
 	console.log($scope.beer)
 	$http.post('api/findBeer', $scope.beer)
 }
-
-// // Signup form
-	$scope.signup = function(){
-        $http({
-            method : 'POST',
-            url    : '/signup',
-            data   : $scope.signupForm
-        }).then(function(returnData){
-            console.log(returnData)
-            if ( returnData.data.success ) { window.location.href="/activeuser" }
-        })
-    }
-
-// // Signin form
-    $scope.login = function(){
-        $http({
-            method : 'POST',
-            url    : '/login',
-            data   : $scope.loginForm
-        }).then(function(returnData){
-            if ( returnData.data.success ) { window.location.href="/activeuser" } 
-            else { console.log(returnData)}
-        })
-    }
-
-
-// // Signup form
-// $http.post('/signup', $scope.signupForm)
-//             .then(function(returnData){
-//                 if(returnData.data.success){
-//                     $location.url('/activeuser') //ANGULAR ROUTE
-//                     // window.location.href = '/profile' //EXPRESS ROUTE
-//                 }
-//                 else{
-//                     $scope.errorMsg = 'You suck!'
-//                     $timeout(function(){
-//                         $scope.errorMsg = ''
-//                     }, 4000)
-//                 }
-//             })
-
-// // // Login form
-// $http.post('/login', $scope.loginForm)
-//             .then(function(returnData){
-//                 if(returnData.data.success){
-//                     $location.url('/activeuser') //ANGULAR ROUTE
-//                     // window.location.href = '/profile' //EXPRESS ROUTE
-//                 }
-//                 else{
-//                     $scope.errorMsg = 'You suck!'
-//                     $timeout(function(){
-//                         $scope.errorMsg = ''
-//                     }, 4000)
-//                 }
-//             })
 
 }])
