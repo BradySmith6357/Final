@@ -185,7 +185,7 @@ app.get("/api/wishlistBeers", function(req, res){
 })
 
 app.post("/api/wishlistBeers", function(req, res){
-	userWishlist.push(displayedBeer)
+	userWishlist.push(beer)
 	res.send(userWishlist)
 	console.log(userWishlist)
 })

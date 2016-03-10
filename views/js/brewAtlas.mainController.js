@@ -301,8 +301,12 @@ angular.module("mainModule")
 				$scope.userCompletedList = serverData.data
 			})
 		$scope.addBeer = function(beer){
-			$scope.hideProAdd = true
-			$scope.showProDis = true
+			for(i = 0; i <= $scope.userCompletedList.length; i++){
+				if(beer = $scope.userCompletedList[i]){
+					$scope.hideProAdd = true
+					$scope.showProDis = true
+				}
+			}
 			$http.post('api/completedBeers')
 				.then(function(serverData){
 					$scope.userCompletedList = beer

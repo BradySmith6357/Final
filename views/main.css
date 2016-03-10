@@ -129,6 +129,23 @@
 .userboximage {
 	border-radius: 50px;
 }
+
+.search-background {
+	position: absolute;
+	top: 38px;
+	right: 35px;
+	background-color: #F0F0F0;
+	border-color: #7F7E7F;
+	border-style: ridge;
+	display: inline-block;
+	text-align:center;
+	height: 500px;
+	width: 250px;
+	margin:2px;
+}
+
+.library-search {
+}
 .beerlibrary {/*
 	background-image: url(http://media.philly.com/images/boulevard3.jpg);*/
 	background-color: #F0F0F0;
@@ -144,6 +161,11 @@
 	font-size:16px;
 	word-wrap: break-word;
 }
+
+.beerNameLib {
+	border-bottom: solid;
+	border-width: thin;
+}
 .bLibraryText {
 	color:black;
 	text-shadow: 2px 2px 4px #865050;
@@ -155,50 +177,55 @@
 	padding-bottom:20px;
 }
 .abvcalc {
-	background-image: url(http://sniik.no/wp-content/uploads/2014/03/iphone-5c-case-tzgdqlxc.jpg);
-	background-size: 877px 800px;
-	border-radius: 10px 10px 10px 10px;
-	margin-bottom: 50px;
-	padding-top: 32px;
+	background-color: #F0F0F0;
+	border-color: #7F7E7F;
+	border-style: ridge;
     padding-bottom: 25px;
     box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
-    color:white;
+    color:black;
 }
-.circlegrad {
+/*.circlegrad {
   background: #E2E2E6;
   background: -webkit-radial-gradient(circle, #E2E2E6, #888894, #575765); 
   background: -o-radial-gradient(circle, #E2E2E6, #888894, #575765); 
   background: -moz-radial-gradient(circle, #E2E2E6, #888894, #575765); 
   background: radial-gradient(circle, #E2E2E6, #888894, #575765);
+}*/
+.calc-result {
+	position: relative;
+    bottom: -2px;
+    left: -17px;
+    display: inline-block;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
-.calc-green {
-	color: #84CC2C;
-	font-size: 25px;
-	font-family:calcFont;
-	padding-left:20px;
-	padding-right:20px;
-	background-color:black;
+
+
+
+
 }
 .form-header {
-	background-color: #F5B32A;
-    padding: 42px 10px 40px 20px;
-    border-radius: 10px 0px 0px 10px;
+	text-align: center;
     color:black;
 }
 
 .formlabel {
 	padding:5px 0px 0px 5px;
 }
+
 .forminput {
 	color:black;
 	margin: -3px 0px 10px 9px;
 }
+
 .makeyourown-form {
-	background-image: url(http://hoppedupbrewer.com/wp-content/uploads/20140517-DSC_80341.jpg);
-	padding-top: 20px;
+	background-color: #F0F0F0;
+	border-color: #7F7E7F;
+	border-style: ridge;
 	padding-bottom: 20px;
 	padding-left: 20px;
-	border-radius: 20px;
+	padding-right: 20px;
 	box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .signup-form {
@@ -263,3 +290,47 @@
 	text-align: right;
 }
 
+
+#search {
+    float: right;
+    margin-top: 9px;
+    width: 250px;
+}
+
+.search {
+    padding: 5px 0;
+    width: 230px;
+    height: 30px;
+    position: relative;
+    left: 10px;
+    float: left;
+    line-height: 22px;
+}
+
+.search input {
+    position: absolute;
+    width: 0px;
+    float: Left;
+    margin-left: 210px;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+    height: 30px;
+    line-height: 18px;
+    padding: 0 2px 0 2px;
+    border-radius:1px;
+}
+
+.search:hover input, .search input:focus {
+    width: 200px;
+    margin-left: 0px;
+}
+
+.btn-X {
+height: 30px;
+position: absolute;
+right: 0;
+top: 5px;
+border-radius:1px;
+}

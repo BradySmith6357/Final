@@ -5,8 +5,8 @@ var userSchema = mongoose.Schema({
 	username : {type : String, required: true, unique : true},
 	password: {type : String, required:true},
 	email: {type : String, required:true},
-	// wishlist: [{type : mongoose.schema.Objectid, ref: "Beer"}], 
-	// completed: [{type : mongoose.schema.Objectid, ref: "Beer"}],
+	wishlist: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}], 
+	completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
 	custom: {type: Array}
 })
 
