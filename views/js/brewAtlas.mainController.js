@@ -424,4 +424,14 @@ $scope.findBrewery = function(){
 		})
 }
 
+// Badge Functions
+
+$scope.addFirstPour = function(user){
+	if($scope.user.completed === 1){
+		$scope.user.badges.push($scope.firstPour)
+	}
+}
+
+
+
 }])

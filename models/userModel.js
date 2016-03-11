@@ -7,6 +7,7 @@ var userSchema = mongoose.Schema({
 	email: {type : String, required:true},
 	wishlist: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}], 
 	completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
+	badges: {type: Array},
 	custom: {type: Array}
 })
 
@@ -20,6 +21,7 @@ var beerSchema = mongoose.Schema({
 	abv: {type: Number},
 	ibu: {type: Number},
 	style: {type: String},
+	image: {type: String},
 	brewery: {type: mongoose.Schema.Types.ObjectId, ref: "Brewery"},
 	instructions: {type: String}
 })
