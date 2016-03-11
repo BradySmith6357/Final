@@ -35,9 +35,9 @@
 					<li><a href="/brewingtools">Brewing Tools</a></li>
 				</ul>
 				<div class="navbar-right">
-				<form class="navbar-form navbar-left" role="search" ng-submit="findBeer()">
+				<form class="navbar-form navbar-left" role="search" ng-submit="findBeer()" ng-submit="findBrewery()">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Find a beer or brewery" ng-model="beer.name">
+					<input type="text" class="form-control" placeholder="Find a beer or brewery" ng-model="beer.name" ng-model="brewery.name">
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
 				</form>

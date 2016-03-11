@@ -11,11 +11,25 @@ var userSchema = mongoose.Schema({
 })
 
 var beerSchema = mongoose.Schema({
+	brewdbId: {type: String},
 	name: {type: String},
 	hops: {type: Array},
 	malts: {type: Array},
+	special: {type: String},
 	yeast: {type: String},
+	abv: {type: Number},
+	ibu: {type: Number},
+	style: {type: String},
+	brewery: {type: mongoose.Schema.Types.ObjectId, ref: "Brewery"},
 	instructions: {type: String}
+})
+
+var brewerySchema = mongoose.Schema({
+	name: {type: String},
+	state: {type: String},
+	city: {type: String},
+	location: {type: String},
+	beers: {type: mongoose.Schema.Types.ObjectId, ref: "Beer"}
 })
 
 module.exports = {user: mongoose.model('User', userSchema), beer: mongoose.model('Beer', beerSchema)}

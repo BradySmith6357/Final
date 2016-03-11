@@ -96,53 +96,47 @@ app.get('/checklogin',function(req,res){
 });
 
 
-// Get beer from BreweryDB
-// app.post("/api/findBeer", function(req, res){
-	// request.post('http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors', function (err, res, body){
-	// 	if (err) {
-	// 		console.log('Error:', err)
-	// 	}
-	// 	if (!err && res.statusCode == 200) {
-	// 		console.log(body);
-	// 	}
-	// })
-// request({
-// 	url: 'http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=coors',
-// 	method: 'POST',
-// })
-// app.post("/api/findBeer", function(req, res){
-// 	console.log(req.body)
-// 	request
-// 		.get('http://api.brewerydb.com/v2/?key=9f9f7b837c0caed1a2d0375ae7c185f3?name=' + beer.name)
-// 		.on ('response', function(response){
-// 			console.log(response.statusCode)
-// 		})
-
-// app.put('/api/findBeer', function(req, res){
-// 	var options = {
-// 		url: req.body.url,
-// 		encoding: null,
-// 	}
-// 	console.log(options)
-// 	function callback(error, response, body){
-// 		console.log('line 134:'error)
-// 		if(!error&&responseCode == 200){
-// 			console.log('line 136:'response)
-// 		},
-// 		function(err, result){
-// 			if(err){
-// 				console.log(err)
-// 			} else {
-// 				console.log(result)
-// 			}
-// 		}
-// 	}
-// })
-
 //Get beer from BreweryDB with brewerydb-node
-app.get("/api/findBeer", function(req, res){
-	req.send(brewdb.beer.find({name: beer.name}))
+app.post("/api/findBeer", function(req, res){
+	brewdb.beer.find({name: req.body.name}, function(err, beers){
+		console.log(beers)
+		res.send(beers)
+	})
+});
+
+//Get beer from BreweryDB and add it to local DB
+// app.post('/api/findBeer', function (req, res){
+// 	brewdb.beer.find({beerId: req.body.id}, function(err, beer){
+// 	beer.forEach(function(beer){
+// 		if(!beer){
+// 		var addBeer = {
+// 			beerId: beer.beerId,
+// 			name: beer.name,
+// 			hops: [],
+// 			malt: [],
+// 			yeast: "",
+// 			abv: beer.abv,
+// 			ibu: beer.ibu,
+// 			style: beer.style,
+// 			brewery: "",
+// 			instructions: ""
+// 		}
+// 	res.send(beer)
+// 	( new Beer(addBeer) ).save()
+// 	}
+// 	})
+// 	})
+// });
+
+app.post("/api/findBrewery", function(req, res){
+	brewdb.breweries.find({name: req.body.name}, function(err, breweries){
+		console.log(breweries)
+		res.send(breweries)
+	})
 })
+
+//Search local db for beer
+
 
 // Custom Beers //
 var customBeerList = []
@@ -202,7 +196,7 @@ app.get('/logout', function(req, res){
 	req.logout()
 	res.redirect('/')
 })
-	
+
 
 
 // Creating Server and Listening for Connections \\

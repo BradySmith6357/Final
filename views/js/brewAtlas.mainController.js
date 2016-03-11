@@ -409,6 +409,19 @@ $scope.selectHops3 = function(hops){
 $scope.findBeer = function(){
 	console.log($scope.beer)
 	$http.post('api/findBeer', $scope.beer)
+		.then(function(returnData){
+			console.log(returnData.data)
+			$scope.searchResults = returnData.data
+		})
+}
+
+$scope.findBrewery = function(){
+	console.log($scope.brewery)
+	$http.post('api/findBrewery', $scope.brewery)
+		.then(function(returnData){
+			console.log(returnData.data)
+			$scope.searchResults = returnData.data
+		})
 }
 
 }])
