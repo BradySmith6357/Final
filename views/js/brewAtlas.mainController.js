@@ -1,27 +1,27 @@
 angular.module("mainModule")
 	.controller("mainController", ["$scope", "$http", "constructorFactory", function($scope, $http, constructorFactory){
 
-	$scope.recipeList = [
+	// $scope.recipeList = [
 
-	$scope.theAbyss = new constructorFactory.cloneRecipe ("http://beerphoria.com/wp-content/uploads/2013/11/TheAbyss_Oval.png", "The Abyss", "Deschutes Brewery", "Bend", "OR", "Imperial Stout", ["Roasted Barley", "Black Barley", "Chocolate", "De-Bitter Black Malt", "Pale", "Wheat"], ["Millennium", "Northern Brewer", "Nugget", "Styrian"], ["Molasses", "Licorice", "Cherry Bark", "Vanilla Beans"], "English Ale", 10.76, 4, []),
+	// $scope.theAbyss = new constructorFactory.cloneRecipe ("http://beerphoria.com/wp-content/uploads/2013/11/TheAbyss_Oval.png", "The Abyss", "Deschutes Brewery", "Bend", "OR", "Imperial Stout", ["Roasted Barley", "Black Barley", "Chocolate", "De-Bitter Black Malt", "Pale", "Wheat"], ["Millennium", "Northern Brewer", "Nugget", "Styrian"], ["Molasses", "Licorice", "Cherry Bark", "Vanilla Beans"], "English Ale", 10.76, 4, []),
 
-	$scope.twilightSummerAle = new constructorFactory.cloneRecipe ("http://2.bp.blogspot.com/-NjxbaQlVDtk/T5_zGh7aJTI/AAAAAAAAJEc/RZhJNf1Rac0/s1600/twilight.png", "Twilight Summer Ale", "Deschutes Brewery", "Bend", "OR", "Blonde Ale", ["Pale", "Carastan", "Carapils", "Munich"], ["Northern Brewer", "Amarillo", "Cascade", "Tettnang"], "NA", "English Ale", 5, 3, []),
+	// $scope.twilightSummerAle = new constructorFactory.cloneRecipe ("http://2.bp.blogspot.com/-NjxbaQlVDtk/T5_zGh7aJTI/AAAAAAAAJEc/RZhJNf1Rac0/s1600/twilight.png", "Twilight Summer Ale", "Deschutes Brewery", "Bend", "OR", "Blonde Ale", ["Pale", "Carastan", "Carapils", "Munich"], ["Northern Brewer", "Amarillo", "Cascade", "Tettnang"], "NA", "English Ale", 5, 3, []),
 
-	$scope.mirrorPond = new constructorFactory.cloneRecipe ("https://41.media.tumblr.com/tumblr_m3ey0ntbIR1r2mmxjo1_250.png", "Mirror Pond", "Deschutes Brewery", "Bend", "OR", "Pale Ale", ["Pale", "Crystal", "Carapils"], "Cascade", "NA", "English Ale", 5, 3.5, []),
+	// $scope.mirrorPond = new constructorFactory.cloneRecipe ("https://41.media.tumblr.com/tumblr_m3ey0ntbIR1r2mmxjo1_250.png", "Mirror Pond", "Deschutes Brewery", "Bend", "OR", "Pale Ale", ["Pale", "Crystal", "Carapils"], "Cascade", "NA", "English Ale", 5, 3.5, []),
 
-	$scope.chainbreaker = new constructorFactory.cloneRecipe ("http://2.bp.blogspot.com/-nwn1zRlRdjw/T4srnz-NFBI/AAAAAAAAERs/X9Rpbi5EUdk/s1600/CB_oval.png", "Chainbreaker", "Deschutes Brewery", "Bend", "OR", "White IPA", ["Pilsner", "Wheat", "Unmalted Wheat"], ["Bravo", "Citra", "Cascade", "Centennial"], ["Sweet Orange Peel", "Coriander"], "Belgian Ale", 5.5, 3.3,[]),
+	// $scope.chainbreaker = new constructorFactory.cloneRecipe ("http://2.bp.blogspot.com/-nwn1zRlRdjw/T4srnz-NFBI/AAAAAAAAERs/X9Rpbi5EUdk/s1600/CB_oval.png", "Chainbreaker", "Deschutes Brewery", "Bend", "OR", "White IPA", ["Pilsner", "Wheat", "Unmalted Wheat"], ["Bravo", "Citra", "Cascade", "Centennial"], ["Sweet Orange Peel", "Coriander"], "Belgian Ale", 5.5, 3.3,[]),
 
-	$scope.inversion = new constructorFactory.cloneRecipe ("http://www.girlswholikebeer.com/wp-content/uploads/2012/08/INV_oval.png", "Inversion", "Deschutes Brewery", "Bend", "OR", "IPA", ["Crystal", "Pale", "Munich", "Caramel"], ["Millenium", "Centennial", "Northern Brewer", "Cascade", "Citra"], "NA", "English Ale", 6.8, 2.8,[]),
+	// $scope.inversion = new constructorFactory.cloneRecipe ("http://www.girlswholikebeer.com/wp-content/uploads/2012/08/INV_oval.png", "Inversion", "Deschutes Brewery", "Bend", "OR", "IPA", ["Crystal", "Pale", "Munich", "Caramel"], ["Millenium", "Centennial", "Northern Brewer", "Cascade", "Citra"], "NA", "English Ale", 6.8, 2.8,[]),
 
-	$scope.obsidian = new constructorFactory.cloneRecipe ("http://savwaywines.com/Images/Products/Beer/OBS_oval.png", "Obsidian", "Deschutes Brewery", "Bend", "OR", "Stout", ["Roasted Barley", "Black Barley", "Pale", "Carapils", "Munich", "Wheat", "Crystal"], ["Nugget", "Willanette", "Northern Brewer"], "NA", "English Ale", 6.4, 3.8,[]),
+	// $scope.obsidian = new constructorFactory.cloneRecipe ("http://savwaywines.com/Images/Products/Beer/OBS_oval.png", "Obsidian", "Deschutes Brewery", "Bend", "OR", "Stout", ["Roasted Barley", "Black Barley", "Pale", "Carapils", "Munich", "Wheat", "Crystal"], ["Nugget", "Willanette", "Northern Brewer"], "NA", "English Ale", 6.4, 3.8,[]),
 
-	$scope.blackButte = new constructorFactory.cloneRecipe ("http://4.bp.blogspot.com/-ujLpMmmOxM4/TmhJRmZRhkI/AAAAAAAAAHE/HuRHGOiX9sk/s1600/Black_Butter_Porter2.png","Black Butte", "Deschutes Brewery", "Bend", "OR", "Porter", ["Chocolate", "Pale", "Wheat", "Crystal", "Carapils"], ["Bravo", "Cascade", "Tettnang"], "NA", "Wyeast 1187", 5.2, 4.8,[]),
+	// $scope.blackButte = new constructorFactory.cloneRecipe ("http://4.bp.blogspot.com/-ujLpMmmOxM4/TmhJRmZRhkI/AAAAAAAAAHE/HuRHGOiX9sk/s1600/Black_Butter_Porter2.png","Black Butte", "Deschutes Brewery", "Bend", "OR", "Porter", ["Chocolate", "Pale", "Wheat", "Crystal", "Carapils"], ["Bravo", "Cascade", "Tettnang"], "NA", "Wyeast 1187", 5.2, 4.8,[]),
 
-	$scope.redChair = new constructorFactory.cloneRecipe ("http://www.beauchampdist.com/wp-content/uploads/2012/01/brew_label_l_redchair.png", "Red Chair NWPA", "Deschutes Brewery", "Bend", "OR", "Pale Ale", ["Pale", "Crystal", "Carastan", "Carapils", "Munich", "Pilsner"], ["Cascade", "Centennial"], "NA", "English Ale", 5.2, 4.6,[]),	
+	// $scope.redChair = new constructorFactory.cloneRecipe ("http://www.beauchampdist.com/wp-content/uploads/2012/01/brew_label_l_redchair.png", "Red Chair NWPA", "Deschutes Brewery", "Bend", "OR", "Pale Ale", ["Pale", "Crystal", "Carastan", "Carapils", "Munich", "Pilsner"], ["Cascade", "Centennial"], "NA", "English Ale", 5.2, 4.6,[]),	
 
-	$scope.headyTopper = new constructorFactory.cloneRecipe ("http://media.tumblr.com/a369fb0d4928fb39b38d15f3363c7601/tumblr_inline_mmnn2dNgDz1qz4rgp.gif", "Heady Topper", "The Alchemist", "Waterbury", "VT", "IPA", ["2 Row Pale", "Caravienne"], ["Simcoe", "Apollo", "Cascade", "Centennial", "Colombus", "Chinook"], "NA", "WLP001", 6.4, 4.4,[])
+	// $scope.headyTopper = new constructorFactory.cloneRecipe ("http://media.tumblr.com/a369fb0d4928fb39b38d15f3363c7601/tumblr_inline_mmnn2dNgDz1qz4rgp.gif", "Heady Topper", "The Alchemist", "Waterbury", "VT", "IPA", ["2 Row Pale", "Caravienne"], ["Simcoe", "Apollo", "Cascade", "Centennial", "Colombus", "Chinook"], "NA", "WLP001", 6.4, 4.4,[])
 
-	]
+	// ]
 
 	// ************************************ Custom Beer **********************************
 
@@ -424,6 +424,14 @@ $scope.findBrewery = function(){
 		})
 }
 
+//GET BEERS FROM MONGODB
+$http.post('api/beerLibrary')
+	.then(function(returnData){
+		console.log(returnData.data)
+		$scope.recipeList = returnData.data
+	})
+
+
 // Badge Functions
 
 $scope.addFirstPour = function(user){
@@ -431,7 +439,6 @@ $scope.addFirstPour = function(user){
 		$scope.user.badges.push($scope.firstPour)
 	}
 }
-
 
 
 }])

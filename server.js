@@ -9,13 +9,14 @@ var session = require('express-session')
 var request = require('request')
 var logout = require('express-passport-logout')
 var brewdb = new breweryDb ('9f9f7b837c0caed1a2d0375ae7c185f3')
+var beers = require('./models/userModel.js').beer
 
 var passportConfig = require('./config/passport.js')
 
 // Create Express App Object \\
 var app = express();
 
-mongoose.connect('mongodb://localhost/brewAtlas')
+mongoose.connect('mongodb://localhost/test')
 
 // *** Express Session Setup *** //
 
@@ -95,9 +96,20 @@ app.get('/checklogin',function(req,res){
     }
 });
 
+// GET BEERS FROM MONGODB
+app.post('/api/beerLibrary', function(req, res){
+	beers.find({}, function(err, array){
+		if (err) {
+			console.log('no beer! Error:', err)
+			res.send({err:err})
+		} else {
+		res.send(array)
+		}
+	})
+})
 
 //Get beer from BreweryDB with brewerydb-node
-app.post("/api/findBeer", function(req, res){
+app.post('/api/findBeer', function(req, res){
 	brewdb.beer.find({name: req.body.name}, function(err, beers){
 		console.log(beers)
 		res.send(beers)
@@ -107,28 +119,29 @@ app.post("/api/findBeer", function(req, res){
 //Get beer from BreweryDB and add it to local DB
 // app.post('/api/findBeer', function (req, res){
 // 	brewdb.beer.find({beerId: req.body.id}, function(err, beer){
-// 	beer.forEach(function(beer){
-// 		if(!beer){
-// 		var addBeer = {
-// 			beerId: beer.beerId,
-// 			name: beer.name,
-// 			hops: [],
-// 			malt: [],
-// 			yeast: "",
-// 			abv: beer.abv,
-// 			ibu: beer.ibu,
-// 			style: beer.style,
-// 			brewery: "",
-// 			instructions: ""
+// 		beer.forEach(function(beer){
+// 			if(!beer){
+// 			var addBeer = {
+// 				beerId: beer.beerId,
+// 				name: beer.name,
+// 				hops: [],
+// 				malt: [],
+// 				yeast: "",
+// 				abv: beer.abv,
+// 				ibu: beer.ibu,
+// 				style: beer.style,
+// 				brewery: "",
+// 				instructions: ""
+// 			}
+// 		res.send(beer)
+// 		( new Beer(addBeer) ).save()
 // 		}
-// 	res.send(beer)
-// 	( new Beer(addBeer) ).save()
-// 	}
-// 	})
+// 		})
 // 	})
 // });
 
-app.post("/api/findBrewery", function(req, res){
+//Search By Brewery
+app.post('/api/findBrewery', function(req, res){
 	brewdb.breweries.find({name: req.body.name}, function(err, breweries){
 		console.log(breweries)
 		res.send(breweries)
@@ -141,11 +154,11 @@ app.post("/api/findBrewery", function(req, res){
 // Custom Beers //
 var customBeerList = []
 
-app.get("/api/customBeers", function(req, res){
+app.get('/api/customBeers', function(req, res){
 	res.send(customBeerList)
 })
 
-app.post("/api/customBeers", function(req, res){
+app.post('/api/customBeers', function(req, res){
 	customBeerList.push({
 		name: req.body.name,
 		style: req.body.style,
@@ -161,11 +174,11 @@ app.post("/api/customBeers", function(req, res){
 // Completed Beers //
 var userCompletedList = []
 
-app.get("/api/completedBeers", function(req, res){
+app.get('/api/completedBeers', function(req, res){
 	res.send(userCompletedList)
 })
 
-app.post("/api/completedBeers", function(req, res, beer){
+app.post('/api/completedBeers', function(req, res, beer){
 	userCompletedList.push(beer)
 	res.send(userCompletedList)
 	console.log(userCompletedList)
@@ -174,11 +187,11 @@ app.post("/api/completedBeers", function(req, res, beer){
 // Wishlist Beers //
 var userWishlist = []
 
-app.get("/api/wishlistBeers", function(req, res){
+app.get('/api/wishlistBeers', function(req, res){
 	res.send(userWishlist)
 })
 
-app.post("/api/wishlistBeers", function(req, res){
+app.post('/api/wishlistBeers', function(req, res){
 	userWishlist.push(beer)
 	res.send(userWishlist)
 	console.log(userWishlist)
@@ -196,6 +209,8 @@ app.get('/logout', function(req, res){
 	req.logout()
 	res.redirect('/')
 })
+
+
 
 
 
