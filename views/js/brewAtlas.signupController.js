@@ -9,7 +9,10 @@ angular.module("mainModule")
             data   : $scope.signupForm
         }).then(function(returnData){
             console.log(returnData)
-            if ( returnData.data.success ) { window.location.href="/activeuser" }
+            if ( returnData.data.success ) { 
+                window.location.href="/activeuser"
+                $scope.user = returnData.data.user
+            }
         })
     }
 
@@ -21,7 +24,10 @@ angular.module("mainModule")
             data   : $scope.loginForm
         }).then(function(returnData){
             console.log("In Return $scope.login")
-            if ( returnData.data.success ) { window.location.href="/activeuser" } 
+            if ( returnData.data.success ) { 
+                window.location.href="/activeuser"
+                $scope.user = returnData.data.user
+            } 
             else { console.log(returnData)}
         })
     }

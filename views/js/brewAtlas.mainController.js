@@ -38,12 +38,13 @@ $http.post('api/customBeer')
 
 //GET STYLES FROM BREWDB
 
+$scope.getInfo = function(){
 	$http.post('api/styles')
 		.then(function(returnData){
 			console.log(returnData.data)
 			$scope.styleList = returnData.data
 		})
-
+}
 
 	// ************************************* Hops **********************************************
 
@@ -225,35 +226,48 @@ $scope.checkLogin = function(){
         })  
 }
 
+$http.get('/me')
+	.then(function(returnData){
+		if(!returnData.data.user){
+			$scope.noUser = true
+		} else {
+			$scope.user = returnData.data.user
+			$scope.yesUser = true
+		}
+	})
+
 // Function to add beer to user completed list //
-		$http.get('/api/completedBeers')
-			.then(function(serverData){
-				$scope.userCompletedList = serverData.data
-			})
 		$scope.addBeer = function(beer){
-			$scope.hideProAdd = true
-			$scope.showProDis = true
-			$http.post('api/completedBeers')
+			// $scope.hideProAdd = true
+			// $scope.showProDis = true
+			$http.post('api/completedBeers', $scope.displayedBeer)
 				.then(function(serverData){
-					$scope.userCompletedList = beer
+					$scope.user.completed.push($scope.displayedBeer)
 				})
 		}
 
+		// $scope.showCompleted = function(){
+			$http.get('api/completedBeers')
+				.then(function(serverData){
+					// console.log("Line 255:", serverData)
+					$scope.completedBeers = serverData.data
+				})
+		// }
 
 // Function to add beer to user wishlist //
+		$scope.addWish = function(beer){
+			// $scope.hideWishAdd = true
+			// $scope.showWishDis = true
+			$http.post('api/wishlistBeers')
+				.then(function(serverData){
+					$scope.user.wishlist.push($scope.displayedBeer)
+				})
+		}
+		
 		$http.get('/api/wishlistBeers')
 			.then(function(serverData){
 				$scope.userWishlist = serverData.data
 			})
-		$scope.addWish = function(beer){
-			$scope.hideWishAdd = true
-			$scope.showWishDis = true
-			$http.post('api/wishlistBeers')
-				.then(function(serverData){
-					$scope.userWishlist = beer
-				})
-		}
-  	
 
 
 $scope.selectedStyle = "Beer Style"

@@ -10,6 +10,7 @@ var request = require('request')
 var logout = require('express-passport-logout')
 var brewdb = new breweryDb ('9f9f7b837c0caed1a2d0375ae7c185f3')
 var beers = require('./models/userModel.js').beer
+var user = require('./models/userModel.js').user
 
 mongoose.connect('mongodb://localhost/brewAtlas')
 var passportConfig = require('./config/passport.js')
@@ -66,7 +67,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/me', function(req, res){
-	console.log("REQUEST:", req)
+	// console.log("REQUEST:", req)
     res.send({user : req.user})
 });
 
@@ -83,7 +84,11 @@ app.get('/brewingtools', function(req, res){
 });
 
 app.get('/activeuser', function(req, res){
+  if(req.user){
   res.sendFile('activeuser.html', {root : './views/html'})
+} else {
+	res.sendFile('homepage.html', {root : './views/html'})
+}
 });
 
 app.get('/signup', function(req, res){
@@ -189,14 +194,12 @@ app.post('/api/findBrewery', function(req, res){
 
 
 // Custom Beers //
-var customBeerList = []
-
 app.get('/api/customBeers', function(req, res){
 	res.send(customBeerList)
 })
 
 app.post('/api/customBeers', function(req, res){
-	customBeerList.push({
+	req.user.custom.push({
 		name: req.body.name,
 		style: req.body.style,
 		malt: req.body.malt,
@@ -204,34 +207,50 @@ app.post('/api/customBeers', function(req, res){
 		special: req.body.special,
 		yeast: req.body.yeast
 	})
-	res.send(customBeerList)
+	res.send()
 	console.log(customBeerList)
 })
 
 // Completed Beers //
-var userCompletedList = []
-
 app.get('/api/completedBeers', function(req, res){
-	res.send(userCompletedList)
+	beers.find({_id: {$in: req.user.completed}},function(err, docs){
+		// console.log("Line 215:", err, docs)
+		res.send(docs)
+	})
 })
 
-app.post('/api/completedBeers', function(req, res, beer){
-	userCompletedList.push(beer)
-	res.send(userCompletedList)
-	console.log(userCompletedList)
+app.post('/api/completedBeers', function(req, res){
+	// console.log("221:", req.body)
+	// console.log("222:", req.user)
+	user.find({_id: req.user._id}, function(err, docs){
+		// console.log("Error:", err, docs)
+		docs[0].completed.push(req.body._id)
+		docs[0].save(function(err){
+			// console.log("Line 227:", err)
+		})
+	})
+	res.send({success: "success"})
 })
+
+
 
 // Wishlist Beers //
-var userWishlist = []
 
 app.get('/api/wishlistBeers', function(req, res){
-	res.send(userWishlist)
+	beers.find({_id: {$in: req.user.completed}},function(err, docs){
+		// console.log("Line: 239", err, docs)
+		res.send(docs)
+	})
 })
 
 app.post('/api/wishlistBeers', function(req, res){
-	userWishlist.push(beer)
-	res.send(userWishlist)
-	console.log(userWishlist)
+	user.find({_id: req.user._id}, function(err, docs){
+		// console.log("Line: 246", err, docs)
+		docs[0].completed.push(req.body._id)
+		docs[0].save(function(err){
+			// console.log("Line: 249", err)
+		})
+	})
 })
 
 //POST

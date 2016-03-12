@@ -4,6 +4,7 @@ var userSchema = mongoose.Schema({
 	username : {type : String, required: true, unique : true},
 	password: {type : String, required:true},
 	email: {type : String, required:true},
+	userimage: {type: String},
 	wishlist: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}], 
 	completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
 	badges: {type: Array},
