@@ -20,6 +20,7 @@ angular.module("mainModule")
             url    : '/login',
             data   : $scope.loginForm
         }).then(function(returnData){
+            console.log("In Return $scope.login")
             if ( returnData.data.success ) { window.location.href="/activeuser" } 
             else { console.log(returnData)}
         })

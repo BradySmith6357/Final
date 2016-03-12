@@ -5,14 +5,13 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-resource.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
 	<script type="text/javascript" src="../js/brewAtlasApp.js"></script>
 	<script type="text/javascript" src="../js/brewAtlas.mainController.js"></script>
 	<script type="text/javascript" src="../js/brewAtlasApp.constructorFactory.js"></script>
-	<script type="text/javascript" src="../js/googleapi.js"></script>
 	<link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body ng-controller="mainController" class="mainbackground">
@@ -69,18 +68,18 @@
 	  </ul>
 	  <div class="tab-content pagepadding">
 		    <div role="tabpanel" class="tab-pane fade librarystyle in active container-fluid" id="state">
-		    	<div ng-repeat="beer in recipeList | filter:searchBeer" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
+		    	<div ng-repeat="beer in stateSort | filter:searchBeer" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
 		    		<h5 class="beerNameLib">{{beer.name}}</h5>
-		    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(state)"><img ng-src="{{beer.image}}" width="100" height="125">
+		    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img ng-src="{{beer.image}}" width="100" height="125">
 		    			<h2 class="bLibraryText">{{beer.city}},{{beer.state}}</h2>
 		    		</a>
 		    	</div>
 		    </div>
 		    <div role="tabpanel" class="tab-pane fade librarystyle container-fluid" id="style">
-		    	<div ng-repeat="style in styleSort | filter:searchBeer" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
-		    		<h5 class="beerNameLib">{{style.name}}</h5>
-		    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(style)"><img ng-src="{{style.image}}" width="100" height="125">
-		    			<h2 class="bLibraryText">{{style.style}}</h2>
+		    	<div ng-repeat="beer in styleSort | filter:searchBeer" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
+		    		<h5 class="beerNameLib">{{beer.name}}</h5>
+		    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img ng-src="{{beer.image}}" width="100" height="125">
+		    			<h2 class="bLibraryText">{{beer.style}}</h2>
 		    		</a>
 		    	</div>
 		    </div>
@@ -96,7 +95,7 @@
 		    	<div ng-repeat="malt in maltSort | filter:searchBeer" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
 		    		<h5 class="beerNameLib">{{malt.name}}</h5>
 		    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(malt)"><img ng-src="{{malt.image}}" width="100" height="125">
-		    			<h2 class="fontfit bLibraryText">{{malt.malt.toString()}}</h2>
+		    			<h2 class="fontfit bLibraryText">{{malt.malts.toString()}}</h2>
 		    		</a>
 		    	</div>
 		    </div>
@@ -115,19 +114,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{beer.name}} || {{displayedBeer.brewery}} || {{displayedBeer.city}}, {{displayedBeer.state}}</h4>
+        <h4 class="modal-title" id="myModalLabel">{{displayedBeer.name}} || {{displayedBeer.brewery}} || {{displayedBeer.city}}, {{displayedBeer.state}}</h4>
       </div>
       <div class="modal-body">
         <img ng-src="{{displayedBeer.image}}" width="100" height="125" class="topimage">
 			<ul>
 				<li>Style: {{displayedBeer.style}}</li>
-				<li>Malt Bill: {{displayedBeer.malt.toString()}}</li>
+				<li>Malt Bill: {{displayedBeer.malts.toString()}}</li>
 				<li>Hop Bill: {{displayedBeer.hops.toString()}}</li>
-				<li>Extra Ingredients: {{displayedBeer.extra}}</li>
+				<li>Extra Ingredients: {{displayedBeer.Special}}</li>
 				<li>Yeast: {{displayedBeer.yeast}}</li>
 				<li>Average ABV: {{displayedBeer.abv}}%</li>
-				<li>Overall Rating: {{displayedBeer.rating}} / 5</li>
 			</ul>
+			<h4>Brewing Directions</h4>
+				<p>{{displayedBeer.instructions}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" ng-click="addBeer(displayedBeer)" ng-hide="hideProAdd">Add To Profile</button>

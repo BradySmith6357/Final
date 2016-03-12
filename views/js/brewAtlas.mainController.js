@@ -1,82 +1,59 @@
 angular.module("mainModule")
 	.controller("mainController", ["$scope", "$http", "constructorFactory", function($scope, $http, constructorFactory){
 
-	// $scope.recipeList = [
 
-	// $scope.theAbyss = new constructorFactory.cloneRecipe ("http://beerphoria.com/wp-content/uploads/2013/11/TheAbyss_Oval.png", "The Abyss", "Deschutes Brewery", "Bend", "OR", "Imperial Stout", ["Roasted Barley", "Black Barley", "Chocolate", "De-Bitter Black Malt", "Pale", "Wheat"], ["Millennium", "Northern Brewer", "Nugget", "Styrian"], ["Molasses", "Licorice", "Cherry Bark", "Vanilla Beans"], "English Ale", 10.76, 4, []),
+$scope.stateSort = []
+$scope.styleSort = []
+$scope.hopsSort = []
+$scope.maltSort = []
+$scope.abvSort = []
 
-	// $scope.twilightSummerAle = new constructorFactory.cloneRecipe ("http://2.bp.blogspot.com/-NjxbaQlVDtk/T5_zGh7aJTI/AAAAAAAAJEc/RZhJNf1Rac0/s1600/twilight.png", "Twilight Summer Ale", "Deschutes Brewery", "Bend", "OR", "Blonde Ale", ["Pale", "Carastan", "Carapils", "Munich"], ["Northern Brewer", "Amarillo", "Cascade", "Tettnang"], "NA", "English Ale", 5, 3, []),
+//GET BEERS FROM MONGODB
+$http.post('api/beerLibrary')
+	.then(function(returnData){
+		console.log(returnData.data)
+		$scope.recipeList = returnData.data
+// All sorts for beer library tabs
+	$scope.stateSort = _.sortBy($scope.recipeList, "state")
 
-	// $scope.mirrorPond = new constructorFactory.cloneRecipe ("https://41.media.tumblr.com/tumblr_m3ey0ntbIR1r2mmxjo1_250.png", "Mirror Pond", "Deschutes Brewery", "Bend", "OR", "Pale Ale", ["Pale", "Crystal", "Carapils"], "Cascade", "NA", "English Ale", 5, 3.5, []),
+	$scope.styleSort = _.sortBy($scope.recipeList, "style")
 
-	// $scope.chainbreaker = new constructorFactory.cloneRecipe ("http://2.bp.blogspot.com/-nwn1zRlRdjw/T4srnz-NFBI/AAAAAAAAERs/X9Rpbi5EUdk/s1600/CB_oval.png", "Chainbreaker", "Deschutes Brewery", "Bend", "OR", "White IPA", ["Pilsner", "Wheat", "Unmalted Wheat"], ["Bravo", "Citra", "Cascade", "Centennial"], ["Sweet Orange Peel", "Coriander"], "Belgian Ale", 5.5, 3.3,[]),
+	$scope.hopsSort = _.sortBy($scope.recipeList, "hops")
 
-	// $scope.inversion = new constructorFactory.cloneRecipe ("http://www.girlswholikebeer.com/wp-content/uploads/2012/08/INV_oval.png", "Inversion", "Deschutes Brewery", "Bend", "OR", "IPA", ["Crystal", "Pale", "Munich", "Caramel"], ["Millenium", "Centennial", "Northern Brewer", "Cascade", "Citra"], "NA", "English Ale", 6.8, 2.8,[]),
+	$scope.maltSort = _.sortBy($scope.recipeList, "malt")
 
-	// $scope.obsidian = new constructorFactory.cloneRecipe ("http://savwaywines.com/Images/Products/Beer/OBS_oval.png", "Obsidian", "Deschutes Brewery", "Bend", "OR", "Stout", ["Roasted Barley", "Black Barley", "Pale", "Carapils", "Munich", "Wheat", "Crystal"], ["Nugget", "Willanette", "Northern Brewer"], "NA", "English Ale", 6.4, 3.8,[]),
+	$scope.abvSort = _.sortBy($scope.recipeList, "abv")
 
-	// $scope.blackButte = new constructorFactory.cloneRecipe ("http://4.bp.blogspot.com/-ujLpMmmOxM4/TmhJRmZRhkI/AAAAAAAAAHE/HuRHGOiX9sk/s1600/Black_Butter_Porter2.png","Black Butte", "Deschutes Brewery", "Bend", "OR", "Porter", ["Chocolate", "Pale", "Wheat", "Crystal", "Carapils"], ["Bravo", "Cascade", "Tettnang"], "NA", "Wyeast 1187", 5.2, 4.8,[]),
+	$scope.ratingSort = _.sortBy($scope.recipeList, "rating")
+})
 
-	// $scope.redChair = new constructorFactory.cloneRecipe ("http://www.beauchampdist.com/wp-content/uploads/2012/01/brew_label_l_redchair.png", "Red Chair NWPA", "Deschutes Brewery", "Bend", "OR", "Pale Ale", ["Pale", "Crystal", "Carastan", "Carapils", "Munich", "Pilsner"], ["Cascade", "Centennial"], "NA", "English Ale", 5.2, 4.6,[]),	
 
-	// $scope.headyTopper = new constructorFactory.cloneRecipe ("http://media.tumblr.com/a369fb0d4928fb39b38d15f3363c7601/tumblr_inline_mmnn2dNgDz1qz4rgp.gif", "Heady Topper", "The Alchemist", "Waterbury", "VT", "IPA", ["2 Row Pale", "Caravienne"], ["Simcoe", "Apollo", "Cascade", "Centennial", "Colombus", "Chinook"], "NA", "WLP001", 6.4, 4.4,[])
+//GET CUSTOM BEER FROM MONGODB
 
-	// ]
+$http.post('api/customBeer')
+	.then(function(returnData){
+		console.log(returnData.data)
+		$scope.customBeerList = returnData.data
+	})
 
-	// ************************************ Custom Beer **********************************
+//GET STYLES FROM BREWDB
 
-	$scope.customBeerList = [
-		{
-			name: 'Beer1',
-			style: 'Amber',
-			malt: ['Biscuit', 'Carared', '2-row'],
-			hops: ['Centennial', 'Cascade'],
-			special: 'none',
-			yeast: 'Ale Yeast'
-		}
-	]
+	$http.post('api/styles')
+		.then(function(returnData){
+			console.log(returnData.data)
+			$scope.styleList = returnData.data
+		})
 
-	// ************************************* Style Library *********************************************
-
-	$scope.styleList = [
-
-	$scope.AmberAle = new constructorFactory.beerStyle ("Amber/Red  Ale", "Ale"),
-	$scope.Barleywine = new constructorFactory.beerStyle ("Barleywine", "Ale"),
-	$scope.BlackAle = new constructorFactory.beerStyle ("Black Ale", "Ale"),
-	$scope.BlondeAle = new constructorFactory.beerStyle ("Blonde Ale", "Ale"),
-	$scope.BrownAle = new constructorFactory.beerStyle ("Brown Ale", "Ale"),
-	$scope.WheatAle = new constructorFactory.beerStyle ("Wheat Ale", "Ale"),
-	$scope.ImperialIPA = new constructorFactory.beerStyle ("Imperial IPA", "Ale"),
-	$scope.IPA = new constructorFactory.beerStyle ("IPA", "Ale"),
-	$scope.PaleAle = new constructorFactory.beerStyle ("Pale Ale", "Ale"),
-	$scope.Porter = new constructorFactory.beerStyle ("Porter", "Ale"),
-	$scope.Stout = new constructorFactory.beerStyle ("Stout", "Ale"),
-	$scope.StrongAle = new constructorFactory.beerStyle ("Strong Ale", "Ale"),
-	$scope.WildAle = new constructorFactory.beerStyle ("Wild Ale", "Ale"),
-	$scope.CreamAle = new constructorFactory.beerStyle ("Cream Ale", "Ale"),
-	$scope.RyeAle = new constructorFactory.beerStyle ("Rye Ale", "Ale"),
-	$scope.BelgianPaleAle = new constructorFactory.beerStyle ("Belgian Pale Ale", "Ale"),
-	$scope.BelgianDubbel = new constructorFactory.beerStyle ("Belgian Dubbel", "Ale"),
-	$scope.BelgianTripel = new constructorFactory.beerStyle ("Belgian Tripel", "Ale"), 
-	$scope.BelgianQuad = new constructorFactory.beerStyle ("Belgian Quad", "Ale"),
-	$scope.FarmhouseAle = new constructorFactory.beerStyle ("Saison/Farmhouse Ale", "Ale"),
-	$scope.AmberLager = new constructorFactory.beerStyle ("Amber Lager","Lager"),
-	$scope.DoubleImperialPilsner = new constructorFactory.beerStyle ("Double/Imperial Pilsner","Lager"),
-	$scope.PaleLager = new constructorFactory.beerStyle ("Pale Lager","Lager"),
-	$scope.CaliforniaCommon = new constructorFactory.beerStyle ("California Common","Lager"),
-	$scope.DarkLager = new constructorFactory.beerStyle ("Dark Lager","Lager"),
-	$scope.Bock = new constructorFactory.beerStyle ("Bock","Lager"),
-	$scope.Doppelbock = new constructorFactory.beerStyle ("Doppelbock","Lager"),
-	$scope.Eisbock = new constructorFactory.beerStyle ("Eisbock","Lager"),
-	$scope.Maibock = new constructorFactory.beerStyle ("Maibock","Lager"),
-	$scope.Marzen = new constructorFactory.beerStyle ("Marzen","Lager"),
-	$scope.Rauchbier = new constructorFactory.beerStyle ("Rauchbier","Lager"),
-	$scope.Schwarzbier = new constructorFactory.beerStyle ("Schwarzbier","Lager"),
-	$scope.ViennaLager = new constructorFactory.beerStyle ("ViennaLager","Lager")
-
-	]
 
 	// ************************************* Hops **********************************************
+
+//GET HOPS FROM BREWERYDB
+
+	$http.post('api/hops')
+		.then(function(returnData){
+			console.log(returnData.data)
+			$scope.hopsList = returnData.data
+		})
 
 	$scope.hopsList = [
 
@@ -195,90 +172,23 @@ angular.module("mainModule")
 	]
 
 
-	$scope.userList = [
 
-	$scope.berkeley = new constructorFactory.user ("BerkeleyPicture.jpg", "Berkeley", "Smith", 4, 0, "bsmit6357@gmail.com", "bsmit6357", "Steelers11")
 
-	]
-
-	$scope.breweryList = [
-
-	$scope.deschutesBrewery = new constructorFactory.brewery ("http://www.southsoundtalk.com/wp-content/uploads/2016/01/deschutes_brewery_logo.png", "Deschutes", "Bend", "OR", 8)
-
-	]
-
-// The below array should automatically update with the top three rated beers.
-	$scope.highRating = [
-		$scope.blackButte,
-		$scope.headyTopper,
-		$scope.redChair
-		]
-
-	$scope.brewOfTheMonth = [
-	$scope.headyTopper
-	]
-
-	$scope.brewerOfTheMonth = [
-	$scope.berkeley
-	]
-
-	$scope.breweryOfTheMonth = [
-	$scope.deschutesBrewery
-	]
-
-// All sorts for beer library tabs
-	$scope.nameSort = _.sortBy($scope.recipeList, "name")
-
-	$scope.stateSort = _.sortBy($scope.recipeList, "state")
-
-	$scope.styleSort = _.sortBy($scope.recipeList, "style")
-
-	$scope.hopsSort = _.sortBy($scope.recipeList, "hops")
-
-	$scope.maltSort = _.sortBy($scope.recipeList, "malt")
-
-	$scope.abvSort = _.sortBy($scope.recipeList, "abv")
-
-	$scope.ratingSort = _.sortBy($scope.recipeList, "rating")
 
 // For modal display
-	$scope.displayedBeer = ""
-
-	$scope.showBeer = function(state){
-		$scope.displayedBeer = state
-		for(var i = 0; i <= $scope.userCompletedList.length; i++){
-			if(state.name = $scope.userCompletedList[i].name){
-				$scope.hideProAdd = true
-				$scope.showProDis = true
-			} else {
-				$scope.hideProAdd = false
-				$scope.showProDis = false
-			}
-		}	
-	}
-
-	$scope.showBeer = function(style){
-			$scope.displayedBeer = style
-	}
-
-	$scope.showBeer = function(hops){
-			$scope.displayedBeer = hops
-	}
-
-	$scope.showBeer = function(malt){
-			$scope.displayedBeer = malt
-	}
-
-	$scope.showBeer = function(abv){
-			$scope.displayedBeer = abv
-	}
-
-	$scope.showBeer = function(rating){
-			$scope.displayedBeer = rating
-	}
+$scope.displayedBeer = {}
 
 	$scope.showBeer = function(beer){
 		$scope.displayedBeer = beer
+			for(var i = 0; i <= $scope.user.completed.length; i++){
+				if(beer.name = $scope.user.completed[i].name){
+					$scope.hideProAdd = true
+					$scope.showProDis = true
+				} else {
+					$scope.hideProAdd = false
+					$scope.showProDis = false
+				}	
+		}	
 	}
 	$scope.showNotes = function(beer){
 		$scope.displayedBeer = beer
@@ -287,18 +197,18 @@ angular.module("mainModule")
 
 // *** Function to add custom beer form to your list with AJAX *** //
 
-		$http.get('/api/customBeers')
+	$http.get('/api/customBeers')
+		.then(function(serverData){
+			$scope.customBeerList = serverData.data
+		})
+
+	$scope.addCustomBeer = function(){
+		$http.post('api/customBeers', $scope.newCustomBeer)
 			.then(function(serverData){
 				$scope.customBeerList = serverData.data
+				$scope.newCustomBeer = {}
 			})
-
-		$scope.addCustomBeer = function(){
-			$http.post('api/customBeers', $scope.newCustomBeer)
-				.then(function(serverData){
-					$scope.customBeerList = serverData.data
-					$scope.newCustomBeer = {}
-				})
-		}
+	}
 	
 // Retrieve the user
 $scope.checkLogin = function(){
@@ -307,7 +217,7 @@ $scope.checkLogin = function(){
             if(!returnData.data.user){
                 window.location.href = '/signup'
             }else{
-            	console.log(returnData.data.user)
+            	console.log("User:",returnData.data.user)
                 $scope.user = returnData.data.user
                 window.location.href = '/activeuser'
 
@@ -423,13 +333,6 @@ $scope.findBrewery = function(){
 			$scope.searchResults = returnData.data
 		})
 }
-
-//GET BEERS FROM MONGODB
-$http.post('api/beerLibrary')
-	.then(function(returnData){
-		console.log(returnData.data)
-		$scope.recipeList = returnData.data
-	})
 
 
 // Badge Functions

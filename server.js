@@ -11,12 +11,13 @@ var logout = require('express-passport-logout')
 var brewdb = new breweryDb ('9f9f7b837c0caed1a2d0375ae7c185f3')
 var beers = require('./models/userModel.js').beer
 
+mongoose.connect('mongodb://localhost/brewAtlas')
 var passportConfig = require('./config/passport.js')
 
 // Create Express App Object \\
 var app = express();
 
-mongoose.connect('mongodb://localhost/test')
+
 
 // *** Express Session Setup *** //
 
@@ -65,6 +66,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/me', function(req, res){
+	console.log("REQUEST:", req)
     res.send({user : req.user})
 });
 
@@ -107,6 +109,41 @@ app.post('/api/beerLibrary', function(req, res){
 		}
 	})
 })
+
+// GET CUSTOMBEERS FROM MONGODB
+app.post('/api/customBeers', function(req, res){
+	beers.find({}, function(err, array){
+		if(err) {
+			console.log('no custom beers!')
+			res.send({err:err})
+		} else {
+			res.send(array)
+		}
+	})
+})
+
+//Get styles from BreweryDB
+app.post('/api/styles', function(req, res){
+	brewdb.style.all(function(err, array){
+		if (err) {
+			console.log('no styles found! Error:', err)
+			res.send({err:err})
+		} else {
+			res.send(array)
+		}
+	})
+})
+
+//Get hops from BreweryDB
+// app.post('/api/hops', function(req, res){
+// 	brewdb.hop.all(function(err, array){
+// 		if (err) {
+// 			console.log('no hops found! Error:', err)
+// 		} else {
+// 			res.send(array)
+// 		}
+// 	})
+// })
 
 //Get beer from BreweryDB with brewerydb-node
 app.post('/api/findBeer', function(req, res){

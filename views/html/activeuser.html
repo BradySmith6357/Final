@@ -50,9 +50,9 @@
   </nav>
   <div class="container col-xs-12 col-sm-4 col-md-6 minpadding">
 		<div class="list-group">
-			<h3 class="list-group-item"><img ng-src="{{berkeley.image}}" class="userboximage" width="75" height="100">Hi {{user.username}}!</h3>
-  			<a href="" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{userCompletedList.length}}</span></a>
-  			<a href="" class="list-group-item">Badges Earned<span class="badge">{{berkeley.badges}}</span></a>
+			<h3 class="list-group-item"><img ng-src="{{user.image}}" class="userboximage" width="75" height="100">Hi {{user.username}}!</h3>
+  			<a href="" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{user.completed.length}}</span></a>
+  			<a href="" class="list-group-item">Badges Earned<span class="badge">{{user.badges.length}}</span></a>
 		</div>
 		<div class="wishlistbox">
 			<div class="list-group">

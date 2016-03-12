@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var passportConfig = require("../config/passport.js")
 
 var userSchema = mongoose.Schema({
 	username : {type : String, required: true, unique : true},
@@ -8,7 +7,7 @@ var userSchema = mongoose.Schema({
 	wishlist: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}], 
 	completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
 	badges: {type: Array},
-	custom: {type: Array}
+	custom: [{type: mongoose.Schema.Types.ObjectId, ref: "custom"}]
 })
 
 var beerSchema = mongoose.Schema({
