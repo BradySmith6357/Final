@@ -195,11 +195,15 @@ app.post('/api/findBrewery', function(req, res){
 
 // Custom Beers //
 app.get('/api/customBeers', function(req, res){
-	res.send(customBeerList)
+	res.send({_id: {$in: req.custom}}, function(err, docs){
+		console.log("Line 199 Error:", err)
+		res.send(docs)
+	})
 })
 
 app.post('/api/customBeers', function(req, res){
-	req.user.custom.push({
+	console.log("Line: 202", req.body)
+	req.custom.push({
 		name: req.body.name,
 		style: req.body.style,
 		malt: req.body.malt,
@@ -207,8 +211,7 @@ app.post('/api/customBeers', function(req, res){
 		special: req.body.special,
 		yeast: req.body.yeast
 	})
-	res.send()
-	console.log(customBeerList)
+	res.send({success: "success"})
 })
 
 // Completed Beers //

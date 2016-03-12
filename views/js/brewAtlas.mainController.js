@@ -38,13 +38,13 @@ $http.post('api/customBeer')
 
 //GET STYLES FROM BREWDB
 
-$scope.getInfo = function(){
+// $scope.getInfo = function(){
 	$http.post('api/styles')
 		.then(function(returnData){
 			console.log(returnData.data)
 			$scope.styleList = returnData.data
 		})
-}
+// }
 
 	// ************************************* Hops **********************************************
 
@@ -196,7 +196,7 @@ $scope.displayedBeer = {}
 	}
 
 
-// *** Function to add custom beer form to your list with AJAX *** //
+// *** Function to add custom beer form to your list *** //
 
 	$http.get('/api/customBeers')
 		.then(function(serverData){
@@ -206,7 +206,6 @@ $scope.displayedBeer = {}
 	$scope.addCustomBeer = function(){
 		$http.post('api/customBeers', $scope.newCustomBeer)
 			.then(function(serverData){
-				$scope.customBeerList = serverData.data
 				$scope.newCustomBeer = {}
 			})
 	}
@@ -263,7 +262,7 @@ $http.get('/me')
 					$scope.user.wishlist.push($scope.displayedBeer)
 				})
 		}
-		
+
 		$http.get('/api/wishlistBeers')
 			.then(function(serverData){
 				$scope.userWishlist = serverData.data
