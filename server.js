@@ -11,6 +11,7 @@ var logout = require('express-passport-logout')
 var brewdb = new breweryDb ('9f9f7b837c0caed1a2d0375ae7c185f3')
 var beers = require('./models/userModel.js').beer
 var user = require('./models/userModel.js').user
+var custom = require('./models/userModel.js').custom
 
 mongoose.connect('mongodb://localhost/brewAtlas')
 var passportConfig = require('./config/passport.js')
@@ -116,8 +117,8 @@ app.post('/api/beerLibrary', function(req, res){
 })
 
 // GET CUSTOMBEERS FROM MONGODB
-app.post('/api/customBeers', function(req, res){
-	beers.find({}, function(err, array){
+app.get('/api/customBeers', function(req, res){
+	custom.find({}, function(err, array){
 		if(err) {
 			console.log('no custom beers!')
 			res.send({err:err})
@@ -126,6 +127,21 @@ app.post('/api/customBeers', function(req, res){
 		}
 	})
 })
+
+// ADD CUSTOM BEER TO DATABASE
+app.post('/api/customBeers', function(req, res){
+	console.log("Custom Beer Info:", req.body)
+	var newCustom = req.body
+	user.findOne({_id: req.user._id}, function(err, docs){
+		docs.custom.push(newCustom)
+		docs.markModified('custom')
+		docs.save(function(err, docs){
+			console.log("Custom Beer Error On Post:", err, docs)
+		})
+	})
+	res.send(user.custom)
+})
+
 
 //Get styles from BreweryDB
 app.post('/api/styles', function(req, res){
@@ -193,27 +209,6 @@ app.post('/api/findBrewery', function(req, res){
 //Search local db for beer
 
 
-// Custom Beers //
-app.get('/api/customBeers', function(req, res){
-	res.send({_id: {$in: req.custom}}, function(err, docs){
-		console.log("Line 199 Error:", err)
-		res.send(docs)
-	})
-})
-
-app.post('/api/customBeers', function(req, res){
-	console.log("Line: 202", req.body)
-	req.custom.push({
-		name: req.body.name,
-		style: req.body.style,
-		malt: req.body.malt,
-		hops: req.body.hops,
-		special: req.body.special,
-		yeast: req.body.yeast
-	})
-	res.send({success: "success"})
-})
-
 // Completed Beers //
 app.get('/api/completedBeers', function(req, res){
 	beers.find({_id: {$in: req.user.completed}},function(err, docs){
@@ -238,20 +233,32 @@ app.post('/api/completedBeers', function(req, res){
 
 
 // Wishlist Beers //
-
+//Get Wishlist Beers For Display
 app.get('/api/wishlistBeers', function(req, res){
-	beers.find({_id: {$in: req.user.completed}},function(err, docs){
+	beers.find({_id: {$in: req.user.wishlist}},function(err, docs){
 		// console.log("Line: 239", err, docs)
 		res.send(docs)
 	})
 })
-
+//Add to user wishlist
 app.post('/api/wishlistBeers', function(req, res){
 	user.find({_id: req.user._id}, function(err, docs){
 		// console.log("Line: 246", err, docs)
-		docs[0].completed.push(req.body._id)
+		docs[0].wishlist.push(req.body._id)
 		docs[0].save(function(err){
 			// console.log("Line: 249", err)
+		})
+	})
+})
+
+
+// Add Notes To Beer //
+app.post('/api/notes', function(req, res){
+	user.find({_id: req.user._id}, function(err, docs){
+		console.log("Line 262:", err, docs)
+		docs[0].notes.push(req.body._id)
+		docs[0].save(function(err){
+			console.log("Line 265:", err)
 		})
 	})
 })

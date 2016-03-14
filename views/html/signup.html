@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body ng-controller="signupControl" class="signupbackground">
+<div ng-hide="seeSignUp">
 	<h1 class="signup-header">JOIN THE HOMEBREWING REVOLUTION</h1>
 	<form class="container-fluid signup-form col-xs-12 col-sm-4" ng-submit="signup()">
 		<div class="form-group">
@@ -30,8 +31,12 @@
 		</div>
 		<button type="submit" class="btn btn-success">Sign Up</button>
 	</form>
-		<h1 class="login-header">LOGIN</h1>
-		<form class="container-fluid login-form col-xs-12 col-sm-4" ng-submit="login()">
+</div>
+ <button ng-hide="seeSignUp" type="button" ng-click="showLogin()" class="btn btn-primary btn-lg change-form-btn">Already A Member? Sign In Here!</button>
+ <button ng-show="seeLogin" type="button" ng-click="showSignUp()" class="btn btn-primary btn-lg change-form-btn">Not A Member? Signup!</button>
+	<div ng-show="seeLogin">
+		<h1 class="signup-header">LOGIN</h1>
+		<form class="container-fluid signup-form col-xs-12 col-sm-4" ng-submit="login()">
 			<div class="form-group">
 				<label for="inputUserName">Username</label>
 				<input type="text" class="form-control inputstyle"id="inputUserName" ng-model="loginForm.username">
@@ -42,4 +47,5 @@
 			</div>
 			<button type="submit" class="btn btn-success">Login</button>
 		</form>
+	</div>
 </body>

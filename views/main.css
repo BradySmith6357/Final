@@ -240,9 +240,9 @@
 
 }
 .signup-header{
-	position: fixed;
+/*	position: fixed;
 	top: 55px;
-    right: 44px;
+    right: 44px;*/
     font-size:60px;
 	text-align:center;
 	color:white;

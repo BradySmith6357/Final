@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.jquery.min.js"></script>
 	<script type="text/javascript" src="../js/brewAtlasApp.js"></script>
 	<script type="text/javascript" src="../js/brewAtlas.mainController.js"></script>
 	<script type="text/javascript" src="../js/brewAtlasApp.constructorFactory.js"></script>
@@ -57,86 +58,38 @@
 			<label for="inputBeerName">Beer Name<label>
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" id="inputFirstName" ng-model="newCustomBeer.name">
+			<input type="text" class="form-control" id="inputBeerName" ng-model="newCustomBeer.name">
+		</div>
+		<div class="form-group" id="beerStyle">
+			<label for="inputBeerStyle">Beer Style<label>
 		</div>
 		<div class="form-group">
-				<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newCustomBeer.style">
-    			{{selectedStyle}}
-    			<span class="caret"></span>
-  				</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="style in styleList"><a ng-click="selectStyle(style)">{{style.name}}</a></li>
-			</ul>
-		</div>
+  			<input type="text" class="form-control" id="inputBeerStyle" ng-model="newCustomBeer.style">
+  		</div>
+		<div class="form-group" id="beerhops">
+			<label for="inputBeerStyle">Hop #1<label>
 		</div>
 		<div class="form-group">
-			<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newCustomBeer.malt">
-    			{{selectedMalt1}}
-    			<span class="caret"></span>
-  				</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="malt in maltList"><a ng-click="selectMalt1(malt)">{{malt.name}}</a></li>
-			
-			</ul>
-		</div>
+  			<input type="text" class="form-control" id="inputBeerHops" ng-model="newCustomBeer.hops">
+  		</div>
+		<div class="form-group" id="beerMalt">
+			<label for="inputBeerStyle">Fermentable #1<label>
 		</div>
 		<div class="form-group">
-		<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newCustomBeer.malt">
-    			{{selectedMalt2}}
-    			<span class="caret"></span>
-  				</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="malt in maltList" ng-model="newCustomBeer.malt"><a ng-click="selectMalt2(malt)">{{malt.name}}</a></li>
-			</ul>
-		</div>
+  			<input type="text" class="form-control" id="inputBeerMalts" ng-model="newCustomBeer.malts">
+  		</div>
+		<div class="form-group" id="beerMalt">
+			<label for="inputBeerStyle">Fermentable #2<label>
 		</div>
 		<div class="form-group">
-		<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newCustomBeer.malt">
-    			{{selectedMalt3}}
-    			<span class="caret"></span>
-  				</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="malt in maltList" ng-model="newCustomBeer.malt"><a ng-click="selectMalt3(malt)">{{malt.name}}</a></li>
-			</ul>
-		</div>
+  			<input type="text" class="form-control" id="inputBeerMalts" ng-model="newCustomBeer.malts">
+  		</div>
+		<div class="form-group" id="beerMalt">
+			<label for="inputBeerStyle">Fermentable #3<label>
 		</div>
 		<div class="form-group">
-			<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newCustomBeer.hops">
-    			{{selectedHops1}}
-    			<span class="caret"></span>
-  				</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="hops in hopsList" ng-model="newCustomBeer.hops"><a ng-click="selectHops1(hops)">{{hops.name}}</a></li>
-			</ul>
-		</div>
-		</div>
-		<div class="form-group">
-			<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newCustomBeer.hops">
-    			{{selectedHops2}}
-    			<span class="caret"></span>
-  				</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="hops in hopsList" ng-model="newCustomBeer.hops"><a ng-click="selectHops2(hops)">{{hops.name}}</a></li>
-			</ul>
-		</div>
-		</div>
-		<div class="form-group">
-			<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ng-model="newCustomBeer.hops">
-    			{{selectedHops3}}
-    			<span class="caret"></span>
-  				</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-				<li ng-repeat="hops in hopsList" ng-model="newCustomBeer.hops"><a ng-click="selectHops3(hops)">{{hops.name}}</a></li>
-			</ul>
-		</div>
-		</div>
+  			<input type="text" class="form-control" id="inputBeerMalts" ng-model="newCustomBeer.malts">
+  		</div>
 		<div class="form-group">
 			<label for="inputExtra">Specialty Ingredients</label>
 			<input type="text" class="form-control" id="inputExtra" ng-model="newCustomBeer.special">

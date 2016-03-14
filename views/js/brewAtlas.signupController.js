@@ -32,5 +32,15 @@ angular.module("mainModule")
         })
     }
 
+// SHOW AND HIDE FORMS ON SIGNUP PAGE
+$scope.showLogin = function(){
+    $scope.seeSignUp = true
+    $scope.seeLogin = true
+}
+
+$scope.showSignUp = function(){
+    $scope.seeSignUp = false
+    $scope.seeLogin = false
+}
 
 }])

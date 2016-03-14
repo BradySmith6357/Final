@@ -1,5 +1,14 @@
 var mongoose = require("mongoose");
 
+var customSchema = mongoose.Schema({
+	name: {type: String},
+	style: {type: String},
+	malt: {type: String},
+	hops: {type: String},
+	special: {type: String},
+	yeast: {type: String}
+})
+
 var userSchema = mongoose.Schema({
 	username : {type : String, required: true, unique : true},
 	password: {type : String, required:true},
@@ -8,7 +17,8 @@ var userSchema = mongoose.Schema({
 	wishlist: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}], 
 	completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
 	badges: {type: Array},
-	custom: [{type: mongoose.Schema.Types.ObjectId, ref: "custom"}]
+	custom: [customSchema]
+	// custom: [{type: mongoose.Schema.Types.ObjectId, ref: "Custom"}]
 })
 
 var beerSchema = mongoose.Schema({
@@ -22,9 +32,10 @@ var beerSchema = mongoose.Schema({
 	ibu: {type: Number},
 	style: {type: String},
 	image: {type: String},
-	brewery: {type: mongoose.Schema.Types.ObjectId, ref: "Brewery"},
+	brewery: {type: String},
 	city: {type: String},
 	state: {type: String},
+	notes: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
 	instructions: {type: String}
 })
 
@@ -36,13 +47,6 @@ var brewerySchema = mongoose.Schema({
 	beers: {type: mongoose.Schema.Types.ObjectId, ref: "Beer"}
 })
 
-var customSchema = mongoose.Schema({
-	name: {type: String},
-	style: {type: String},
-	malt: {type: String},
-	hops: {type: String},
-	special: {type: String},
-	yeast: {type: String}
-})
+
 
 module.exports = {user: mongoose.model('User', userSchema), beer: mongoose.model('Beer', beerSchema), brewery: mongoose.model('Brewery', brewerySchema), custom: mongoose.model('Custom', customSchema)}
