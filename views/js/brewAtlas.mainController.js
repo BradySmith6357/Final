@@ -188,6 +188,7 @@ $scope.displayedBeer = {}
 				} else {
 					$scope.hideProAdd = false
 					$scope.showProDis = false
+					$scope.displayedBeer = {}
 				}	
 		}	
 	}
