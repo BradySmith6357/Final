@@ -117,16 +117,16 @@ app.post('/api/beerLibrary', function(req, res){
 })
 
 // GET CUSTOMBEERS FROM MONGODB
-app.get('/api/customBeers', function(req, res){
-	custom.find({}, function(err, array){
-		if(err) {
-			console.log('no custom beers!')
-			res.send({err:err})
-		} else {
-			res.send(array)
-		}
-	})
-})
+// app.get('/api/customBeers', function(req, res){
+// 	custom.find({}, function(err, array){
+// 		if(err) {
+// 			console.log('no custom beers!')
+// 			res.send({err:err})
+// 		} else {
+// 			res.send(array)
+// 		}
+// 	})
+// })
 
 // ADD CUSTOM BEER TO DATABASE
 app.post('/api/customBeers', function(req, res){
@@ -207,7 +207,6 @@ app.post('/api/findBrewery', function(req, res){
 })
 
 //Search local db for beer
-
 
 // Completed Beers //
 app.get('/api/completedBeers', function(req, res){

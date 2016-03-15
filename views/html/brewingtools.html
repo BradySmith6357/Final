@@ -67,28 +67,16 @@
   			<input type="text" class="form-control" id="inputBeerStyle" ng-model="newCustomBeer.style">
   		</div>
 		<div class="form-group" id="beerhops">
-			<label for="inputBeerStyle">Hop #1<label>
+			<label for="inputBeerStyle">Hops<label>
 		</div>
 		<div class="form-group">
   			<input type="text" class="form-control" id="inputBeerHops" ng-model="newCustomBeer.hops">
   		</div>
 		<div class="form-group" id="beerMalt">
-			<label for="inputBeerStyle">Fermentable #1<label>
+			<label for="inputBeerStyle">Fermentables<label>
 		</div>
 		<div class="form-group">
-  			<input type="text" class="form-control" id="inputBeerMalts" ng-model="newCustomBeer.malts">
-  		</div>
-		<div class="form-group" id="beerMalt">
-			<label for="inputBeerStyle">Fermentable #2<label>
-		</div>
-		<div class="form-group">
-  			<input type="text" class="form-control" id="inputBeerMalts" ng-model="newCustomBeer.malts">
-  		</div>
-		<div class="form-group" id="beerMalt">
-			<label for="inputBeerStyle">Fermentable #3<label>
-		</div>
-		<div class="form-group">
-  			<input type="text" class="form-control" id="inputBeerMalts" ng-model="newCustomBeer.malts">
+  			<input type="text" class="form-control" id="inputBeerMalts" ng-model="newCustomBeer.malt">
   		</div>
 		<div class="form-group">
 			<label for="inputExtra">Specialty Ingredients</label>
@@ -97,6 +85,10 @@
 		<div class="form-group">
 			<label for="inputYeast">Yeast Used</label>
 			<input type="text" class="form-control" id="inputYeast" ng-model="newCustomBeer.yeast">
+		</div>
+		<div class="form-group">
+			<label for='directions'>Brewing Directions</label>
+			<textarea rows="2" cols="20" wrap="hard" class="form-control" ng-model="newCustomBeer.directions"></textarea>
 		</div>
 		<button type="submit" class="btn btn-success">Add Recipe</button>
 	</form>
@@ -109,33 +101,36 @@
 			</div>
 			<div class="form-group">
 				<label for="ogtext" class="formlabel">Original Gravity (OG):</label>
-				<input type="text" class="form-control" id="ogtext" ng-change="calcABV($event)" ng-model="ogtext" value="" maxlength="5" style="width: 100px">
+				<input type="text" class="form-control input-adjust" id="ogtext" ng-change="calcABV($event)" ng-model="ogtext" value="" maxlength="5" style="width: 100px">
 			</div>
 			<div class="form-group">
 				<label for="fgtext" class="formlabel">Final Gravity (FG):</label>
-				<input type="text" class="form-control" id="fgtext" ng-change="calcABV($event)" ng-model="fgtext" value="" maxlength="5" style="width: 100px">
+				<input type="text" class="form-control input-adjust" id="fgtext" ng-change="calcABV($event)" ng-model="fgtext" value="" maxlength="5" style="width: 100px">
 			</div>
 			<div class="form-group">
 				<label class="formlabel">Alcohol By Volume:</label>
 				<p class="calc-result">{{abv}}</p>
 			</div>
 		</form>
+	</div>
 <!-- Brewing Resources -->
-<!-- <div class="resources-box container">
-	<div class="col-xs-4">
+<div class="container-fluid col-xs-12 col-sm-4">
+<form class="abvcalc" cellpadding="2" cellspacing="2">
+	<div class="form-font">
 		<h3>Brewing Basics</h3>
-		<a href="http://www.howtobrew.com/"><img src="http://ecx.images-amazon.com/images/I/517vHAAt7PL._SX348_BO1,204,203,200_.jpg" height="200" width="175"></a>
+		<a href="http://www.howtobrew.com/">John Palmer's How To Brew</a>
 	</div>
-	<div class="col-xs-4">
+	<div class="form-font">
 		<h3>Brewing Supply Website</h3>
-		<a href="www.northernbrewer.com"><img src="http://beerpulse.com/wp-content/uploads/2012/04/NB-Logo-Grain-01-768.png" height="200" width="175"></a>
+		<a href="www.northernbrewer.com">Northern Brewer</a>
 	</div>
-	<div class="col-xs-4">
+	<div class="form-font">
 		<h3>Hop Information</h3>
-		<a href="https://www.hopunion.com/hop-varieties/"><img src="https://www.hopunion.com/img/hopunion-logo.png" height="200" width="175"></a>
+		<a href="https://www.hopunion.com/hop-varieties/">Hop Union</a>
 	</div>
-	<div class="col-xs-4">
+	<div class="form-font">
 		<h3>Barley Information</h3>
-		<a href="https://byo.com/resources/grains"><img src="http://byo.com/images/random_logo/logo4.png" height="200" width="175"></a>
+		<a href="https://byo.com/resources/grains">Brew Your Own</a>
 	</div>
-</div> -->
+</form>
+</div>

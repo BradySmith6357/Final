@@ -6,7 +6,8 @@ var customSchema = mongoose.Schema({
 	malt: {type: String},
 	hops: {type: String},
 	special: {type: String},
-	yeast: {type: String}
+	yeast: {type: String},
+	directions: {type: String}
 })
 
 var userSchema = mongoose.Schema({
@@ -16,9 +17,12 @@ var userSchema = mongoose.Schema({
 	userimage: {type: String},
 	wishlist: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}], 
 	completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
+	// completed: [{
+	// 	beer: {type : mongoose.Schema.Types.ObjectId, ref: "Beer"},
+	// 	notes: {type: String}
+	// }],
 	badges: {type: Array},
 	custom: [customSchema]
-	// custom: [{type: mongoose.Schema.Types.ObjectId, ref: "Custom"}]
 })
 
 var beerSchema = mongoose.Schema({

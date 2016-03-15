@@ -189,13 +189,13 @@
         <h4 class="modal-title" id="myModalLabel">{{displayedBeer.name}}</h4>
       </div>
       <div class="modal-body">
-      <ul>
-        <li>Style: {{displayedBeer.style}}</li>
-        <li>Malt Bill: {{displayedBeer.malts.toString()}}</li>
-        <li>Hop Bill: {{displayedBeer.hops.toString()}}</li>
-        <li>Extra Ingredients: {{displayedBeer.special}}</li>
-        <li>Yeast: {{displayedBeer.yeast}}</li>
-      </ul>
+        <p><strong>Style:</strong> {{displayedBeer.style}}</p>
+        <p><strong>Malt Bill:</strong> {{displayedBeer.malts.toString()}}</p>
+        <p><strong>Hop Bill:</strong> {{displayedBeer.hops.toString()}}</p>
+        <p><strong>Extra Ingredients:</strong> {{displayedBeer.special}}</p>
+        <p><strong>Yeast:</strong> {{displayedBeer.yeast}}</p>
+      <h4>Brewing Directions</h4>
+      <p>{{displayedBeer.directions}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

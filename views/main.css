@@ -29,7 +29,9 @@
 }
 
 .signupbackground {
-	background-image: url(https://patspints.files.wordpress.com/2014/05/hops_closeup.jpg)
+	background-image: url(https://patspints.files.wordpress.com/2014/05/hops_closeup.jpg);
+	padding-top: 125px;
+	padding-bottom: 125px;
 }
 .jumbotronstyle{
 	background-image: url(http://i.imgur.com/A6GBkG9.gif);
@@ -144,8 +146,8 @@
 	margin:2px;
 }
 
-.library-search {
-}
+/*.library-search {
+}*/
 .beerlibrary {/*
 	background-image: url(http://media.philly.com/images/boulevard3.jpg);*/
 	background-color: #F0F0F0;
@@ -170,6 +172,7 @@
 	color:black;
 	text-shadow: 2px 2px 4px #865050;
 	padding-top: 20px;
+	font-size: 20px;
 }
 .pagepadding {
 	text-align:center;
@@ -184,13 +187,7 @@
     box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
     color:black;
 }
-/*.circlegrad {
-  background: #E2E2E6;
-  background: -webkit-radial-gradient(circle, #E2E2E6, #888894, #575765); 
-  background: -o-radial-gradient(circle, #E2E2E6, #888894, #575765); 
-  background: -moz-radial-gradient(circle, #E2E2E6, #888894, #575765); 
-  background: radial-gradient(circle, #E2E2E6, #888894, #575765);
-}*/
+
 .calc-result {
 	position: relative;
     bottom: -2px;
@@ -201,10 +198,6 @@
     padding-right: 20px;
 }
 
-
-
-
-}
 .form-header {
 	text-align: center;
     color:black;
@@ -219,6 +212,10 @@
 	margin: -3px 0px 10px 9px;
 }
 
+.input-adjust {
+	margin-left:10px;
+}
+
 .makeyourown-form {
 	background-color: #F0F0F0;
 	border-color: #7F7E7F;
@@ -228,24 +225,24 @@
 	padding-right: 20px;
 	box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.form-font {
+	padding-left:10px;
+}
 .signup-form {
-	display: inline;
 	background-color:#EEEEEE;
 	border-radius:20px;
 	padding:20px;
-	position:fixed;
-	top:220px;
-	right:335px;
+	margin-bottom:10px;
 	box-shadow: 16px 16px 8px 2px rgba(110, 71, 42, 0.2), 4px 7px 22px 0 rgba(0, 0, 0, 0.19);
 
 }
 .signup-header{
-/*	position: fixed;
-	top: 55px;
-    right: 44px;*/
     font-size:60px;
 	text-align:center;
 	color:white;
+	padding-right: 150px;
+	padding-left: 150px;
 	opacity:.80;
 }
 
@@ -298,7 +295,7 @@
 }
 
 .search {
-    padding: 5px 0;
+    padding: 10px 0;
     width: 230px;
     height: 30px;
     position: relative;
@@ -331,6 +328,17 @@
 height: 30px;
 position: absolute;
 right: 0;
-top: 5px;
+top: 10px;
 border-radius:1px;
+}
+
+.divider {
+	border-top: solid;
+	border-width: thin;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.modal-font p {
+	font-weight: bold;
 }

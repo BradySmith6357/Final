@@ -1,12 +1,34 @@
 angular.module("mainModule")
 	.controller("mainController", ["$scope", "$http", "constructorFactory", function($scope, $http, constructorFactory){
 
+// Badge List
+$scope.firstPoor = {
+	name: "First Poor",
+	description: "Congratulations! You brewed your first beer. It'll be no time until you're a brew master."
+}
 
+$scope.dreamBig = {
+	name: "Dream Big",
+	description: "Five beers in your wishlist. Now it's time to brew 'em! ",
+}
+
+$scope.irishMan = {
+	name: "Irishman",
+	description: "Like a true Irishman, you brewed a beer on St. Patrick's day",
+}
+
+$scope.craftCommit = {
+	name: "Committed To The Craft",
+	description: "You've brewed 10 beers. Keep up the good work!"
+}
+
+// SET SORT ARRAYS
 $scope.stateSort = []
 $scope.styleSort = []
 $scope.hopsSort = []
 $scope.maltSort = []
 $scope.abvSort = []
+$scope.randomBeer = {}
 
 //GET BEERS FROM MONGODB
 $http.post('api/beerLibrary')
@@ -15,18 +37,19 @@ $http.post('api/beerLibrary')
 		$scope.recipeList = returnData.data
 // All sorts for beer library tabs
 	$scope.stateSort = _.sortBy($scope.recipeList, "state")
-
 	$scope.styleSort = _.sortBy($scope.recipeList, "style")
-
 	$scope.hopsSort = _.sortBy($scope.recipeList, "hops")
-
 	$scope.maltSort = _.sortBy($scope.recipeList, "malt")
-
 	$scope.abvSort = _.sortBy($scope.recipeList, "abv")
-
 	$scope.ratingSort = _.sortBy($scope.recipeList, "rating")
+// Assign Random Beer
+	$scope.randomBeer = $scope.recipeList[Math.floor(Math.random()*$scope.recipeList.length)]
 })
 
+//Random Beer Find
+$scope.showrandomBeer = function(){
+	$scope.randomBeer = $scope.recipeList[Math.floor(Math.random()*$scope.recipeList.length)]
+}
 
 //GET CUSTOM BEER FROM MONGODB
 $scope.addCustomBeer = function(){
@@ -40,22 +63,22 @@ $scope.addCustomBeer = function(){
 //GET STYLES FROM BREWDB
 
 // $scope.getInfo = function(){
-	$http.post('api/styles')
-		.then(function(returnData){
-			console.log(returnData.data)
-			$scope.styleList = returnData.data
-		})
+	// $http.post('api/styles')
+	// 	.then(function(returnData){
+	// 		console.log(returnData.data)
+	// 		$scope.styleList = returnData.data
+	// 	})
 // }
 
 	// ************************************* Hops **********************************************
 
 //GET HOPS FROM BREWERYDB
 
-	$http.post('api/hops')
-		.then(function(returnData){
-			console.log(returnData.data)
-			$scope.hopsList = returnData.data
-		})
+	// $http.post('api/hops')
+	// 	.then(function(returnData){
+	// 		console.log(returnData.data)
+	// 		$scope.hopsList = returnData.data
+	// 	})
 
 	$scope.hopsList = [
 
@@ -180,35 +203,38 @@ $scope.addCustomBeer = function(){
 // For modal display
 $scope.displayedBeer = {}
 
-	$scope.showBeer = function(beer){
-		$scope.displayedBeer = beer
-			for(var i = 0; i <= $scope.user.completed.length; i++){
-				if($scope.user.completed[i].name = $scope.displayedBeer){
-					$scope.hideProAdd = false
-					$scope.showProDis = false
-					$scope.displayedBeer = beer
-				} else {
-					$scope.hideProAdd = true
-					$scope.showProDis = true
-				}	
-		}	
-	}
+$scope.showBeer = function(beer){
+	$scope.displayedBeer = beer
+		for(var i = 0; i <= $scope.user.completed.length; i++){
+			if($scope.user.completed[i] == $scope.displayedBeer){
+				$scope.hideProAdd = true
+				$scope.showProDis = true
+				$scope.hideWishAdd = true
+				$scope.showWishDis = true
+			} else {
+				$scope.hideProAdd = false
+				$scope.showProDis = false
+				$scope.hideWishAdd = false
+				$scope.showWishDis = false
+			}		
+		// }
+		// for(var i = 0; i <= $scope.user.wishlist.length; i++){
+			// if($scope.user.wishlist[i].name == $scope.displayedBeer.name){
+			// 	$scope.hideWishAdd = true
+			// 	$scope.showWishDis = true
+			// } else {
+			// 	$scope.hideWishAdd = false
+			// 	$scope.showWishDis = false
+			// }		
+		}
+}
 	$scope.showNotes = function(beer){
 		$scope.displayedBeer = beer
 	}
 
 
-// *** Function to add custom beer form to your list *** //
-
-	// $http.get('/api/customBeers')
-	// 	.then(function(serverData){
-	// 		$scope.customBeerList = serverData.data
-	// 	})
 
 	$scope.addCustomBeer = function(){
-		// if (!user){
-		// 	alert("Glad you like making your own beers! I'd be happy to save them for you, but you need to sign up or sign in first.")
-		// 	}
 		$http.post('api/customBeers', $scope.newCustomBeer)
 			.then(function(serverData){
 				$scope.newCustomBeer = {}
@@ -245,12 +271,16 @@ $http.get('/me')
 	})
 
 // Function to add beer to user completed list //
-		$scope.addBeer = function(beer){
+		$scope.addBeer = function(){
 			$scope.hideProAdd = true
 			$scope.showProDis = true
 			$http.post('api/completedBeers', $scope.displayedBeer)
 				.then(function(serverData){
 					$scope.user.completed.push($scope.displayedBeer)
+					if($scope.user.completed.length === 1){
+						$scope.user.badges.push($scope.firstPoor)
+						alert("You've earned a badge! Go to your profile to check it out")
+					}
 				})
 		}
 
@@ -281,53 +311,10 @@ $http.get('/me')
 	$scope.addNotes = function(beer){
 		$http.post('api/notes', $scope.displayedBeer)
 			.then(function(serverData){
-				$scope.user.notes.push($scope.displayedBeer.notes)
+				$scope.user.beer.notes.push($scope.displayedBeer.notes)
 			})
 	}
 
-
-
-// $scope.selectedStyle = "Beer Style"
-// // Function to show selection from dropdown
-// 	$scope.selectStyle = function(style){
-// 		$scope.selectedStyle = style.name
-// 	}
-
-// $scope.selectedMalt1 = "Grain #1"
-// $scope.selectedMalt2 = "Grain #2"
-// $scope.selectedMalt3 = "Specialty Grain"
-// $scope.selectMalt1 = function(malt){
-// 		$scope.selectedMalt1 = malt.name
-// 	}
-// $scope.selectMalt2 = function(malt){
-// 		$scope.selectedMalt2 = malt.name
-// 	}
-// $scope.selectMalt3 = function(malt){
-// 		$scope.selectedMalt3 = malt.name
-// 	}
-
-// $scope.selectedHops1 = "Hops #1"
-// $scope.selectedHops2 = "Hops #2"
-// $scope.selectedHops3 = "Hops #3"
-// $scope.selectHops1 = function(hops){
-// 		$scope.selectedHops1 = hops.name
-// 	}
-// $scope.selectHops2 = function(hops){
-// 		$scope.selectedHops2 = hops.name
-// 	}
-// $scope.selectHops3 = function(hops){
-// 		$scope.selectedHops3 = hops.name
-// 	}
-
-
-// // Calculates the brewer who has brewed the most beers in the month
-// 	$scope.brewerOfTheMonthFunc = function(){
-// 		for(i=0; i < $scope.userList.length; i++){
-// 			if($scope.userList[i].brewed > $scope.userList[i + 1].brewed){
-// 				$scope.brewerOfTheMonth = $scope.userList[i]
-// 			}
-// 		}
-// 	}
 
 // For ABV calculator.
 	$scope.calcABV = function(event){
@@ -360,13 +347,8 @@ $scope.findBrewery = function(){
 }
 
 
-// Badge Functions
 
-$scope.addFirstPour = function(){
-	if($scope.user.completed === 1){
-		$scope.user.badges.push($scope.firstPour)
-	}
-}
+
 
 
 }])
