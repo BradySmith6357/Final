@@ -309,6 +309,7 @@ $http.get('/me')
 					$http.post('api/badges', $scope.firstPoor)
 						.then(function(returnData){
 								$scope.user.badges.push($scope.firstPoor)
+								$scope.user.badges = returnData.data.badges
 						})
 					}
 				})
