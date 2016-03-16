@@ -33,6 +33,16 @@
 	padding-top: 125px;
 	padding-bottom: 125px;
 }
+
+/*.opacity {
+	background-image: url(https://patspints.files.wordpress.com/2014/05/hops_closeup.jpg);
+	position: absolute;
+	height: 1000px;
+	width: 1200px;
+	opacity: 0.2; 
+	filter: alpha(opacity=20);
+}
+*/
 .jumbotronstyle{
 	background-image: url(http://i.imgur.com/A6GBkG9.gif);
 	padding-left:20px;
@@ -337,8 +347,4 @@ border-radius:1px;
 	border-width: thin;
 	margin-top: 15px;
 	margin-bottom: 15px;
-}
-
-.modal-font p {
-	font-weight: bold;
 }

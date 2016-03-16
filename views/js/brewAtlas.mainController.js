@@ -233,7 +233,7 @@ $scope.showBeer = function(beer){
 	}
 
 
-
+// Add Custom Beer
 	$scope.addCustomBeer = function(){
 		$http.post('api/customBeers', $scope.newCustomBeer)
 			.then(function(serverData){
@@ -243,6 +243,17 @@ $scope.showBeer = function(beer){
 				alert("Looks tasty! Go to your profile to check it out!")
 			})
 	}
+
+// Add badge to profile
+$scope.addBeer = function(){}
+$http.post('api/badges')
+	.then(function(returnData){
+		if($scope.user.completed.length === 1){
+			$scope.user.badges.push($scope.firstPoor)
+			alert("You've earned a badge! Go to your profile to check it out")
+	}
+})
+
 	
 // Retrieve the user
 $scope.checkLogin = function(){
@@ -277,10 +288,6 @@ $http.get('/me')
 			$http.post('api/completedBeers', $scope.displayedBeer)
 				.then(function(serverData){
 					$scope.user.completed.push($scope.displayedBeer)
-					if($scope.user.completed.length === 1){
-						$scope.user.badges.push($scope.firstPoor)
-						alert("You've earned a badge! Go to your profile to check it out")
-					}
 				})
 		}
 
@@ -308,12 +315,12 @@ $http.get('/me')
 			})
 
 // Add notes to beer in profile currently only adds a seperate array
-	$scope.addNotes = function(beer){
-		$http.post('api/notes', $scope.displayedBeer)
-			.then(function(serverData){
-				$scope.user.beer.notes.push($scope.displayedBeer.notes)
-			})
-	}
+	// $scope.addNotes = function(beer){
+	// 	$http.post('api/notes', $scope.displayedBeer)
+	// 		.then(function(serverData){
+	// 			$scope.user.beer.notes.push($scope.displayedBeer.notes)
+	// 		})
+	// }
 
 
 // For ABV calculator.
@@ -345,8 +352,6 @@ $scope.findBrewery = function(){
 			$scope.searchResults = returnData.data
 		})
 }
-
-
 
 
 

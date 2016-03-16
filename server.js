@@ -252,21 +252,30 @@ app.post('/api/wishlistBeers', function(req, res){
 
 
 // Add Notes To Beer //
-app.post('/api/notes', function(req, res){
-	user.find({_id: req.user._id}, function(err, docs){
-		console.log("Line 262:", err, docs)
-		docs[0].notes.push(req.body._id)
-		docs[0].save(function(err){
-			console.log("Line 265:", err)
+// app.post('/api/notes', function(req, res){
+// 	user.find({_id: req.user._id}, function(err, docs){
+// 		console.log("Line 262:", err, docs)
+// 		docs[0].notes.push(req.body._id)
+// 		docs[0].save(function(err){
+// 			console.log("Line 265:", err)
+// 		})
+// 	})
+// })
+
+
+//Add badge to profile
+app.post('/api/badges', function(req, res){
+	user.findOne({_id: req.user._id}, function(err, docs){
+		docs.badges.push(req.body)
+		docs.save(function(err){
+			console.log("Line 271 Badges Error:", err)
 		})
 	})
 })
 
-//POST
+//Use userCtrl
 app.post('/signup', userCtrl.userSignup)
 app.post('/login', userCtrl.userLogin)
-
-// GET
 
 
 // LOGOUT
