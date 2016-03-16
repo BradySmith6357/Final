@@ -239,6 +239,23 @@ app.get('/api/wishlistBeers', function(req, res){
 		res.send(docs)
 	})
 })
+
+//Delete beer from wishlist
+app.delete('/api/wishlist', function(req, res){
+	console.log("WISHLIST BODY:", req.body)
+	// beers.findOne({_id: {$in: req.user.wishlist}}, function(err, docs){
+		user.findOne({_id: req.user._id}, function(err, docs){
+				console.log("USER DOCS:", docs)
+				var index = docs.wishlist.indexOf(req.body._id)
+				docs.wishlist.splice(index, 1)
+				docs.save(function(err){
+				console.log("Delete Wishlist Error=", err)
+			})
+		res.send(docs)
+		})
+	})
+// })
+
 //Add to user wishlist
 app.post('/api/wishlistBeers', function(req, res){
 	user.find({_id: req.user._id}, function(err, docs){

@@ -84,7 +84,7 @@
 	font-size: 25px;
 	text-align: left;
 	text-shadow: 2px 2px 4px #865050;
-	font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
+/*	font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;*/
 }
 
 .beerslide-box {
@@ -200,6 +200,9 @@
 .fontfit {
 	font-size:16px;
 	word-wrap: break-word;
+	color:black;
+	text-shadow: 2px 2px 4px #865050;
+	margin-top:3px;
 }
 
 .beerNameLib {
@@ -221,7 +224,16 @@
 	background-color: #F0F0F0;
 	border-color: #7F7E7F;
 	border-style: ridge;
-    padding-bottom: 25px;
+    padding-bottom: 2px;
+    box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
+    color:black;
+}
+
+.brew-res {
+	background-color: #F0F0F0;
+	border-color: #7F7E7F;
+	border-style: ridge;
+    padding-bottom: 10px;
     box-shadow: 0 30px 10px 0 rgba(110, 71, 42, 0.2), 0 38px 20px 0 rgba(0, 0, 0, 0.19);
     color:black;
 }

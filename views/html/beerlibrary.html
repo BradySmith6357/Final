@@ -41,7 +41,7 @@
 				<button type="submit" class="btn btn-default">Search</button>
 				</form>
 				<ul class="nav navbar-nav">
-					<li><a href="/signup" ng-click="checkLogin()" ng-show="noUser">Login</a></li>
+					<li><a href="/signup" ng-click="checkLogin()" ng-show="noUser">Login / Sign Up</a></li>
 					<li><a href="/activeuser" ng-show="yesUser"><img src="http://www.mystockstream.com/assets/user-icon-408524379c28189caeecc284de3b7079.png" height="30" width="30"></a>
 					</li>
 					<li><a href="/logout" ng-show="yesUser">Log Out</a></li>
@@ -63,13 +63,13 @@
 			<button class="btn btn-primary btn-lg divider" data-toggle="modal" data-target="#randomModal" ng-click="showrandomBeer()">Random Beer</button>
 		</div>
 		<div class="divider">
-			<button class="btn btn-primary btn-lg divider" data-toggle="modal" data-target="#wishlistModal" ng-click="showrandomBeer()">View Wishlist</button>
+			<button class="btn btn-primary btn-lg divider" data-toggle="modal" data-target="#wishlistModal">View Wishlist</button>
 		</div>
 		<div class="divider">
-			<button class="btn btn-primary btn-lg divider">View Completed</button>
+			<button class="btn btn-primary btn-lg divider" data-toggle="modal" data-target="#completedModal">View Completed</button>
 		</div>
 		<div class="divider">
-			<button class="btn btn-primary btn-lg divider">View Badges</button>
+			<button class="btn btn-primary btn-lg divider" data-toggle="modal" data-target="#badgesModal">View Badges</button>
 		</div>
 	</div>
 </div>
@@ -102,7 +102,7 @@
 		    	<div ng-repeat="beer in hopsSort | filter:searchBeer" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
 		    		<h5 class="beerNameLib">{{beer.name}}</h5>
 		    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img ng-src="{{beer.image}}" width="100" height="125">
-		    			<h2 class="fontfit bLibraryText" >{{beer.hops.toString()}}</h2>
+		    			<h2 class="fontfit" >{{beer.hops.toString()}}</h2>
 		    		</a>
 		    	</div>
 		    </div>
@@ -110,7 +110,7 @@
 		    	<div ng-repeat="beer in maltSort | filter:searchBeer" class="beerlibrary col-xs-12 col-sm-4 col-md-4 col-lg-3">
 		    		<h5 class="beerNameLib">{{beer.name}}</h5>
 		    		<a href="" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img ng-src="{{beer.image}}" width="100" height="125">
-		    			<h2 class="fontfit bLibraryText">{{beer.malts.toString()}}</h2>
+		    			<h2 class="fontfit">{{beer.malts.toString()}}</h2>
 		    		</a>
 		    	</div>
 		    </div>
@@ -124,6 +124,7 @@
 		    </div>
 	</div>
 	</div>
+	<!--Show Beer Modal-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -175,9 +176,9 @@
 				<p>{{randomBeer.instructions}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" ng-click="addBeer(displayedBeer)" ng-hide="hideProAdd">Add To Profile</button>
+        <button type="button" class="btn btn-success" ng-click="addBeer(randomBeer)" ng-hide="hideProAdd">Add To Profile</button>
         <button type="button" class="btn btn-success" disabled="disabled" ng-show="showProDis">Beer In Profile</button>
-        <button type="button" class="btn btn-primary" ng-click="addWish(displayedBeer)" ng-hide="hideWishAdd">Add To Wishlist</button>
+        <button type="button" class="btn btn-primary" ng-click="addWish(randomBeer)" ng-hide="hideWishAdd">Add To Wishlist</button>
         <button type="button" class="btn btn-primary" disabled="disabled" ng-show="showWishDis">Beer In Wishlist</button>
       </div>
     </div>
@@ -190,6 +191,28 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="list-group-item modal-title">Brewing Wishlist</h3>
+      </div>
+      <div class="modal-body">
+       <div ng-repeat="beer in userWishlist track by $index">
+  			<a href="" class="list-group-item" data-toggle="modal" data-target="#myModal" data-dismiss="modal" ng-click="showBeer(beer)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
+      	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" ng-click="addBeer(displayedBeer)" ng-hide="hideProAdd">Add To Profile</button>
+        <button type="button" class="btn btn-success" disabled="disabled" ng-show="showProDis">Beer In Profile</button>
+        <button type="button" class="btn btn-primary" ng-click="addWish(displayedBeer)" ng-hide="hideWishAdd">Add To Wishlist</button>
+        <button type="button" class="btn btn-primary" disabled="disabled" ng-show="showWishDis">Beer In Wishlist</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- COMPLETED MODAL -->
+<div class="modal fade" id="completedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="list-group-item modal-title">Completed Beers</h3>
       </div>
       <div class="modal-body">
        <div ng-repeat="beer in userWishlist track by $index">

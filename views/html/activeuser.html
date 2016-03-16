@@ -51,15 +51,15 @@
   </nav>
   <div class="container col-xs-12 col-sm-4 col-md-6 minpadding">
 		<div class="list-group">
-			<h3 class="list-group-item"><img ng-src="{{user.image}}" class="userboximage" width="75" height="100">Hi {{user.username}}!</h3>
+			<h3 class="list-group-item"><img src="https://i.redditmedia.com/mJ9XO4nmhOwRIiS4VG3fAusrZkG20MU_4pXAV8XtVRU.jpg?w=320&s=acbb80fe6033095f17909daf224f558d" class="userboximage" width="75" height="100">Hi {{user.username}}!</h3>
   			<a href="" class="list-group-item" data-toggle="modal" data-target="#completedModal">Total Beers Brewed<span class="badge">{{user.completed.length}}</span></a>
-  			<a href="" class="list-group-item">Badges Earned<span class="badge">{{user.badges.length}}</span></a>
+  			<a href="" class="list-group-item" data-toggle="modal" data-target="#badgesModal">Badges Earned<span class="badge">{{user.badges.length}}</span></a>
 		</div>
 		<div class="wishlistbox">
 			<div class="list-group">
 				<h3 class="list-group-item">Brewing Wishlist</h3>
-				<div ng-repeat="beer in userWishlist track by $index">
-  				<a href="" class="list-group-item" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
+				<div ng-repeat="beer in user.wishlist">
+  				<a href="" class="list-group-item" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer, $index)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
   				</div>
   			</div>
 		</div>
@@ -77,7 +77,7 @@
 		<div class="brewboxtitle">
 			<h2>Recently Completed Beers</h2>
 		</div>
-			<div class="col-sm-6 col-md-6" ng-repeat="beer in completedBeers track by $index">
+			<div class="col-sm-6 col-md-6" ng-repeat="beer in user.completed track by $index">
 			<div class="thumbnail">
   				<img ng-src="{{beer.image}}" height="200" width="200">
   				<div class="caption">
@@ -190,12 +190,30 @@
       </div>
       <div class="modal-body">
         <p><strong>Style:</strong> {{displayedBeer.style}}</p>
-        <p><strong>Malt Bill:</strong> {{displayedBeer.malts.toString()}}</p>
+        <p><strong>Malt Bill:</strong> {{displayedBeer.malt.toString()}}</p>
         <p><strong>Hop Bill:</strong> {{displayedBeer.hops.toString()}}</p>
         <p><strong>Extra Ingredients:</strong> {{displayedBeer.special}}</p>
         <p><strong>Yeast:</strong> {{displayedBeer.yeast}}</p>
       <h4>Brewing Directions</h4>
       <p>{{displayedBeer.directions}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for badges list -->
+<div class="modal fade" id="badgesModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="completedModalLabel">Total Beers Brewed</h4>
+      </div>
+      <div class="modal-body" ng-repeat="badge in user.badges">
+        <img src="http://thekruser.com/media/untappd/badges/bdg_newbie_lg.png" width="50" height="50" class="topimage"><strong>{{badge.name}}</strong>
+        <p>{{badge.description}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

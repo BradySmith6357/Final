@@ -203,8 +203,9 @@ $scope.addCustomBeer = function(){
 // For modal display
 $scope.displayedBeer = {}
 
-$scope.showBeer = function(beer){
+$scope.showBeer = function(beer, index){
 	$scope.displayedBeer = beer
+	$scope.displayedBeerIndex = index
 		for(var i = 0; i <= $scope.user.completed.length; i++){
 			if($scope.user.completed[i] == $scope.displayedBeer){
 				$scope.hideProAdd = true
@@ -245,14 +246,15 @@ $scope.showBeer = function(beer){
 	}
 
 // Add badge to profile
-$scope.addBeer = function(){}
-$http.post('api/badges')
-	.then(function(returnData){
-		if($scope.user.completed.length === 1){
-			$scope.user.badges.push($scope.firstPoor)
-			alert("You've earned a badge! Go to your profile to check it out")
-	}
-})
+// $scope.addBeer = function(){}
+// console.log("add badge")
+// $http.post('api/badges', $scope.firstPoor)
+// 	.then(function(returnData){
+// 		if($scope.user.completed.length === 1 && $scope.user.badges[0] === !$scope.firstPoor){
+// 			$scope.user.badges.push($scope.firstPoor)
+// 			alert("You've earned a badge! Go to your profile to check it out")
+// 	}
+// })
 
 	
 // Retrieve the user
@@ -283,11 +285,32 @@ $http.get('/me')
 
 // Function to add beer to user completed list //
 		$scope.addBeer = function(){
+			console.log("add beer")
 			$scope.hideProAdd = true
 			$scope.showProDis = true
 			$http.post('api/completedBeers', $scope.displayedBeer)
-				.then(function(serverData){
+				.then(function(returnData){
 					$scope.user.completed.push($scope.displayedBeer)
+					console.log("SERVER DATA:", returnData.data.completed)
+					console.log("displayed beer", $scope.displayedBeer)
+					// Delete beer from wishlist if it matches beer in profile
+						$http.delete('api/wishlist', $scope.displayedBeer)
+							.then(function(returnData){
+								$scope.user.wishlist.splice($scope.displayedBeerIndex, 1)
+								// $scope.user.wishlist = returnData.data.wishlist
+								console.log("RETURN DATA:", returnData.data)
+							})
+						// $http.get('/me')
+						// 	.then(function(returnData){
+						// 		$scope.user = returnData.data.user
+						// 	})
+				if($scope.user.completed.length === 1){
+					alert("You've earned a badge! Go to your profile to check it out")
+					$http.post('api/badges', $scope.firstPoor)
+						.then(function(returnData){
+								$scope.user.badges.push($scope.firstPoor)
+						})
+					}
 				})
 		}
 
@@ -295,7 +318,7 @@ $http.get('/me')
 			$http.get('api/completedBeers')
 				.then(function(serverData){
 					// console.log("Line 255:", serverData)
-					$scope.completedBeers = serverData.data
+					$scope.user.completed = serverData.data
 				})
 		// }
 
@@ -311,7 +334,7 @@ $http.get('/me')
 
 		$http.get('/api/wishlistBeers')
 			.then(function(serverData){
-				$scope.userWishlist = serverData.data
+				$scope.user.wishlist = serverData.data
 			})
 
 // Add notes to beer in profile currently only adds a seperate array
