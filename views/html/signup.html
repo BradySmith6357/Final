@@ -20,24 +20,24 @@
 	</div>
 	<form class="container-fluid signup-form col-xs-12 col-sm-4" ng-submit="signup()">
 		<div class="form-group">
-			<label for="inputUserName">Username</label>
-			<input type="text" class="form-control inputstyle" id="inputUserName" ng-model="signupForm.username">
+			<label class="form-style" for="inputUserName">username</label>
+			<input type="text" class="form-control input-style" id="inputUserName" ng-model="signupForm.username">
 		</div>
 		<div class="form-group">
-			<label for="inputEmail">Email</label>
-			<input type="email" class="form-control inputstyle" id="inputEmail" ng-model="signupForm.email">
+			<label class="form-style" for="inputEmail">email</label>
+			<input type="email" class="form-control input-style" id="inputEmail" ng-model="signupForm.email">
 		</div>
 		<div class="form-group">
-			<label for="inputPassword">Password</label>
-			<input type="password" class="form-control inputstyle" id="inputPassword" ng-model="signupForm.password">
+			<label class="form-style" for="inputPassword">password</label>
+			<input type="password" class="form-control input-style" id="inputPassword" ng-model="signupForm.password">
 		</div>
-		<button type="submit" class="btn btn-success">Sign Up</button>
+		<button type="submit" class="btn btn-custom">SIGN UP</button>
 	</form>
 </div>
 <div class="row">
 <!-- <div class="container-fluid col-sm-4">
 </div> -->
-<button ng-hide="seeSignUp" type="button" ng-click="showLogin()" class="btn btn-primary btn-lg change-form-btn container col-xs-12 col-md-4 col-md-offset-4">Already A Member? Sign In Here!</button>
+<button ng-hide="seeSignUp" type="button" ng-click="showLogin()" class="btn btn-custom btn-lg change-form-btn container col-xs-12 col-md-4 col-md-offset-4">already a member? log in here!</button>
 </div>
 	<div ng-show="seeLogin">
 		<h1 class="signup-header">LOGIN TO YOUR HOMEBREWING HUB</h1>
@@ -45,17 +45,17 @@
 		</div>
 		<form class="container-fluid signup-form col-xs-12 col-sm-4" ng-submit="login()">
 			<div class="form-group">
-				<label for="inputUserName">Username</label>
-				<input type="text" class="form-control inputstyle"id="inputUserName" ng-model="loginForm.username">
+				<label class="form-style" for="inputUserName">username</label>
+				<input type="text" class="form-control input-style"id="inputUserName" ng-model="loginForm.username">
 			</div>
 			<div class="form-group">
-				<label for="inputPassword">Password</label>
-				<input type="password" class="form-control inputstyle" id="inputPassword" ng-model="loginForm.password">
+				<label class="form-style" for="inputPassword">password</label>
+				<input type="password" class="form-control input-style" id="inputPassword" ng-model="loginForm.password">
 			</div>
-			<button type="submit" class="btn btn-success">Login</button>
+			<button type="submit" class="btn btn-custom">LOG IN</button>
 		</form>
 	</div>
 <div class="row">
-<button ng-show="seeLogin" type="button" ng-click="showSignUp()" class="btn btn-primary btn-lg change-form-btn container col-xs-12 col-md-4 col-md-offset-4">Not A Member? Signup!</button>
+<button ng-show="seeLogin" type="button" ng-click="showSignUp()" class="btn btn-custom btn-lg change-form-btn container col-xs-12 col-md-4 col-md-offset-4">not a member? sign up!</button>
 </div>
 </body>
