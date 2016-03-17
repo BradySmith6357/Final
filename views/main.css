@@ -23,17 +23,15 @@
 	border-color: gold;
 }
 .navbar-custom {
-background-image: -webkit-linear-gradient(#243834, #1B5E3F);
-background-image: -o-linear-gradient(#243834, #1B5E3F);
-background-image: linear-gradient(#243834, #1B5E3F);
-    opacity: 0.95;
-    color: white;
+	background: linear-gradient(#2C3545, #4D5B78);
+	opacity: 0.95;
+	color: #070D59;
 }
 
-.navbar-custom li {
-	color: white;
-}
-
+.navbar-brand {
+	font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	color: #F5B22A;
+	font-size: 25px;
 }
 
 .signupbackground {
