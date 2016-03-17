@@ -23,9 +23,17 @@
 	border-color: gold;
 }
 .navbar-custom {
-	background: linear-gradient(#C6CCCF, #FFFEFC);
-	opacity: 0.95;
-	color: #070D59;
+background-image: -webkit-linear-gradient(#243834, #1B5E3F);
+background-image: -o-linear-gradient(#243834, #1B5E3F);
+background-image: linear-gradient(#243834, #1B5E3F);
+    opacity: 0.95;
+    color: white;
+}
+
+.navbar-custom li {
+	color: white;
+}
+
 }
 
 .signupbackground {
@@ -46,10 +54,11 @@
 .jumbotronstyle{
 	background-image: url(http://i.imgur.com/A6GBkG9.gif);
 	padding-left:20px;
-	margin-bottom:35px;
+	margin-top:-50px;
 	background-attachment:fixed;
 	background-size:125%;
 	color:white;
+	margin-bottom:0px;
 	text-shadow: 2px 2px 4px #000000;
 	}
 
@@ -65,6 +74,10 @@
 	padding-top: 35px;
 }
 
+.info-block-background {
+	background-color: #F5B22A;
+}
+
 /*.beerslide {
 	color:white;
 	margin: 0px 125px 0px 125px;
@@ -73,11 +86,11 @@
 */
 .beerslide-header {
 	font-size: 60px;
-    text-align: center;
+    text-align: left;
     position: absolute;
     top: -210px;
     text-shadow: 2px 2px 4px #865050;
-    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+/*    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;*/
 }
 
 .beerslide-font {
@@ -95,9 +108,9 @@
 }
 
 .far-left {
-	position: relative;
-	top: -40px;
-	right: 120px;
+    position: relative;
+    top: -40px;
+    right: -95px;
 }
 
 .far-right {
@@ -107,15 +120,18 @@
 }
 .infobox1 {
 	text-align:center;
+	padding-top: 10px;
 }
 
 .infobox2 {
 	text-align:center;
+	padding-top: 10px;
 	
 }
 
 .infobox3 {
 	text-align:center;
+	padding-top: 10px;
 }
 
 .infobox-img-size{
@@ -310,6 +326,19 @@
 	font-weight: bold;
 	text-shadow: 2px 2px 2px white;
 }
+
+/*.btn-custom-2 {
+	border-radius: 0px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: black;
+	background: black;
+/*	opacity: .65;*/
+	color: rgba(192, 192, 192, 0.0);
+	font-weight: bold;
+}
+*/
+
 
 .signup-form {
 	padding:20px;

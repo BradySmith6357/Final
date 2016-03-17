@@ -17,7 +17,7 @@
 <body ng-controller="mainController" class="mainbackground">
   <body ng-controller="mainController" class="mainbackground">
  <body ng-controller="mainController" class="mainbackground">
-  <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="/">BrewAtlas</a>
@@ -57,7 +57,7 @@
 		</div>
 		<div class="wishlistbox">
 			<div class="list-group">
-				<h3 class="list-group-item">Brewing Wishlist</h3>
+				<h3 class="list-group-item">To-Do List</h3>
 				<div ng-repeat="beer in user.wishlist">
   				<a href="" class="list-group-item" data-toggle="modal" data-target="#myModal" ng-click="showBeer(beer, $index)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
   				</div>
@@ -152,7 +152,7 @@
       </div>
       <div class="modal-body">
         <img ng-src="{{displayedBeer.image}}" width="100" height="125" class="topimage">
-			<h3>Add notes about your batch of {{displayedBeer.name}}.</h3>
+			<h3>Batch notes for {{displayedBeer.name}}.</h3>
 			<textarea class="modalText" rows="2" cols="20" wrap="hard" ng-model="displayedBeer.notes"></textarea>
       </div>
       <div class="modal-footer">

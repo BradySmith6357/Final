@@ -3,7 +3,7 @@ angular.module("mainModule")
 
 // Badge List
 $scope.firstPoor = {
-	name: "First Poor",
+	name: "First Pour",
 	description: "Congratulations! You brewed your first beer. It'll be no time until you're a brew master."
 }
 
