@@ -314,6 +314,7 @@
 }
 
 .btn-custom {
+	margin-top: 10px;
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
