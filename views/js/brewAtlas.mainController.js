@@ -276,6 +276,8 @@ $http.get('/me')
 	.then(function(returnData){
 		if(!returnData.data.user){
 			$scope.noUser = true
+			$scope.hideProAdd = true
+			$scope.hideWishAdd = true
 		} else {
 			$scope.user = returnData.data.user
 			$scope.customBeerList = returnData.data.user.custom

@@ -150,6 +150,7 @@
         <button type="button" class="btn btn-success" disabled="disabled" ng-show="showProDis">Beer In Profile</button>
         <button type="button" class="btn btn-primary" ng-click="addWish(displayedBeer)" ng-hide="hideWishAdd"> + To-Do List</button>
         <button type="button" class="btn btn-primary" disabled="disabled" ng-show="showWishDis">Beer Added</button>
+        <button type="button" class="btn btn-primary" ng-show="noUser"><a class="plain-text" href="/signup">Sign Up To Start Tracking</a></button>
       </div>
     </div>
   </div>
@@ -180,6 +181,7 @@
         <button type="button" class="btn btn-success" disabled="disabled" ng-show="showProDis">Beer In Profile</button>
         <button type="button" class="btn btn-primary" ng-click="addWish(randomBeer)" ng-hide="hideWishAdd"> + To-Do List</button>
         <button type="button" class="btn btn-primary" disabled="disabled" ng-show="showWishDis">In To-Do List</button>
+        <button type="button" class="btn btn-primary" ng-show="noUser"><a class="plain-text" href="/signup">Sign Up To Start Tracking</a></button>
       </div>
     </div>
   </div>
@@ -202,6 +204,7 @@
         <button type="button" class="btn btn-success" disabled="disabled" ng-show="showProDis">Beer In Profile</button>
         <button type="button" class="btn btn-primary" ng-click="addWish(displayedBeer)" ng-hide="hideWishAdd"> + To-Do List</button>
         <button type="button" class="btn btn-primary" disabled="disabled" ng-show="showWishDis">In To-Do List</button>
+        <button type="button" class="btn btn-primary" ng-show="noUser"><a class="plain-text" href="/signup">Sign Up To Start Tracking</a></button>
       </div>
     </div>
   </div>
@@ -218,6 +221,9 @@
        <div ng-repeat="beer in userWishlist track by $index">
   			<a href="" class="list-group-item" data-toggle="modal" data-target="#myModal" data-dismiss="modal" ng-click="showBeer(beer)"><img height="50" width="50" ng-src="{{beer.image}}">{{beer.name}}</a>
       	</div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-primary" ng-show="noUser"><a class="plain-text" href="/signup">Sign Up To Start Tracking</a></button>
       </div>
       </div>
     </div>

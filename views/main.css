@@ -22,6 +22,18 @@
 	border-style: solid;
 	border-color: gold;
 }
+
+.plain-text {
+	text-decoration: none;
+	color: white;
+	font-weight: 10px;
+}
+
+.plain-text:hover {
+	text-decoration: none;
+	color:white;
+	font-size: 15px;
+}
 .navbar-custom {
 	background: linear-gradient(#2C3545, #4D5B78);
 	opacity: 0.95;
