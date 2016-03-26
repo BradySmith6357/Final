@@ -317,7 +317,7 @@
 	border-bottom: solid;
 	border-width: thin;
 	background: none;
-	color: black;
+	color: white;
 	border-color:black;
 	border-radius: 0px;
 	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
@@ -338,17 +338,34 @@
 	text-shadow: 2px 2px 2px white;
 }
 
+.btn-custom:hover {
+	background-color: black;
+	border-color: white;
+	color: white;
+	text-shadow: none;
+}
+
+
 /*.btn-custom-2 {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: black;
 	background: black;
-/*	opacity: .65;*/
+	opacity: .65;
 	color: rgba(192, 192, 192, 0.0);
 	font-weight: bold;
+}*/
+
+.opaque-background {
+	background-color: black;
+	opacity: .2;
+	height: 100%;
+	width: 100%;
+	position:fixed;
+	top:0px;
 }
-*/
+
 
 
 .signup-form {
@@ -358,14 +375,22 @@
 */	color: white;
 }
 .signup-header{
+	background-image: url(https://patspints.files.wordpress.com/2014/05/hops_closeup.jpg);
+    -webkit-text-fill-color: transparent;
+  	-webkit-background-clip: text;
+  	-webkit-text-stroke: 1px white;
     font-size:60px;
 	text-align:center;
 	color:white;
 	padding-right: 150px;
 	padding-left: 150px;
-	opacity:.80;
+	opacity:.90;
 }
-
+/*
+.black-background {
+	background-color:black;
+}
+*/
 .login-header{
 	position: fixed;
 	top: 516px;
