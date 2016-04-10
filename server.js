@@ -155,6 +155,19 @@ app.post('/api/styles', function(req, res){
 	})
 })
 
+//Search local db for beer
+app.post('api/findBeer', function(req, res){
+	beers.find({name: req.body}, function(err, docs){
+		if(err) {
+			console.log('Nothing found:', err)
+			res.send({err:err})
+		} else {
+			res.redirect('/beerLibrary')
+			res.send(docs)
+		}
+	})
+})
+
 //Get hops from BreweryDB
 // app.post('/api/hops', function(req, res){
 // 	brewdb.hop.all(function(err, array){
@@ -167,12 +180,12 @@ app.post('/api/styles', function(req, res){
 // })
 
 //Get beer from BreweryDB with brewerydb-node
-app.post('/api/findBeer', function(req, res){
-	brewdb.beer.find({name: req.body.name}, function(err, beers){
-		console.log(beers)
-		res.send(beers)
-	})
-});
+// app.post('/api/findBeer', function(req, res){
+// 	brewdb.beer.find({name: req.body.name}, function(err, beers){
+// 		console.log(beers)
+// 		res.send(beers)
+// 	})
+// });
 
 //Get beer from BreweryDB and add it to local DB
 // app.post('/api/findBeer', function (req, res){
@@ -199,14 +212,13 @@ app.post('/api/findBeer', function(req, res){
 // });
 
 //Search By Brewery
-app.post('/api/findBrewery', function(req, res){
-	brewdb.breweries.find({name: req.body.name}, function(err, breweries){
-		console.log(breweries)
-		res.send(breweries)
-	})
-})
+// app.post('/api/findBrewery', function(req, res){
+// 	brewdb.breweries.find({name: req.body.name}, function(err, breweries){
+// 		console.log(breweries)
+// 		res.send(breweries)
+// 	})
+// })
 
-//Search local db for beer
 
 // Completed Beers //
 app.get('/api/completedBeers', function(req, res){

@@ -11,7 +11,7 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-// When someone tries to log in to our site, how do we determine that they are who they say they are?
+
 var bcrypt = require('bcryptjs')
 passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -20,7 +20,6 @@ passport.use(new LocalStrategy(
             if (!user) {
                 return done(null, false);
             }
-            // If we got this far, then we know that the user exists. But did they put in the right password?
             bcrypt.compare(password, user.password, function(error, response){
                 if (response === true){
                     return done(null, user)

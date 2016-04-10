@@ -361,25 +361,37 @@ $http.get('/me')
 		}
 	}
 //Search funciton
-$scope.findBeer = function(){
-	console.log($scope.beer)
-	$http.post('api/findBeer', $scope.beer)
+// $scope.findBeer = function(){
+// 	console.log($scope.beer)
+// 	$http.post('api/findBeer', $scope.beer)
+// 		.then(function(returnData){
+// 			console.log(returnData.data)
+// 			$scope.searchResults = returnData.data
+// 		})
+// }
+
+// $scope.findBrewery = function(){
+// 	console.log($scope.brewery)
+// 	$http.post('api/findBrewery', $scope.brewery)
+// 		.then(function(returnData){
+// 			console.log(returnData.data)
+// 			$scope.searchResults = returnData.data
+// 		})
+// }
+
+$scope.beerSearch = function(){
+	console.log($scope.searchInput)
+	$http.post('api/findBeer', $scope.searchInput)
 		.then(function(returnData){
 			console.log(returnData.data)
-			$scope.searchResults = returnData.data
+			if(returnData.data = err){
+				console.log("Oh no! Error:", err)
+				$timeout(noBeer, 3000)
+			} else {
+				console.log(returnData.data)
+			}
 		})
 }
-
-$scope.findBrewery = function(){
-	console.log($scope.brewery)
-	$http.post('api/findBrewery', $scope.brewery)
-		.then(function(returnData){
-			console.log(returnData.data)
-			$scope.searchResults = returnData.data
-		})
-}
-
-
 
 
 }])

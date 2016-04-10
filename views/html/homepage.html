@@ -35,9 +35,9 @@
 				<div class="navbar-right">
 				<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Find a beer or brewery">
+					<input type="text" class="form-control" placeholder="Find a beer or brewery" ng-model="searchInput">
 				</div>
-				<button type="submit" class="btn btn-default">Search</button>
+				<button type="submit" class="btn btn-default" ng-click="beerSearch()">Search</button>
 				</form>
 				<ul class="nav navbar-nav">
 					<li><a href="/signup" ng-click="checkLogin()" ng-show="noUser">Login / Sign Up</a></li>
