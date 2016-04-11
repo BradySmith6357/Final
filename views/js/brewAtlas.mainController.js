@@ -341,12 +341,13 @@ $http.get('/me')
 			})
 
 // Add notes to beer in profile currently only adds a seperate array
-	// $scope.addNotes = function(beer){
-	// 	$http.post('api/notes', $scope.displayedBeer)
-	// 		.then(function(serverData){
-	// 			$scope.user.beer.notes.push($scope.displayedBeer.notes)
-	// 		})
-	// }
+	$scope.addNotes = function(beer){
+		$http.post('api/notes', $scope.displayedBeer)
+			.then(function(serverData){
+				console.log(serverData.data)
+				$scope.user.completed = serverData.data
+			})
+	}
 
 
 // For ABV calculator.

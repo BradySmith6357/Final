@@ -16,11 +16,11 @@ var userSchema = mongoose.Schema({
 	email: {type : String, required:true},
 	userimage: {type: String},
 	wishlist: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}], 
-	completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
-	// completed: [{
-	// 	beer: {type : mongoose.Schema.Types.ObjectId, ref: "Beer"},
-	// 	notes: {type: String}
-	// }],
+	// completed: [{type : mongoose.Schema.Types.ObjectId, ref: "Beer"}],
+	completed: [{
+		beer: {type : mongoose.Schema.Types.ObjectId, ref: "Beer"},
+		notes: {type: String}
+	}],
 	badges: {type: Array},
 	custom: [customSchema]
 })

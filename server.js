@@ -281,15 +281,18 @@ app.post('/api/wishlistBeers', function(req, res){
 
 
 // Add Notes To Beer //
-// app.post('/api/notes', function(req, res){
-// 	user.find({_id: req.user._id}, function(err, docs){
-// 		console.log("Line 262:", err, docs)
-// 		docs[0].notes.push(req.body._id)
-// 		docs[0].save(function(err){
-// 			console.log("Line 265:", err)
-// 		})
-// 	})
-// })
+app.post('/api/notes', function(req, res){
+	console.log("notes for beer:", req.body.notes)
+	user.find({_id: req.user._id}, function(err, docs){
+		console.log("Line 287:", err, docs)
+		console.log("req.body:", req.body)
+		docs[0].completed.push(req.body)
+		docs[0].save(function(err){
+			console.log("Line 290:", err)
+		})
+		res.send(docs)
+	})
+})
 
 
 //Add badge to profile
