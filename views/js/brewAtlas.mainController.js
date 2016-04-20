@@ -340,7 +340,7 @@ $http.get('/me')
 				$scope.user.wishlist = serverData.data
 			})
 
-// Add notes to beer in profile currently only adds a seperate array
+// Add notes to beer in profile
 	$scope.addNotes = function(beer){
 		$http.post('api/notes', $scope.displayedBeer)
 			.then(function(serverData){
